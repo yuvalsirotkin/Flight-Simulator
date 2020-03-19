@@ -55,6 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\SimViewModel.cs" />
+    <Compile Include="View\test.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -69,6 +71,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\IModel.cs" />
+    <Compile Include="Model\INotifyPropertyChanged.cs" />
+    <Compile Include="Model\ITCP.cs" />
+    <Compile Include="Model\MapAndDashboradModel.cs" />
+    <Compile Include="Model\NavigatorModel.cs" />
+    <Compile Include="Model\PropertyChangedEventArgs.cs" />
+    <Compile Include="Model\TCPGet.cs" />
+    <Compile Include="Model\TCPSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -94,5 +104,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

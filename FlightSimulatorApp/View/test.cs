@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FlightSimulatorApp.Model
+namespace FlightSimulatorApp.View
 {
-    interface ITCP
+    class test
     {
-        void connect(string ip, int port);
-        void disconnect();
-
     }
 }
