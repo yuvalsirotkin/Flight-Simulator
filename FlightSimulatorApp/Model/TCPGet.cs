@@ -12,6 +12,23 @@ namespace FlightSimulatorApp.Model
     class TCPGet
     {
         TcpClient tcpGet = null;
+        TcpListener server = null;
+        Byte[] bytes = new Byte[256];
+        String data = null;
+
+        public TCPGet(Int32 port, string ip)
+        {
+            IPAddress localAddr = IPAddress.Parse(ip);
+            server = new TcpListener(localAddr, port);
+            server.Start();
+            // only for test
+            Console.Write("only for test: Waiting for a connection... ");
+            // not only for test!
+            TcpClient client = server.AcceptTcpClient();
+            // only for test
+            Console.WriteLine("only for test: Connected!");
+        }
+
         public void connect(string ip, int port)
         {
             TcpClient tcpGet = new TcpClient(ip, port);

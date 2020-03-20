@@ -12,7 +12,7 @@ namespace FlightSimulatorApp.Model
         TcpClient tcpSet = null;
         public void connect(string ip, int port)
         {
-            TcpClient tcpSet = new TcpClient(ip, port);
+            this.tcpSet = new TcpClient(ip, port);
         }
 
         public void disconnect()
@@ -32,6 +32,23 @@ namespace FlightSimulatorApp.Model
 
             // Send the message to the connected TcpServer. 
             stream.Write(data, 0, data.Length);
+        }
+
+        // from stack overflow
+        public string read()
+        {
+            if (tcpSet != null)
+            {
+                NetworkStream ns = tcpSet.GetStream();
+                if (tcpSet.ReceiveBufferSize > 0)
+                {
+                    byte[] bytes = new byte[tcpSet.ReceiveBufferSize];
+                    ns.Read(bytes, 0, tcpSet.ReceiveBufferSize);
+                    string a =Encoding.ASCII.GetString(bytes);
+                    return Encoding.ASCII.GetString(bytes); //the message incoming
+                }
+            }
+            return "ERR";
         }
     }
 }

@@ -75,9 +75,10 @@ namespace FlightSimulatorApp.Model
         TCPSet tcpSet;
         volatile Boolean stop;
 
-        public NavigatorModel(TCPSet tcpCLient)
+        public NavigatorModel(TCPSet tcpCLient, string ip, int port)
         {
             this.tcpSet = tcpCLient;
+            tcpSet.connect(ip, port);
             PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
                 // set the property in the simulator

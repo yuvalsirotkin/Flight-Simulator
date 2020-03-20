@@ -1,0 +1,14 @@
+﻿            should be in the mainWindow.axml.cs for testing!
+
+
+            TCPSet tcpSet = new TCPSet();
+            tcpSet.connect("127.0.0.1", 5403);
+            tcpSet.write("set /controls/flight/rudder 0.5\n");
+            string[] splittedData = System.Text.RegularExpressions.Regex.Split(tcpSet.read(), "\n");
+            Console.WriteLine(splittedData[0]);
+            tcpSet.write("get /position/latitude-deg \n");
+            splittedData = System.Text.RegularExpressions.Regex.Split(tcpSet.read(), "\n");
+            Console.WriteLine(splittedData[0]);
+            Console.WriteLine("here");
+            ////// the tcpSet is working. no need the tcpGet
+            

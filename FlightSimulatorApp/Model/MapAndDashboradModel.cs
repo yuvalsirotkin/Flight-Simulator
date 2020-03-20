@@ -10,9 +10,10 @@ namespace FlightSimulatorApp.Model
 {
     class MapAndDashboardModel : INotifyPropertyChanged
     {
-        public MapAndDashboardModel(TCPGet tcpGet)
+        public MapAndDashboardModel(TCPGet tcpGet, string ip, int port)
         {
             this.tcpGet = tcpGet;
+            tcpGet.connect(ip, port);
             stop = false;
         }
 
@@ -42,53 +43,55 @@ namespace FlightSimulatorApp.Model
             new Thread(delegate () {
                 while (!stop)
                 {
+                    string[] splittedData;
                     PropertyChangedEventArgs e = new PropertyChangedEventArgs();
+
                     tcpGet.write("get /instrumentation/heading-indicator/indicated-heading-deg\n");
-                    string headingDeg = tcpGet.read();
+                    splittedData = System.Text.RegularExpressions.Regex.Split(tcpGet.read(), "\n");
                     e.Name = "headingDeg";
-                    e.Val = Double.Parse(headingDeg);
+                    e.Val = Double.Parse(splittedData[0]);
                     NotifyPropertyChanged(e);
 
                     tcpGet.write("get /instrumentation/gps/indicated-vertical-speed\n");
-                    string veritcalSpeed = tcpGet.read();
+                    splittedData = System.Text.RegularExpressions.Regex.Split(tcpGet.read(), "\n");
                     e.Name = "veritcalSpeed";
-                    e.Val = Double.Parse(veritcalSpeed);
+                    e.Val = Double.Parse(splittedData[0]);
                     NotifyPropertyChanged(e);
 
                     tcpGet.write("get /instrumentation/gps/indicated-ground-speed-kt\n");
-                    string groundSpeed = tcpGet.read();
+                    splittedData = System.Text.RegularExpressions.Regex.Split(tcpGet.read(), "\n");
                     e.Name = "groundSpeed";
-                    e.Val = Double.Parse(groundSpeed);
+                    e.Val = Double.Parse(splittedData[0]);
                     NotifyPropertyChanged(e);
 
                     tcpGet.write("get /instrumentation/heading-indicator/indicated-heading-deg\n");
-                    string airSpeed = tcpGet.read();
+                    splittedData = System.Text.RegularExpressions.Regex.Split(tcpGet.read(), "\n");
                     e.Name = "airSpeed";
-                    e.Val = Double.Parse(airSpeed);
+                    e.Val = Double.Parse(splittedData[0]);
                     NotifyPropertyChanged(e);
 
                     tcpGet.write("get /instrumentation/gps/indicated-altitude-ft\n");
-                    string altitude = tcpGet.read();
+                    splittedData = System.Text.RegularExpressions.Regex.Split(tcpGet.read(), "\n");
                     e.Name = "altitude";
-                    e.Val = Double.Parse(altitude);
+                    e.Val = Double.Parse(splittedData[0]);
                     NotifyPropertyChanged(e);
 
                     tcpGet.write("get  /instrumentation/attitude-indicator/internal-roll-deg\n");
-                    string roll = tcpGet.read();
+                    splittedData = System.Text.RegularExpressions.Regex.Split(tcpGet.read(), "\n");
                     e.Name = "roll";
-                    e.Val = Double.Parse(roll);
+                    e.Val = Double.Parse(splittedData[0]);
                     NotifyPropertyChanged(e);
 
                     tcpGet.write("get /instrumentation/attitude-indicator/internal-pitch-deg\n");
-                    string pitch = tcpGet.read();
+                    splittedData = System.Text.RegularExpressions.Regex.Split(tcpGet.read(), "\n");
                     e.Name = "pitch";
-                    e.Val = Double.Parse(pitch);
+                    e.Val = Double.Parse(splittedData[0]);
                     NotifyPropertyChanged(e);
 
                     tcpGet.write("get /instrumentation/altimeter/indicated-altitude-ft\n");
-                    string altimeter = tcpGet.read();
+                    splittedData = System.Text.RegularExpressions.Regex.Split(tcpGet.read(), "\n");
                     e.Name = "altimeter";
-                    e.Val = Double.Parse(altimeter);
+                    e.Val = Double.Parse(splittedData[0]);
                     NotifyPropertyChanged(e);
 
                     // the same for the other sensors properties
