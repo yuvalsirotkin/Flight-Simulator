@@ -15,12 +15,23 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.ComponentModel;
 
-namespace FlightSimulator.View
+
+namespace FlightSimulatorApp.View
 {
     
     public partial class Joystick : UserControl
     {
+        public Joystick()
+        {
+            InitializeComponent();
+            DataContext = this;
+            Knob.MouseLeftButtonDown += Knob_MouseLeftButtonDown;
+            Knob.MouseLeftButtonUp += Knob_MouseLeftButtonUp;
+            Knob.MouseMove += Knob_MouseMove;
+            centerKnob = Knob.Resources["CenterKnob"] as Storyboard;
+        }
         /// <summary>Current Aileron</summary>
         public static readonly DependencyProperty AileronProperty =
             DependencyProperty.Register("Aileron", typeof(double), typeof(Joystick), null);
@@ -86,16 +97,7 @@ namespace FlightSimulator.View
         private double canvasWidth, canvasHeight;
         private readonly Storyboard centerKnob;
 
-        public Joystick()
-        {
-            InitializeComponent();
 
-            Knob.MouseLeftButtonDown += Knob_MouseLeftButtonDown;
-            Knob.MouseLeftButtonUp += Knob_MouseLeftButtonUp;
-            Knob.MouseMove += Knob_MouseMove;
-
-            centerKnob = Knob.Resources["CenterKnob"] as Storyboard;
-        }
 
         private void Knob_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {

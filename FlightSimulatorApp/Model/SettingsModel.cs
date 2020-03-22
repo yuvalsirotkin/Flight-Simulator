@@ -11,6 +11,9 @@ namespace FlightSimulator.Model
     {
         #region Singleton
         private static ISettings m_Instance = null;
+        private SettingsModel()
+        {
+        }
         public static ISettings Instance
         {
             get
