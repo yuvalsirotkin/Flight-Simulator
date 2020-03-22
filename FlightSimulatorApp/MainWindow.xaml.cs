@@ -12,9 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using FlightSimulatorApp.Model;
 
-namespace FlightSimulatorApp
+namespace FlightSimulator
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -24,6 +23,7 @@ namespace FlightSimulatorApp
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new SettingsViewModel(this);
         }
     }
 }

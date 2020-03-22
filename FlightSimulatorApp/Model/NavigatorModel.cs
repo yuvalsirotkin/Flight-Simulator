@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -79,10 +80,11 @@ namespace FlightSimulatorApp.Model
         {
             this.tcpSet = tcpCLient;
             tcpSet.connect(ip, port);
-            PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
+            PropertyChanged +=  (object sender, System.ComponentModel.PropertyChangedEventArgs e) =>
             {
+                Model.PropertyChangedEventArgs e1 = Model.PropertyChangedEventArgs.converPropertyChangedEventArgs(e);
                 // set the property in the simulator
-                tcpCLient.write("set" + e.Path + e.Val + "\n");
+                tcpCLient.write("set" + e1.Path + e1.Val + "\n");
 
             };
             stop = false;
