@@ -15,7 +15,7 @@ namespace FlightSimulator.ViewModel
 
         public SettingsViewModel(Window aWindow)
         {
-            this.model = new Model.SettingsModel();
+           // this.model = new Model.SettingsModel();
             this.window = aWindow;
         }
 

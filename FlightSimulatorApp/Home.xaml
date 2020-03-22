@@ -19,9 +19,9 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <TextBlock Padding="3" Margin="3,3,3,2.6" Grid.ColumnSpan="2">Enter IP:</TextBlock>
-        <TextBox x:Name="ServerIP" Text="{Binding ServerIP}" Grid.Column="2" Padding="3" Margin="3,3,2.6,2.6"></TextBox>
+        <TextBox x:Name="IP" Text="{Binding ServerIP}" Grid.Column="2" Padding="3" Margin="3,3,2.6,2.6"></TextBox>
         <TextBlock Grid.Row="1" Padding="3" Margin="3,3.4,3,2.2" Grid.ColumnSpan="2">Enter Port:</TextBlock>
-        <TextBox x:Name="ServerPort" Text="{Binding ServerPort}" Grid.Row="1" Grid.Column="2" Padding="3"
+        <TextBox x:Name="Port" Text="{Binding ServerPort}" Grid.Row="1" Grid.Column="2" Padding="3"
         Margin="3,3.4,2.6,2.2"></TextBox>
 
         <Button Command="{Binding SetCommand}" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right"
