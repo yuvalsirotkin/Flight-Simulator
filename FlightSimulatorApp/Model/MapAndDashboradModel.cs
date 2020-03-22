@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using FlightSimulatorApp.Model;
+//using System.ComponentModel;
 
 namespace FlightSimulatorApp.Model
 {
@@ -15,6 +16,7 @@ namespace FlightSimulatorApp.Model
             this.tcpGet = tcpGet;
             tcpGet.connect(ip, port);
             stop = false;
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
