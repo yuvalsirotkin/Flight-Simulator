@@ -1,13 +1,9 @@
 ﻿using FlightSimulatorApp.Model;
-using FlightSimulator.Model;
-using FlightSimulator.ViewModel;
-using FlightSimulatorApp.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 
 namespace FlightSimulator.Model
 {
@@ -29,24 +25,24 @@ namespace FlightSimulator.Model
         #endregion
         public string ServerIP
         {
-            get { return Properties.Settings.Default.ServerIP; }
-            set { Properties.Settings.Default.ServerIP = value; }
+            get { return FlightSimulatorApp.Properties.Settings.Default.ServerIP; }
+            set { FlightSimulatorApp.Properties.Settings.Default.ServerIP = value; }
         }
         public int ServerPort
         {
-            get { return Properties.Settings.Default.ServerPort; }
-            set { Properties.Settings.Default.ServerPort = value; }
+            get { return 5042; } //!!!!!!!!!!!!!!
+            set { FlightSimulatorApp.Properties.Settings.Default.ServerPort = value.ToString(); }
         }
 
 
         public void SaveSettings()
         {
-            Properties.Settings.Default.Save();
+            FlightSimulatorApp.Properties.Settings.Default.Save();
         }
 
         public void ReloadSettings()
         {
-            Properties.Settings.Default.Reload();
+            FlightSimulatorApp.Properties.Settings.Default.Reload();
         }
     }
 }

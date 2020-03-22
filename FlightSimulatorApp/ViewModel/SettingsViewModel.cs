@@ -1,4 +1,5 @@
 ﻿using FlightSimulator.ViewModel;
+using FlightSimulator.Model;
 using FlightSimulatorApp.Model;
 using FlightSimulatorApp.ViewModel;
 using System;
@@ -14,7 +15,7 @@ namespace FlightSimulator.ViewModel
 
         public SettingsViewModel(Window aWindow)
         {
-            this.model = new SettingsModel();
+            this.model = new Model.SettingsModel();
             this.window = aWindow;
         }
 
@@ -23,7 +24,7 @@ namespace FlightSimulator.ViewModel
             get { return model.ServerIP; }
             set
             {
-                model.FlightServerIP = value;
+                model.ServerIP = value;
                 NotifyPropertyChanged("ServerIP");
             }
         }
@@ -33,7 +34,7 @@ namespace FlightSimulator.ViewModel
             get { return model.ServerPort; }
             set
             {
-                model.FlightCommandPort = value;
+                model.ServerPort = value;
                 NotifyPropertyChanged("ServerPort");
             }
         }
@@ -49,7 +50,8 @@ namespace FlightSimulator.ViewModel
             model.ReloadSettings();
         }
 
+
         //add commands!
-       
+
     }
 }

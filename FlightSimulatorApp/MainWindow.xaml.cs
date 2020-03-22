@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Linq;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FlightSimulator.ViewModel;
+using FlightSimulatorApp.Model;
+using FlightSimulatorApp.ViewModel;
 
 namespace FlightSimulator
 {
@@ -20,10 +24,8 @@ namespace FlightSimulator
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-            DataContext = new SettingsViewModel(this);
-        }
+       //// InitializeComponent();
+       /// this.DataContext = new SettingsWindowViewModel(new ApplicationSettingsModel());
+
     }
 }
