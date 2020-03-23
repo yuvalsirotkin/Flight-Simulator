@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -14,7 +15,8 @@ namespace FlightSimulatorApp.Model
         public MapAndDashboardModel(TCPGet tcpGet, string ip, int port)
         {
             this.tcpGet = tcpGet;
-            tcpGet.connect(ip, port);
+            connect(ip, port);
+            start();
             stop = false;
 
         }

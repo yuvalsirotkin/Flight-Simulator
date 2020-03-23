@@ -15,6 +15,6 @@ namespace FlightSimulatorApp.Model
 
 public delegate void PropertyChangedEventHandler(
 Object sender,
-PropertyChangedEventArgs e
+System.ComponentModel.PropertyChangedEventArgs e
 );
 

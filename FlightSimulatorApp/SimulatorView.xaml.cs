@@ -12,15 +12,21 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FlightSimulatorApp.ViewModel;
+using FlightSimulatorApp.Model;
+
 namespace FlightSimulatorApp
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for SimulatorView.xaml
     /// </summary>
-    public partial class MainWindow : NavigationWindow
+   
+    public partial class SimulatorView : Page
     {
-        public MainWindow()
+        private SimViewModel vm;
+        public SimulatorView(string ip, int port)
         {
+            this.vm = new SimViewModel(new NavigatorModel(new TCPSet(), ip, port), new MapAndDashboardModel(new TCPGet(port, ip), ip, port));
             InitializeComponent();
         }
     }

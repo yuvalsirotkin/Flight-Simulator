@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FlightSimulatorApp.Model;
+using System.ComponentModel;
 
 namespace FlightSimulatorApp.ViewModel
 {
@@ -61,10 +62,13 @@ namespace FlightSimulatorApp.ViewModel
             this.mapAndDashboardModel = mapAndDashboardModel;
             // when proprety changed in the model- it will notify the VM also
             // use the map and dashboard model
-            mapAndDashboardModel.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e) {
-                NotifyPropertyChanged("VM_" + e.Name);
+            mapAndDashboardModel.PropertyChanged +=  (object sender, System.ComponentModel.PropertyChangedEventArgs e)=> {
+                Model.PropertyChangedEventArgs e1 = Model.PropertyChangedEventArgs.converPropertyChangedEventArgs(e);
+                NotifyPropertyChanged("VM_" + e1.Name);
             };
         }
+
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -73,7 +77,7 @@ namespace FlightSimulatorApp.ViewModel
         {
             if (this.PropertyChanged != null)
             {
-                PropertyChangedEventArgs e = new PropertyChangedEventArgs();
+                Model.PropertyChangedEventArgs e = new Model.PropertyChangedEventArgs();
                 e.Name = propName;
                 this.PropertyChanged(this, e);
             }
