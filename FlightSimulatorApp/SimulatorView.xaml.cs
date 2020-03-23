@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FlightSimulatorApp.ViewModel;
 using FlightSimulatorApp.Model;
+using System.Net.Sockets;
+    
 
 namespace FlightSimulatorApp
 {
@@ -26,7 +28,9 @@ namespace FlightSimulatorApp
         private SimViewModel vm;
         public SimulatorView(string ip, int port)
         {
-            this.vm = new SimViewModel(new NavigatorModel(new TCPSet(), ip, port), new MapAndDashboardModel(new TCPGet(port, ip), ip, port));
+            TcpGetSet tcpConnection = new TcpGetSet();
+            tcpConnection.connect(ip, port);
+            this.vm = new SimViewModel(new NavigatorModel(tcpConnection), new MapAndDashboardModel(tcpConnection));
             InitializeComponent();
         }
     }

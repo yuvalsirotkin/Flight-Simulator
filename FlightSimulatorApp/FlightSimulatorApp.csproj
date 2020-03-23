@@ -68,6 +68,7 @@
     <Compile Include="Model\SettingsModel.cs">
       <Generator>MSBuild:Compile</Generator>
     </Compile>
+    <Compile Include="Model\TcpGetSet.cs" />
     <Compile Include="Model\VirtualJoystickEventArgs.cs">
       <Generator>MSBuild:Compile</Generator>
     </Compile>
