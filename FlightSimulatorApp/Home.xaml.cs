@@ -37,7 +37,7 @@ namespace FlightSimulatorApp
             }
             if (port == 0)
             {
-                port = 5402;
+                port = 5403;
             }
             SimulatorView simulatorView = new SimulatorView(this.ip, this.port);
             this.NavigationService.Navigate(simulatorView);
