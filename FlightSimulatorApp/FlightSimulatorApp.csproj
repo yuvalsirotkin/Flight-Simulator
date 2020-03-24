@@ -8,12 +8,13 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>FlightSimulatorApp</RootNamespace>
     <AssemblyName>FlightSimulatorApp</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -38,8 +39,12 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Maps.MapControl.WPF">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Bing Maps WPF Control\V1\Libraries\Microsoft.Maps.MapControl.WPF.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -58,8 +63,33 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Home.xaml.cs">
+      <DependentUpon>Home.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ISettings.cs" />
+    <Compile Include="Model\PropertyChangedEventArgs %282%29.cs" />
+    <Compile Include="Model\SettingsModel.cs">
+      <Generator>MSBuild:Compile</Generator>
+    </Compile>
+    <Compile Include="Model\TcpGetSet.cs" />
+    <Compile Include="Model\VirtualJoystickEventArgs.cs">
+      <Generator>MSBuild:Compile</Generator>
+    </Compile>
+    <Compile Include="SimulatorView.xaml.cs">
+      <DependentUpon>SimulatorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\Notify.cs" />
+    <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="ViewModel\SimViewModel.cs" />
+    <Compile Include="View\Joystick.xaml.cs">
+      <DependentUpon>Joystick.xaml</DependentUpon>
+      <Generator>MSBuild:Compile</Generator>
+    </Compile>
     <Compile Include="View\test.cs" />
+    <Page Include="Home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -72,6 +102,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="SimulatorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Joystick.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\IModel.cs" />
@@ -79,7 +117,6 @@
     <Compile Include="Model\ITCP.cs" />
     <Compile Include="Model\MapAndDashboradModel.cs" />
     <Compile Include="Model\NavigatorModel.cs" />
-    <Compile Include="Model\PropertyChangedEventArgs.cs" />
     <Compile Include="Model\TCPGet.cs" />
     <Compile Include="Model\TCPSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

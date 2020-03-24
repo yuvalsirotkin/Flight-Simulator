@@ -7,20 +7,23 @@ using System.Net.Sockets;
 
 namespace FlightSimulatorApp.Model
 {
-    class TCPSet
+    class TcpGetSet
     {
-        TcpClient tcpSet = null;
-        public TcpClient connect(string ip, int port)
+        TcpClient tcpClient = null;
+
+        public void connect(string ip, int port)
         {
-            return new TcpClient(ip, port);
+            this.tcpClient = new TcpClient(ip, port);
+
         }
 
         public void disconnect()
         {
-            tcpSet.GetStream().Close();
-            tcpSet.Close();
-            tcpSet = null;
+            tcpClient.GetStream().Close();
+            tcpClient.Close();
+            tcpClient = null;
         }
+
 
         public void write(string command)
         {
@@ -28,7 +31,7 @@ namespace FlightSimulatorApp.Model
             Byte[] data = System.Text.Encoding.ASCII.GetBytes(command);
 
             // Get a client stream for reading and writing.
-            NetworkStream stream = tcpSet.GetStream();
+            NetworkStream stream = tcpClient.GetStream();
 
             // Send the message to the connected TcpServer. 
             stream.Write(data, 0, data.Length);
@@ -37,14 +40,14 @@ namespace FlightSimulatorApp.Model
         // from stack overflow
         public string read()
         {
-            if (tcpSet != null)
+            if (tcpClient != null)
             {
-                NetworkStream ns = tcpSet.GetStream();
-                if (tcpSet.ReceiveBufferSize > 0)
+                NetworkStream ns = tcpClient.GetStream();
+                if (tcpClient.ReceiveBufferSize > 0)
                 {
-                    byte[] bytes = new byte[tcpSet.ReceiveBufferSize];
-                    ns.Read(bytes, 0, tcpSet.ReceiveBufferSize);
-                    string a =Encoding.ASCII.GetString(bytes);
+                    byte[] bytes = new byte[tcpClient.ReceiveBufferSize];
+                    ns.Read(bytes, 0, tcpClient.ReceiveBufferSize);
+                    string a = Encoding.ASCII.GetString(bytes);
                     return Encoding.ASCII.GetString(bytes); //the message incoming
                 }
             }
