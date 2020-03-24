@@ -32,6 +32,7 @@ namespace FlightSimulatorApp
             tcpConnection.connect(ip, port);
             this.vm = new SimViewModel(new NavigatorModel(tcpConnection), new MapAndDashboardModel(tcpConnection));
             InitializeComponent();
+            DataContext = vm;
         }
     }
 }

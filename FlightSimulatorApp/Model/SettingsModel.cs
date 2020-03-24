@@ -33,7 +33,7 @@ namespace FlightSimulator.Model
         }
         public int ServerPort
         {
-            get { return 5042; } //!!!!!!!!!!!!!!
+            get { return 12345; } //!!!!!!!!!!!!!!
             set { FlightSimulatorApp.Properties.Settings.Default.ServerPort = value.ToString(); }
         }
 

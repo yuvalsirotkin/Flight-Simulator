@@ -13,7 +13,7 @@ namespace FlightSimulatorApp.Model
 
         public void connect(string ip, int port)
         {
-            this.tcpClient = new TcpClient(ip, port);
+            this.tcpClient = new TcpClient(ip, port);  
 
         }
 

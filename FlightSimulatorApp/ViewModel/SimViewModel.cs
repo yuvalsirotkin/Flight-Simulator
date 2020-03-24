@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FlightSimulatorApp.Model;
 using System.ComponentModel;
+using Microsoft.Maps.MapControl.WPF;
 
 namespace FlightSimulatorApp.ViewModel
 {
@@ -19,7 +20,7 @@ namespace FlightSimulatorApp.ViewModel
         private double aileron;
         //properties
         // changes in the properties (from the view) will change the navigator model
-        public double Elavetor
+        public double VM_Elavetor
         {
             get { return this.elavetor; }
             set
@@ -28,7 +29,7 @@ namespace FlightSimulatorApp.ViewModel
                 navigatorModel.Elavetor = value;
             }
         }
-        public double Throttle
+        public double VM_Throttle
         {
             get { return this.throttle; }
             set
@@ -37,7 +38,7 @@ namespace FlightSimulatorApp.ViewModel
                 navigatorModel.Throttle = value;
             }
         }
-        public double Aileron
+        public double VM_Aileron
         {
             get { return this.aileron; }
             set
@@ -46,7 +47,7 @@ namespace FlightSimulatorApp.ViewModel
                 navigatorModel.Aileron = value;
             }
         }
-        public double Rudder
+        public double VM_Rudder
         {
             get { return this.rudder; }
             set
@@ -55,7 +56,13 @@ namespace FlightSimulatorApp.ViewModel
                 navigatorModel.Rudder = value;
             }
         }
-
+        //public Location VM_Location
+        //{
+        //    get
+        //    {
+        //       // return model.Location;
+        //    }
+        //}
         public SimViewModel(NavigatorModel navigatorModel, MapAndDashboardModel mapAndDashboardModel)
         {
             this.navigatorModel = navigatorModel;
