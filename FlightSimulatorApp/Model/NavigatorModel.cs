@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -27,6 +26,7 @@ namespace FlightSimulatorApp.Model
                 PropertyChangedEventArgs e = new PropertyChangedEventArgs();
                 e.Name = "elavetor";
                 e.Path = "/controls/flight/elevator";
+                e.Val = value;
                 NotifyPropertyChanged(e);
             }
         }
@@ -39,6 +39,7 @@ namespace FlightSimulatorApp.Model
                 PropertyChangedEventArgs e = new PropertyChangedEventArgs();
                 e.Name = "throttle";
                 e.Path = "/controls/engines/engine/throttle";
+                e.Val = value;
                 NotifyPropertyChanged(e);
             }
         }
@@ -51,6 +52,7 @@ namespace FlightSimulatorApp.Model
                 PropertyChangedEventArgs e = new PropertyChangedEventArgs();
                 e.Name = "aileron";
                 e.Path = "/controls/flight/aileron";
+                e.Val = value;
                 NotifyPropertyChanged(e);
             }
         }
@@ -63,6 +65,7 @@ namespace FlightSimulatorApp.Model
                 PropertyChangedEventArgs e = new PropertyChangedEventArgs();
                 e.Name = "rudder";
                 e.Path = "/controls/flight/rudder";
+                e.Val = value;
                 NotifyPropertyChanged(e);
             }
         }
@@ -80,11 +83,15 @@ namespace FlightSimulatorApp.Model
         public NavigatorModel(TcpGetSet tcpClient)
         {
             this.tcpClient = tcpClient;
-            PropertyChanged += (object sender, System.ComponentModel.PropertyChangedEventArgs e) =>
+            PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
-                Model.PropertyChangedEventArgs e1 = Model.PropertyChangedEventArgs.converPropertyChangedEventArgs(e);
                 // set the property in the simulator
-                tcpClient.write("set" + e1.Path + e1.Val + "\n");
+                tcpClient.write("set " + e.Path +" " + e.Val + "\n");
+                //for test:
+                Console.WriteLine("for test:");
+                string[] splittedData = System.Text.RegularExpressions.Regex.Split(tcpClient.read(), "\n");
+                Console.WriteLine(splittedData[0]);
+
 
             };
             stop = false;
@@ -116,15 +123,13 @@ namespace FlightSimulatorApp.Model
     }
 }
 
-
-
 //using System;
 //using System.Collections.Generic;
-//using System.ComponentModel;
 //using System.Linq;
 //using System.Text;
 //using System.Threading;
 //using System.Threading.Tasks;
+//using System.Net.Sockets;
 
 //namespace FlightSimulatorApp.Model
 //{
@@ -193,45 +198,46 @@ namespace FlightSimulatorApp.Model
 //        }
 
 
-//        TCPSet tcpSet;
+//        TcpGetSet tcpClient;
 //        volatile Boolean stop;
 
-//        public NavigatorModel(TCPSet tcpCLient, string ip, int port)
+//        public NavigatorModel(TcpGetSet tcpClient)
 //        {
-//            this.tcpSet = tcpCLient;
-//            tcpSet.connect(ip, port);
-//            PropertyChanged +=  (object sender, System.ComponentModel.PropertyChangedEventArgs e) =>
-//            {
-//                Model.PropertyChangedEventArgs e1 = Model.PropertyChangedEventArgs.converPropertyChangedEventArgs(e);
-//                // set the property in the simulator
-//                tcpCLient.write("set" + e1.Path + e1.Val + "\n");
-
-//            };
-//            stop = false;
-//        }
-
-//        public NavigatorModel(TCPSet tcpCLient)
-//        {
-//            this.tcpSet = tcpCLient;
+//            this.tcpClient = tcpClient;
 //            PropertyChanged += (object sender, System.ComponentModel.PropertyChangedEventArgs e) =>
 //            {
 //                Model.PropertyChangedEventArgs e1 = Model.PropertyChangedEventArgs.converPropertyChangedEventArgs(e);
 //                // set the property in the simulator
-//                tcpCLient.write("set" + e1.Path + e1.Val + "\n");
+//                tcpClient.write("set" + e1.Path + e1.Val + "\n");
 
 //            };
 //            stop = false;
 //        }
 
+//        //public NavigatorModel(TCPSet tcpCLient)
+//        //{
+//        //    this.tcpClient = tcpCLient;
+//        //    PropertyChanged += (object sender, System.ComponentModel.PropertyChangedEventArgs e) =>
+//        //    {
+//        //        Model.PropertyChangedEventArgs e1 = Model.PropertyChangedEventArgs.converPropertyChangedEventArgs(e);
+//        //        // set the property in the simulator
+//        //        tcpCLient.write("set" + e1.Path + e1.Val + "\n");
+
+//        //    };
+//        //    stop = false;
+//        //}
+
 //        public void connect(string ip, int port)
 //        {
-//            tcpSet.connect(ip, port);
+//            tcpClient.connect(ip, port);
 //        }
 //        public void disconnect()
 //        {
 //            stop = true;
-//            tcpSet.disconnect();
+//            tcpClient.disconnect();
 //        }
 
 //    }
 //}
+
+

@@ -18,7 +18,6 @@ namespace FlightSimulatorApp.Model
         public MapAndDashboardModel(TcpGetSet tcpGet)
         {
             this.tcpClient = tcpGet;
-
             start();
             stop = false;
 

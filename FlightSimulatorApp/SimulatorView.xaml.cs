@@ -31,6 +31,9 @@ namespace FlightSimulatorApp
             TcpGetSet tcpConnection = new TcpGetSet();
             tcpConnection.connect(ip, port);
             this.vm = new SimViewModel(new NavigatorModel(tcpConnection), new MapAndDashboardModel(tcpConnection));
+            this.vm.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e) {
+                Console.WriteLine("should change the dashboard");
+            };
             InitializeComponent();
             DataContext = vm;
         }

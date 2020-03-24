@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FlightSimulatorApp.Model;
-using System.ComponentModel;
 using Microsoft.Maps.MapControl.WPF;
 
 namespace FlightSimulatorApp.ViewModel
@@ -63,17 +62,29 @@ namespace FlightSimulatorApp.ViewModel
         //       // return model.Location;
         //    }
         //}
+
         public SimViewModel(NavigatorModel navigatorModel, MapAndDashboardModel mapAndDashboardModel)
         {
             this.navigatorModel = navigatorModel;
             this.mapAndDashboardModel = mapAndDashboardModel;
             // when proprety changed in the model- it will notify the VM also
             // use the map and dashboard model
-            mapAndDashboardModel.PropertyChanged +=  (object sender, System.ComponentModel.PropertyChangedEventArgs e)=> {
-                Model.PropertyChangedEventArgs e1 = Model.PropertyChangedEventArgs.converPropertyChangedEventArgs(e);
-                NotifyPropertyChanged("VM_" + e1.Name);
+            mapAndDashboardModel.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e) {
+                NotifyPropertyChanged("VM_" + e.Name);
             };
         }
+
+        //public SimViewModel(NavigatorModel navigatorModel, MapAndDashboardModel mapAndDashboardModel)
+        //{
+        //    this.navigatorModel = navigatorModel;
+        //    this.mapAndDashboardModel = mapAndDashboardModel;
+        //    // when proprety changed in the model- it will notify the VM also
+        //    // use the map and dashboard model
+        //    mapAndDashboardModel.PropertyChanged +=  (object sender,PropertyChangedEventArgs e)=> {
+        //        Model.PropertyChangedEventArgs e1 = Model.PropertyChangedEventArgs.converPropertyChangedEventArgs(e);
+        //        NotifyPropertyChanged("VM_" + e1.Name);
+        //    };
+        //}
 
 
 

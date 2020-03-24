@@ -16,7 +16,7 @@ namespace FlightSimulatorApp.ViewModel
 
         public void NotifyPropertyChanged(string propName)
         {
-            this.PropertyChanged?.Invoke(this, new System.ComponentModel.PropertyChangedEventArgs(propName));
+            //this.PropertyChanged?.Invoke(this, Model.PropertyChangedEventArgs.propName);
         }
     }
 

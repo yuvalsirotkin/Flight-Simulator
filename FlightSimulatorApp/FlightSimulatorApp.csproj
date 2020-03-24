@@ -67,7 +67,7 @@
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\ISettings.cs" />
-    <Compile Include="Model\PropertyChangedEventArgs %282%29.cs" />
+    <Compile Include="Model\PropertyChangedEventArgs.cs" />
     <Compile Include="Model\SettingsModel.cs">
       <Generator>MSBuild:Compile</Generator>
     </Compile>
