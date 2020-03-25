@@ -17,6 +17,16 @@ namespace FlightSimulatorApp.ViewModel
         private double elavetor;
         private double rudder;
         private double aileron;
+
+        private double headingDeg;
+        private double verticalSpeed;
+        private double airSpeed;
+        private double roll;
+        private double pitch;
+        private double altitude;
+        private double altimeter;
+        private double groundSpeed;
+        
         //properties
         // changes in the properties (from the view) will change the navigator model
         public double VM_Elavetor
@@ -55,6 +65,74 @@ namespace FlightSimulatorApp.ViewModel
                 navigatorModel.Rudder = value;
             }
         }
+
+
+        public double VM_HeadingDeg
+        {
+            get { return this.headingDeg; }
+            set
+            {
+                this.headingDeg = value;
+            }
+        }
+
+        public double VM_VerticalSpeed
+        {
+            get { return this.verticalSpeed; }
+            set
+            {
+                this.verticalSpeed = value;
+            }
+        }
+        public double VM_GroundSpeed
+        {
+            get { return this.groundSpeed; }
+            set
+            {
+                this.groundSpeed = value;
+            }
+        }
+        public double VM_Airspeed
+        {
+            get { return this.airSpeed; }
+            set
+            {
+                this.airSpeed = value;
+            }
+        }
+        public double VM_Altitude
+        {
+            get { return this.altitude; }
+            set
+            {
+                this.altitude = value;
+            }
+        }
+        public double VM_Roll
+        {
+            get { return this.roll; }
+            set
+            {
+                this.roll = value;
+            }
+        }
+        public double VM_Pitch
+        {
+            get { return this.pitch; }
+            set
+            {
+                this.pitch = value;
+            }
+        }
+        public double VM_Altimeter
+        {
+            get { return this.altimeter; }
+            set
+            {
+                this.altimeter = value;
+            }
+        }
+
         //public Location VM_Location
         //{
         //    get
@@ -70,7 +148,34 @@ namespace FlightSimulatorApp.ViewModel
             // when proprety changed in the model- it will notify the VM also
             // use the map and dashboard model
             mapAndDashboardModel.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e) {
-                NotifyPropertyChanged("VM_" + e.Name);
+                switch(e.Name)
+                {
+                    case "headingDeg":
+                        this.headingDeg = e.Val;
+                        break;
+                    case "veritcalSpeed":
+                        this.VM_VerticalSpeed = e.Val;
+                        break;
+                    case "groundSpeed":
+                        this.VM_GroundSpeed = e.Val;
+                        break;
+                    case "airSpeed":
+                        this.VM_Airspeed = e.Val;
+                        break;
+                    case "altitude":
+                        this.VM_Altitude= e.Val;
+                        break;
+                    case "roll":
+                        this.VM_Roll = e.Val;
+                        break;
+                    case "pitch":
+                        this.VM_Pitch = e.Val;
+                        break;
+                    case "altimeter":
+                        this.VM_Altimeter = e.Val;
+                        break;
+
+                }
             };
         }
 
@@ -80,25 +185,24 @@ namespace FlightSimulatorApp.ViewModel
         //    this.mapAndDashboardModel = mapAndDashboardModel;
         //    // when proprety changed in the model- it will notify the VM also
         //    // use the map and dashboard model
-        //    mapAndDashboardModel.PropertyChanged +=  (object sender,PropertyChangedEventArgs e)=> {
-        //        Model.PropertyChangedEventArgs e1 = Model.PropertyChangedEventArgs.converPropertyChangedEventArgs(e);
-        //        NotifyPropertyChanged("VM_" + e1.Name);
+        //    mapAndDashboardModel.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e) {
+        //        NotifyPropertyChanged(e);
         //    };
         //}
 
 
+        //public event PropertyChangedEventHandler PropertyChanged;
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        // the propertyChanged should contain function that will change the view when the vm changed
-        public void NotifyPropertyChanged(string propName)
-        {
-            if (this.PropertyChanged != null)
-            {
-                Model.PropertyChangedEventArgs e = new Model.PropertyChangedEventArgs();
-                e.Name = propName;
-                this.PropertyChanged(this, e);
-            }
-        }
+        //// the propertyChanged should contain function that will change the view when the vm changed
+        //public void NotifyPropertyChanged(PropertyChangedEventArgs property)
+        //{
+        //    if (this.PropertyChanged != null)
+        //    {
+        //        Model.PropertyChangedEventArgs e = new Model.PropertyChangedEventArgs();
+        //        e.Name = "VM_"+ property.Name;
+        //        e.Val = property.Val;
+        //        this.PropertyChanged(this, e);
+        //    }
+        //}
     }
 }

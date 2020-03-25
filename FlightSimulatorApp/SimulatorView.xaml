@@ -46,49 +46,50 @@
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,10,0,0">
                     <TextBlock Text="indicatedHeadingDeg: " />
-                    <TextBlock Text="{Binding VM_IndicatedHeadingDeg}" Width="50" />
+                    <TextBlock Text="{Binding VM_HeadingDeg}" Width="50" />
                 </WrapPanel>
             </StackPanel>
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,10,0,0">
                     <TextBlock Text="gpsIndicatedVerticalSpeed: " />
-                    <TextBlock Text="{Binding VM_GpsIndicatedVerticalSpeed}" Width="50" />
+                    <TextBlock Text="{Binding VM_VerticalSpeed}" Width="50" />
                 </WrapPanel>
             </StackPanel>
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,10,0,0">
                     <TextBlock Text="gpsIndicatedGroundSpeedKt: " />
-                    <TextBlock Text="{Binding VM_GpsIndicatedGroundSpeedKt}" Width="50" />
+                    <TextBlock Text="{Binding VM_GroundSpeed}" Width="50" />
                 </WrapPanel>
             </StackPanel>
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,10,0,0">
                     <TextBlock Text="airspeedIndicatorIndicatedSpeedKt: " />
-                    <TextBlock Text="{Binding VM_AirspeedIndicatorIndicatedSpeedKt}" Width="50" />
+                    <TextBlock Text="{Binding VM_Airspeed}" Width="50" />
                 </WrapPanel>
             </StackPanel>
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,10,0,0">
                     <TextBlock Text="gpsIndicatedAltitudeFt: " />
-                    <TextBlock Text="{Binding VM_GpsIndicatedAltitudeFt}" Width="50" />
+                    <TextBlock Text="{Binding VM_Altitude}" Width="50" />
                 </WrapPanel>
             </StackPanel>
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,10,0,0">
                     <TextBlock Text="attitudeIndicatorInternalRollDeg: " />
-                    <TextBlock Text="{Binding VM_AttitudeIndicatorInternalRollDeg}" Width="50" />
+                    <TextBlock Text="{Binding VM_Roll}" Width="50" />
                 </WrapPanel>
             </StackPanel>
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,10,0,0">
                     <TextBlock Text="attitudeIndicatorInternalPitchDeg: " />
-                    <TextBlock Text="{Binding VM_AttitudeIndicatorInternalPitchDeg}" Width="50" />
+                    <!-- to change it!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+                    <TextBlock Text="{Binding VM_Throttle}" Width="50" />
                 </WrapPanel>
             </StackPanel>
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,10,0,0">
                     <TextBlock Text="altimeterIndicatedAltitudeFt: " />
-                    <TextBlock Text="{Binding M_AltimeterIndicatedAltitudeFt}" Width="50" />
+                    <TextBlock Text="{Binding VM_Altimeter}" Width="50" />
                 </WrapPanel>
             </StackPanel>
         </StackPanel>

@@ -40,10 +40,10 @@ namespace FlightSimulatorApp.Model
         //}
 
         public event PropertyChangedEventHandler PropertyChanged;
-        public void NotifyPropertyChanged(PropertyChangedEventArgs propName)
+        public void NotifyPropertyChanged(PropertyChangedEventArgs property)
         {
             if (this.PropertyChanged != null)
-                this.PropertyChanged(this, propName);
+                this.PropertyChanged(this, property);
         }
 
         
@@ -95,7 +95,7 @@ namespace FlightSimulatorApp.Model
                         NotifyPropertyChanged(e);
                     }
 
-                    tcpClient.write("get /instrumentation/heading-indicator/indicated-heading-deg\n");
+                    tcpClient.write("get /instrumentation/airspeed-indicator/indicated-speed-kt\n");
                     splittedData = System.Text.RegularExpressions.Regex.Split(tcpClient.read(), "\n");
                     e.Name = "airSpeed";
                     if (splittedData[0] != "ERR")
@@ -113,7 +113,7 @@ namespace FlightSimulatorApp.Model
                         NotifyPropertyChanged(e);
                     }
 
-                    tcpClient.write("get  /instrumentation/attitude-indicator/internal-roll-deg\n");
+                    tcpClient.write("get /instrumentation/attitude-indicator/internal-roll-deg\n");
                     splittedData = System.Text.RegularExpressions.Regex.Split(tcpClient.read(), "\n");
                     e.Name = "roll";
                     if (splittedData[0] != "ERR")

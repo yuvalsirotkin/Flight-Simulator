@@ -38,7 +38,7 @@ namespace FlightSimulatorApp.Model
                 this.throttle = value;
                 PropertyChangedEventArgs e = new PropertyChangedEventArgs();
                 e.Name = "throttle";
-                e.Path = "/controls/engines/engine/throttle";
+                e.Path = "/controls/engines/current-engine/throttle";
                 e.Val = value;
                 NotifyPropertyChanged(e);
             }
