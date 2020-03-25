@@ -21,25 +21,38 @@ namespace FlightSimulatorApp
     public partial class Home : Page
     {
         private string ip = "";
-        private int port = 0;
+        private string port = "";
+        private int portInInt = 0;
         public Home()
         {
             InitializeComponent();
             DataContext = this;
         }
- 
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void DefaultCommand(object sender, RoutedEventArgs e)
         {
+            this.ip = "127.0.0.1";
+            this.port = "5403";
+        }
+
+        private void SetCommand(object sender, RoutedEventArgs e)
+        {
+            this.ip = ServerIP;
+            this.port = ServerPort;
+        }
+        private void FlyCommand(object sender, RoutedEventArgs e)
+        {
+ 
             if (ip == "")
             {
-                ip = "127.0.0.1";
+                // return ERR
             }
-            if (port == 0)
+            if (port == "")
             {
-                port = 5403;
+                // return ERR
             }
-            SimulatorView simulatorView = new SimulatorView(this.ip, this.port);
+            portInInt = int.Parse(port);
+            SimulatorView simulatorView = new SimulatorView(this.ip, portInInt);
             this.NavigationService.Navigate(simulatorView);
         }
         public string ServerIP
@@ -47,7 +60,7 @@ namespace FlightSimulatorApp
             get { return this.ip; }
             set { this.ip = value; }
         }
-        public int ServerPort
+        public string ServerPort
         {
             get { return this.port; }
             set { this.port = value; }
