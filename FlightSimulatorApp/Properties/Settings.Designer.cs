@@ -37,7 +37,7 @@ namespace FlightSimulatorApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("5403")]
+        [global::System.Configuration.DefaultSettingValueAttribute("5402")]
         public string ServerPort {
             get {
                 return ((string)(this["ServerPort"]));

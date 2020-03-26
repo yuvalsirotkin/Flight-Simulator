@@ -47,11 +47,13 @@ namespace FlightSimulatorApp
  
             if (ip == "")
             {
-                // return ERR
+                string message = String.Format("You must enter IP adress");
+                MessageBox.Show(message, "", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             if (port == "")
             {
-                // return ERR
+                string message = String.Format("You must enter Port adress");
+                MessageBox.Show(message, "", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             portInInt = int.Parse(port);
             SimulatorView simulatorView = new SimulatorView(this.ip, portInInt);
