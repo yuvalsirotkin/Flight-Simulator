@@ -32,7 +32,9 @@ namespace FlightSimulatorApp
         private void DefaultCommand(object sender, RoutedEventArgs e)
         {
             this.ip = "127.0.0.1";
-            this.port = "5403";
+            this.port = "5402";
+            IP.Text = this.ip;
+            Port.Text = this.port;
         }
 
         private void SetCommand(object sender, RoutedEventArgs e)

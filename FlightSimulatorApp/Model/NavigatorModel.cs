@@ -69,7 +69,7 @@ namespace FlightSimulatorApp.Model
                 NotifyPropertyChanged(e);
             }
         }
-
+        
         public void NotifyPropertyChanged(PropertyChangedEventArgs propName)
         {
             if (this.PropertyChanged != null)
@@ -79,6 +79,8 @@ namespace FlightSimulatorApp.Model
 
         TcpGetSet tcpClient;
         volatile Boolean stop;
+
+        //לכי על זה
 
         public NavigatorModel(TcpGetSet tcpClient)
         {
@@ -96,6 +98,8 @@ namespace FlightSimulatorApp.Model
             };
             stop = false;
         }
+
+        
 
         //public NavigatorModel(TCPSet tcpCLient)
         //{

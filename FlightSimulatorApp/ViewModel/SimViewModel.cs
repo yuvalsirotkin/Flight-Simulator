@@ -13,10 +13,10 @@ namespace FlightSimulatorApp.ViewModel
         private MapAndDashboardModel mapAndDashboardModel;
         private NavigatorModel navigatorModel;
 
-        private double throttle;
+        /*private double throttle;
         private double elavetor;
         private double rudder;
-        private double aileron;
+        private double aileron;*/
 
         private double headingDeg;
         private double verticalSpeed;
@@ -31,37 +31,37 @@ namespace FlightSimulatorApp.ViewModel
         // changes in the properties (from the view) will change the navigator model
         public double VM_Elavetor
         {
-            get { return this.elavetor; }
+            /*get { return this.elavetor; }*/
             set
             {
-                this.elavetor = value;
+                /*this.elavetor = value;*/
                 navigatorModel.Elavetor = value;
             }
         }
         public double VM_Throttle
         {
-            get { return this.throttle; }
+            /*get { return this.throttle; }*/
             set
             {
-                this.throttle = value;
+                /*this.throttle = value;*/
                 navigatorModel.Throttle = value;
             }
         }
         public double VM_Aileron
         {
-            get { return this.aileron; }
+            /*get { return this.aileron; }*/
             set
             {
-                this.aileron = value;
+                /*this.aileron = value;*/
                 navigatorModel.Aileron = value;
             }
         }
         public double VM_Rudder
         {
-            get { return this.rudder; }
+            /*get { return this.rudder; }*/
             set
             {
-                this.rudder = value;
+                /*this.rudder = value;*/
                 navigatorModel.Rudder = value;
             }
         }

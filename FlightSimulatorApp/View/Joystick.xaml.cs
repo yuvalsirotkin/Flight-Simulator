@@ -67,10 +67,16 @@ namespace FlightSimulatorApp.View
 
         private void Knob_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.ChangedButton == MouseButton.Left)
+            /*if (e.ChangedButton == MouseButton.Left)
             {
                 point = e.GetPosition(this);
                 isClicked = true;
+            }*/
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                point.X = e.GetPosition(this).X;
+                point.Y = e.GetPosition(this).Y;
+                Knob.CaptureMouse();
             }
         }
 
@@ -83,32 +89,34 @@ namespace FlightSimulatorApp.View
         private void Knob_MouseMove(object sender, MouseEventArgs e)
         {
             
-            if (isClicked)
+            if (/*isClicked*/e.LeftButton == MouseButtonState.Pressed)
             {
                 double x = (e.GetPosition(this).X - point.X);
                 double y = (e.GetPosition(this).Y - point.Y);
-
                 if (Math.Sqrt(x * x + y * y) < (Base.Width - KnobBase.Width) / 2)
                 {
                     knobPosition.X = x;
                     knobPosition.Y = y;
-                }
-
-                    Rudder = x / 2 * (Base.Width - KnobBase.Width);
-                Elevator = y / 2 * (Base.Width - KnobBase.Width);
+                }                
+                Rudder = x / (2 * (Base.Width - KnobBase.Width));
+                Elevator = y / (2 * (Base.Width - KnobBase.Width));
 
             }
         }
 
         private void Knob_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            knobPosition.X = 0;
+            /*knobPosition.X = 0;
             knobPosition.Y = 0;
             Rudder = 0;
             Elevator = 0;
-            this.isClicked = false;
-        
-            
+            this.isClicked = false;*/
+            knobPosition.X = 0;
+            knobPosition.Y = 0;
+            UIElement element = (UIElement)Knob;
+            element.ReleaseMouseCapture();
+
+
         }
 
     }
