@@ -23,36 +23,26 @@ namespace FlightSimulatorApp.View
     
     public partial class Joystick : UserControl
     {
+        private bool isClicked;
+        private Point point = new Point();
+        
+
         public Joystick()
         {
             InitializeComponent();
-            DataContext = this;
-            Knob.MouseLeftButtonDown += Knob_MouseLeftButtonDown;
-            Knob.MouseLeftButtonUp += Knob_MouseLeftButtonUp;
-            Knob.MouseMove += Knob_MouseMove;
-            centerKnob = Knob.Resources["CenterKnob"] as Storyboard;
+            isClicked = false;
         }
-        /// <summary>Current Aileron</summary>
-        public static readonly DependencyProperty AileronProperty =
-            DependencyProperty.Register("Aileron", typeof(double), typeof(Joystick), null);
 
-        /// <summary>Current Elevator</summary>
+        public static readonly DependencyProperty RudderProperty =
+        DependencyProperty.Register("Rudder", typeof(double), typeof(Joystick), null);
+
         public static readonly DependencyProperty ElevatorProperty =
             DependencyProperty.Register("Elevator", typeof(double), typeof(Joystick), null);
 
-        /// <summary>How often should be raised StickMove event in degrees</summary>
-        public static readonly DependencyProperty AileronStepProperty =
-            DependencyProperty.Register("AileronStep", typeof(double), typeof(Joystick), new PropertyMetadata(1.0));
-
-        /// <summary>How often should be raised StickMove event in Elevator units</summary>
-        public static readonly DependencyProperty ElevatorStepProperty =
-            DependencyProperty.Register("ElevatorStep", typeof(double), typeof(Joystick), new PropertyMetadata(1.0));
-
-       
-        public double Aileron
+        public double Rudder
         {
-            get { return Convert.ToDouble(GetValue(AileronProperty)); }
-            set { SetValue(AileronProperty, value); }
+            get { return Convert.ToDouble(GetValue(RudderProperty)); }
+            set { SetValue(RudderProperty, value); }
         }
 
         public double Elevator
@@ -61,94 +51,64 @@ namespace FlightSimulatorApp.View
             set { SetValue(ElevatorProperty, value); }
         }
 
-        public double AileronStep
+        // brings the knob to the middle
+        private void Knob_MouseLeave(object sender, MouseEventArgs e)
         {
-            get { return Convert.ToDouble(GetValue(AileronStepProperty)); }
-            set
+            knobPosition.X = 0;
+            knobPosition.Y = 0;
+        }
+
+        //sets the knob
+        private void centerKnob_Completed(Object sender, EventArgs e)
+        {
+            //knobPosition.X = 0;
+            //knobPosition.Y = 0;
+        }
+
+        private void Knob_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
             {
-                if (value < 1) value = 1; else if (value > 90) value = 90;
-                SetValue(AileronStepProperty, Math.Round(value));
+                point = e.GetPosition(this);
+                isClicked = true;
             }
         }
 
-        public double ElevatorStep
+        private void Base_MouseMove(object sender, MouseEventArgs e)
         {
-            get { return Convert.ToDouble(GetValue(ElevatorStepProperty)); }
-            set
-            {
-                if (value < 1) value = 1; else if (value > 50) value = 50;
-                SetValue(ElevatorStepProperty, value);
-            }
-        }
-
-  
-        public delegate void OnScreenJoystickEventHandler(Joystick sender, VirtualJoystickEventArgs args);
-
-        public delegate void EmptyJoystickEventHandler(Joystick sender);
-
-        public event OnScreenJoystickEventHandler Moved;
-
-        public event EmptyJoystickEventHandler Released;
-
-        public event EmptyJoystickEventHandler Captured;
-
-        private Point _startPos;
-        private double _prevAileron, _prevElevator;
-        private double canvasWidth, canvasHeight;
-        private readonly Storyboard centerKnob;
-
-
-
-        private void Knob_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            _startPos = e.GetPosition(Base);
-            _prevAileron = _prevElevator = 0;
-            canvasWidth = Base.ActualWidth - KnobBase.ActualWidth;
-            canvasHeight = Base.ActualHeight - KnobBase.ActualHeight;
-            Captured?.Invoke(this);
-            Knob.CaptureMouse();
-
-            centerKnob.Stop();
+            if (isClicked)
+                Knob_MouseMove(sender, e);
         }
 
         private void Knob_MouseMove(object sender, MouseEventArgs e)
         {
-            if (!Knob.IsMouseCaptured) return;
+            
+            if (isClicked)
+            {
+                double x = (e.GetPosition(this).X - point.X);
+                double y = (e.GetPosition(this).Y - point.Y);
 
-            Point newPos = e.GetPosition(Base);
+                if (Math.Sqrt(x * x + y * y) < (Base.Width - KnobBase.Width) / 2)
+                {
+                    knobPosition.X = x;
+                    knobPosition.Y = y;
+                }
 
-            Point deltaPos = new Point(newPos.X - _startPos.X, newPos.Y - _startPos.Y);
+                    Rudder = x / 2 * (Base.Width - KnobBase.Width);
+                Elevator = y / 2 * (Base.Width - KnobBase.Width);
 
-            double distance = Math.Round(Math.Sqrt(deltaPos.X * deltaPos.X + deltaPos.Y * deltaPos.Y));
-            if (distance >= canvasWidth / 2 || distance >= canvasHeight / 2)
-                return;
-            // switched locations and div by 124
-            Elevator = -deltaPos.Y / 124;
-            Aileron = deltaPos.X / 124;
-
-            knobPosition.X = deltaPos.X;
-            knobPosition.Y = deltaPos.Y;
-
-            if (Moved == null ||
-                (!(Math.Abs(_prevAileron - Aileron) > AileronStep) && !(Math.Abs(_prevElevator - Elevator) > ElevatorStep)))
-                return;
-
-            Moved?.Invoke(this, new VirtualJoystickEventArgs { Aileron = Aileron, Elevator = Elevator });
-            _prevAileron = Aileron;
-            _prevElevator = Elevator;
-
+            }
         }
 
-        private void Knob_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void Knob_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            Knob.ReleaseMouseCapture();
-            centerKnob.Begin();
-        }
-
-        private void centerKnob_Completed(object sender, EventArgs e)
-        {
-            Aileron = Elevator = _prevAileron = _prevElevator = 0;
-            Released?.Invoke(this);
+            knobPosition.X = 0;
+            knobPosition.Y = 0;
+            Rudder = 0;
+            Elevator = 0;
+            this.isClicked = false;
+        
+            
         }
 
     }
