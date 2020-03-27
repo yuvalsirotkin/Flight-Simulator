@@ -151,7 +151,7 @@ namespace FlightSimulatorApp.ViewModel
                 switch(e.Name)
                 {
                     case "headingDeg":
-                        this.headingDeg = e.Val;
+                        this.VM_HeadingDeg = e.Val;
                         break;
                     case "veritcalSpeed":
                         this.VM_VerticalSpeed = e.Val;
