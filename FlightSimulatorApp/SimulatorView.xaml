@@ -31,7 +31,7 @@
         </m:Map>
         <StackPanel Orientation="Vertical" Margin="65,467,655,39" Grid.ColumnSpan="2">
             <Label Margin="50,20,0,0"  FontWeight="Bold">← Trottle →</Label>
-            <Slider Name="Trottle_Slider" Value="{Binding VM_Throttle, Mode=TwoWay}" Maximum="1" Minimum="0" HorizontalAlignment="Left" TickPlacement="BottomRight" TickFrequency="0.1"
+            <Slider Name="Throttle_Slider" Value="{Binding VM_Throttle, Mode=TwoWay}" Maximum="1" Minimum="0" HorizontalAlignment="Left" TickPlacement="BottomRight" TickFrequency="0.1"
                 Margin="10,10,15,10"
                 VerticalAlignment="Center"
                 Width="150"/>
@@ -47,50 +47,49 @@
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,10,0,0">
                     <TextBlock Text="indicatedHeadingDeg: " />
-                    <TextBlock Text="{Binding VM_HeadingDeg}" Width="50" />
+                    <TextBlock Text="{Binding VM_HeadingDeg, Mode=OneWay}" Width="50" />
                 </WrapPanel>
             </StackPanel>
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,10,0,0">
                     <TextBlock Text="gpsIndicatedVerticalSpeed: " />
-                    <TextBlock Text="{Binding VM_VerticalSpeed}" Width="50" />
+                    <TextBlock Text="{Binding VM_VerticalSpeed, Mode=OneWay}" Width="50" />
                 </WrapPanel>
             </StackPanel>
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,10,0,0">
                     <TextBlock Text="gpsIndicatedGroundSpeedKt: " />
-                    <TextBlock Text="{Binding VM_GroundSpeed}" Width="50" />
+                    <TextBlock Text="{Binding VM_GroundSpeed, Mode=OneWay}" Width="50" />
                 </WrapPanel>
             </StackPanel>
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,10,0,0">
                     <TextBlock Text="airspeedIndicatorIndicatedSpeedKt: " />
-                    <TextBlock Text="{Binding VM_Airspeed}" Width="50" />
+                    <TextBlock Text="{Binding VM_Airspeed, Mode=OneWay}" Width="50" />
                 </WrapPanel>
             </StackPanel>
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,10,0,0">
                     <TextBlock Text="gpsIndicatedAltitudeFt: " />
-                    <TextBlock Text="{Binding VM_Altitude}" Width="50" />
+                    <TextBlock Text="{Binding VM_Altitude, Mode=OneWay}" Width="50" />
                 </WrapPanel>
             </StackPanel>
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,10,0,0">
                     <TextBlock Text="attitudeIndicatorInternalRollDeg: " />
-                    <TextBlock Text="{Binding VM_Roll}" Width="50" />
+                    <TextBlock Text="{Binding VM_Roll, Mode=OneWay}" Width="50" />
                 </WrapPanel>
             </StackPanel>
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,10,0,0">
                     <TextBlock Text="attitudeIndicatorInternalPitchDeg: " />
-                    <!-- to change it!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-                    <TextBlock Text="{Binding VM_Throttle}" Width="50" />
+                    <TextBlock Text="{Binding VM_Pitch}" Width="50" />
                 </WrapPanel>
             </StackPanel>
             <StackPanel Margin="5">
                 <WrapPanel Margin="0,10,0,0">
                     <TextBlock Text="altimeterIndicatedAltitudeFt: " />
-                    <TextBlock Text="{Binding VM_Altimeter}" Width="50" />
+                    <TextBlock Text="{Binding VM_Altimeter, Mode=OneWay}" Width="50" />
                 </WrapPanel>
             </StackPanel>
         </StackPanel>

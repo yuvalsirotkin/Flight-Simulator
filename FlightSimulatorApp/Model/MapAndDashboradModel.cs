@@ -23,6 +23,15 @@ namespace FlightSimulatorApp.Model
 
         }
 
+        public static double HeadingDeg { get; set; }
+        public static double VerticalSpeed { get; set; }
+        public static double GroundSpeed { get; set; }
+        public static double Airspeed { get; set; }
+        public static double Altitude { get; set; }
+        public static double Roll { get; set; }
+        public static double Pitch { get; set; }
+        public static double Altimeter { get; set; }
+
         //public MapAndDashboardModel(TcpGetSet tcpClient)
         //{
         //    this.tcpSet = tcpSet;
@@ -43,7 +52,7 @@ namespace FlightSimulatorApp.Model
         public void NotifyPropertyChanged(PropertyChangedEventArgs property)
         {
             if (this.PropertyChanged != null)
-                this.PropertyChanged(this, property);
+                this.PropertyChanged(this, new PropertyChangedEventArgs(property.PropertyName));
         }
 
         
@@ -66,76 +75,85 @@ namespace FlightSimulatorApp.Model
                 while (!stop)
                 {
                     string[] splittedData;
-                    PropertyChangedEventArgs e = new PropertyChangedEventArgs();
 
+                    PropertyChangedEventArgs eHeading = new PropertyChangedEventArgs("HeadingDeg");
                     tcpClient.write("get /instrumentation/heading-indicator/indicated-heading-deg\n");
                     splittedData = System.Text.RegularExpressions.Regex.Split(tcpClient.read(), "\n");
-                    e.Name = "headingDeg";
                     if (splittedData[0] != "ERR")
                     {
-                        e.Val = Double.Parse(splittedData[0]);
-                        NotifyPropertyChanged(e);
+                        HeadingDeg = Double.Parse(splittedData[0]);
+                        NotifyPropertyChanged(eHeading);
                     }
- 
+
+                    PropertyChangedEventArgs eVerticalSpeed = new PropertyChangedEventArgs("VerticalSpeed");
                     tcpClient.write("get /instrumentation/gps/indicated-vertical-speed\n");
                     splittedData = System.Text.RegularExpressions.Regex.Split(tcpClient.read(), "\n");
-                    e.Name = "veritcalSpeed";
+                    //e.Name = "veritcalSpeed";
                     if (splittedData[0] != "ERR")
                     {
-                        e.Val = Double.Parse(splittedData[0]);
-                        NotifyPropertyChanged(e);
+                        VerticalSpeed = Double.Parse(splittedData[0]);
+                        NotifyPropertyChanged(eVerticalSpeed);
                     }
 
+
+                    PropertyChangedEventArgs eGroundSpeed = new PropertyChangedEventArgs("GroundSpeed");
                     tcpClient.write("get /instrumentation/gps/indicated-ground-speed-kt\n");
                     splittedData = System.Text.RegularExpressions.Regex.Split(tcpClient.read(), "\n");
-                    e.Name = "groundSpeed";
+                    //e.Name = "groundSpeed";
                     if (splittedData[0] != "ERR")
                     {
-                        e.Val = Double.Parse(splittedData[0]);
-                        NotifyPropertyChanged(e);
+                        GroundSpeed = Double.Parse(splittedData[0]);
+                        NotifyPropertyChanged(eGroundSpeed);
                     }
 
+                    PropertyChangedEventArgs eAirSpeed = new PropertyChangedEventArgs("AirSpeed");
                     tcpClient.write("get /instrumentation/airspeed-indicator/indicated-speed-kt\n");
                     splittedData = System.Text.RegularExpressions.Regex.Split(tcpClient.read(), "\n");
-                    e.Name = "airSpeed";
+                    //e.Name = "airSpeed";
                     if (splittedData[0] != "ERR")
                     {
-                        e.Val = Double.Parse(splittedData[0]);
-                        NotifyPropertyChanged(e);
+                        Airspeed = Double.Parse(splittedData[0]);
+                        NotifyPropertyChanged(eAirSpeed);
                     }
 
+                    PropertyChangedEventArgs eAltitude = new PropertyChangedEventArgs("Altitude");
                     tcpClient.write("get /instrumentation/gps/indicated-altitude-ft\n");
                     splittedData = System.Text.RegularExpressions.Regex.Split(tcpClient.read(), "\n");
-                    e.Name = "altitude";
+                    
                     if (splittedData[0] != "ERR")
                     {
-                        e.Val = Double.Parse(splittedData[0]);
-                        NotifyPropertyChanged(e);
+                        Altitude = Double.Parse(splittedData[0]);
+                        NotifyPropertyChanged(eAltitude);
                     }
 
+                    PropertyChangedEventArgs eRoll = new PropertyChangedEventArgs("Roll");
                     tcpClient.write("get /instrumentation/attitude-indicator/internal-roll-deg\n");
                     splittedData = System.Text.RegularExpressions.Regex.Split(tcpClient.read(), "\n");
-                    e.Name = "roll";
+                    //e.Name = "roll";
                     if (splittedData[0] != "ERR")
                     {
-                        e.Val = Double.Parse(splittedData[0]);
-                        NotifyPropertyChanged(e);
+                        Roll = Double.Parse(splittedData[0]);
+                        NotifyPropertyChanged(eRoll);
                     }
+
+                    PropertyChangedEventArgs ePitch = new PropertyChangedEventArgs("Pitch");
                     tcpClient.write("get /instrumentation/attitude-indicator/internal-pitch-deg\n");
                     splittedData = System.Text.RegularExpressions.Regex.Split(tcpClient.read(), "\n");
-                    e.Name = "pitch";
+                    //e.Name = "pitch";
                     if (splittedData[0] != "ERR")
                     {
-                        e.Val = Double.Parse(splittedData[0]);
-                        NotifyPropertyChanged(e);
+                        Pitch = Double.Parse(splittedData[0]);
+                        NotifyPropertyChanged(ePitch);
                     }
+
+                    PropertyChangedEventArgs eAltimeter = new PropertyChangedEventArgs("Altimeter");
                     tcpClient.write("get /instrumentation/altimeter/indicated-altitude-ft\n");
                     splittedData = System.Text.RegularExpressions.Regex.Split(tcpClient.read(), "\n");
-                    e.Name = "altimeter";
+                    //e.Name = "altimeter";
                     if (splittedData[0] != "ERR")
                     {
-                        e.Val = Double.Parse(splittedData[0]);
-                        NotifyPropertyChanged(e);
+                        Altimeter = Double.Parse(splittedData[0]);
+                        NotifyPropertyChanged(eAltimeter);
                     }
 
                     // the same for the other sensors properties

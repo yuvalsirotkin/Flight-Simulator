@@ -4,29 +4,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FlightSimulatorApp.Model;
+using System.ComponentModel;
 using Microsoft.Maps.MapControl.WPF;
 
 namespace FlightSimulatorApp.ViewModel
 {
-    class SimViewModel
+    class SimViewModel : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
         private MapAndDashboardModel mapAndDashboardModel;
         private NavigatorModel navigatorModel;
 
-        /*private double throttle;
+        /*
         private double elavetor;
         private double rudder;
         private double aileron;*/
-
+        //remove it
+        private double throttle;
+        //until here
         private double headingDeg;
         private double verticalSpeed;
         private double airSpeed;
         private double roll;
-        private double pitch;
         private double altitude;
         private double altimeter;
+        private double pitch;
         private double groundSpeed;
-        
+
         //properties
         // changes in the properties (from the view) will change the navigator model
         public double VM_Elavetor
@@ -40,10 +44,13 @@ namespace FlightSimulatorApp.ViewModel
         }
         public double VM_Throttle
         {
-            /*get { return this.throttle; }*/
+            get { return this.throttle; }
             set
             {
-                /*this.throttle = value;*/
+                // should delete it
+                this.throttle = value;
+                //until here
+                
                 navigatorModel.Throttle = value;
             }
         }
@@ -66,15 +73,30 @@ namespace FlightSimulatorApp.ViewModel
             }
         }
 
-
         public double VM_HeadingDeg
         {
-            get { return this.headingDeg; }
+            get {
+                Console.WriteLine("get the heading deg is");
+                return this.headingDeg;
+            }
             set
             {
                 this.headingDeg = value;
+                Console.Write("the heading deg is");
+                Console.WriteLine(this.headingDeg);
+                OnPropertyChanged(new PropertyChangedEventArgs("VM_HeadingDeg"));
             }
         }
+
+
+        public void OnPropertyChanged(PropertyChangedEventArgs e)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, e);
+            }
+        }
+
 
         public double VM_VerticalSpeed
         {
@@ -82,6 +104,7 @@ namespace FlightSimulatorApp.ViewModel
             set
             {
                 this.verticalSpeed = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("VM_VerticalSpeed"));
             }
         }
         public double VM_GroundSpeed
@@ -90,6 +113,7 @@ namespace FlightSimulatorApp.ViewModel
             set
             {
                 this.groundSpeed = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("VM_GroundSpeed"));
             }
         }
         public double VM_Airspeed
@@ -98,6 +122,7 @@ namespace FlightSimulatorApp.ViewModel
             set
             {
                 this.airSpeed = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("VM_Airspeed"));
             }
         }
         public double VM_Altitude
@@ -106,6 +131,7 @@ namespace FlightSimulatorApp.ViewModel
             set
             {
                 this.altitude = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("VM_Altitude"));
             }
         }
         public double VM_Roll
@@ -114,22 +140,27 @@ namespace FlightSimulatorApp.ViewModel
             set
             {
                 this.roll = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("VM_Roll"));
             }
         }
+
         public double VM_Pitch
         {
             get { return this.pitch; }
             set
             {
                 this.pitch = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("VM_Pitch"));
             }
         }
+
         public double VM_Altimeter
         {
             get { return this.altimeter; }
             set
             {
                 this.altimeter = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("VM_Altimeter"));
             }
         }
 
@@ -141,44 +172,6 @@ namespace FlightSimulatorApp.ViewModel
         //    }
         //}
 
-        public SimViewModel(NavigatorModel navigatorModel, MapAndDashboardModel mapAndDashboardModel)
-        {
-            this.navigatorModel = navigatorModel;
-            this.mapAndDashboardModel = mapAndDashboardModel;
-            // when proprety changed in the model- it will notify the VM also
-            // use the map and dashboard model
-            mapAndDashboardModel.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e) {
-                switch(e.Name)
-                {
-                    case "headingDeg":
-                        this.VM_HeadingDeg = e.Val;
-                        break;
-                    case "veritcalSpeed":
-                        this.VM_VerticalSpeed = e.Val;
-                        break;
-                    case "groundSpeed":
-                        this.VM_GroundSpeed = e.Val;
-                        break;
-                    case "airSpeed":
-                        this.VM_Airspeed = e.Val;
-                        break;
-                    case "altitude":
-                        this.VM_Altitude= e.Val;
-                        break;
-                    case "roll":
-                        this.VM_Roll = e.Val;
-                        break;
-                    case "pitch":
-                        this.VM_Pitch = e.Val;
-                        break;
-                    case "altimeter":
-                        this.VM_Altimeter = e.Val;
-                        break;
-
-                }
-            };
-        }
-
         //public SimViewModel(NavigatorModel navigatorModel, MapAndDashboardModel mapAndDashboardModel)
         //{
         //    this.navigatorModel = navigatorModel;
@@ -186,9 +179,88 @@ namespace FlightSimulatorApp.ViewModel
         //    // when proprety changed in the model- it will notify the VM also
         //    // use the map and dashboard model
         //    mapAndDashboardModel.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e) {
-        //        NotifyPropertyChanged(e);
+        //        switch(e.PropertyName)
+        //        {
+        //            case "headingDeg":
+        //                this.VM_HeadingDeg = Model.HeadingDeg;
+        //                break;
+        //            case "veritcalSpeed":
+        //                this.VM_VerticalSpeed = e.Val;
+        //                break;
+        //            case "groundSpeed":
+        //                this.VM_GroundSpeed = e.Val;
+        //                break;
+        //            case "airSpeed":
+        //                this.VM_Airspeed = e.Val;
+        //                break;
+        //            case "altitude":
+        //                this.VM_Altitude= e.Val;
+        //                break;
+        //            case "roll":
+        //                this.VM_Roll = e.Val;
+        //                break;
+        //            case "pitch":
+        //                this.VM_Pitch = e.Val;
+        //                break;
+        //            case "altimeter":
+        //                this.VM_Altimeter = e.Val;
+        //                break;
+
+        //        }
         //    };
         //}
+
+        public SimViewModel(NavigatorModel navigatorModel, MapAndDashboardModel mapAndDashboardModel)
+        {
+            this.navigatorModel = navigatorModel;
+            this.mapAndDashboardModel = mapAndDashboardModel;
+            // when proprety changed in the model- it will notify the VM also
+            // use the map and dashboard model
+            mapAndDashboardModel.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
+            {
+                NotifyPropertyChanged(e.PropertyName);
+            };
+        }
+
+        //public void NotifyPropertyChanged(string propertyName)
+        //{
+        //    if (this.PropertyChanged != null)
+        //        this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        //}
+
+
+        public void NotifyPropertyChanged(string propName)
+        {
+            switch (propName)
+            {
+                case "HeadingDeg":
+                    this.VM_HeadingDeg = MapAndDashboardModel.HeadingDeg;
+                    break;
+                case "VerticalSpeed": 
+                    this.VM_VerticalSpeed = MapAndDashboardModel.VerticalSpeed;
+                    break;
+                case "GroundSpeed":
+                    this.VM_GroundSpeed = MapAndDashboardModel.GroundSpeed;
+                    break;
+                case "AirSpeed":
+                    this.VM_Airspeed = MapAndDashboardModel.Airspeed;
+                    break;
+                case "Altitude":
+                    this.VM_Altitude = MapAndDashboardModel.Altitude;
+                    break;
+                case "Roll":
+                    this.VM_Roll = MapAndDashboardModel.Roll;
+                    break;
+                case "Pitch":
+                    this.VM_Pitch = MapAndDashboardModel.Pitch;
+                    break;
+                case "Altimeter":
+                    this.VM_Altimeter = MapAndDashboardModel.Altimeter;
+                    break;
+
+            }
+        }
+
 
 
         //public event PropertyChangedEventHandler PropertyChanged;

@@ -10,7 +10,7 @@ using FlightSimulatorApp.ViewModel;
 
 namespace FlightSimulatorApp.ViewModel
 {
-    public abstract class Notify : Model.INotifyPropertyChanged
+    public abstract class Notify : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

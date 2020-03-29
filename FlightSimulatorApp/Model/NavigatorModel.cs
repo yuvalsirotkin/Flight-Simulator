@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +13,7 @@ namespace FlightSimulatorApp.Model
     class NavigatorModel : INotifyPropertyChanged
     {
         private double throttle;
-        private double elavetor;
+        private double elevetor;
         private double rudder;
         private double aileron;
 
@@ -19,14 +21,14 @@ namespace FlightSimulatorApp.Model
 
         public double Elavetor
         {
-            get { return this.elavetor; }
+            get { return this.elevetor; }
             set
             {
-                this.elavetor = value;
-                PropertyChangedEventArgs e = new PropertyChangedEventArgs();
-                e.Name = "elavetor";
-                e.Path = "/controls/flight/elevator";
-                e.Val = value;
+                this.elevetor = value;
+                PropertyChangedEventArgs e = new PropertyChangedEventArgs("elevetor");
+                //e.Name = "elavetor";
+                //e.Path = "/controls/flight/elevator";
+                //e.Val = value;
                 NotifyPropertyChanged(e);
             }
         }
@@ -36,10 +38,10 @@ namespace FlightSimulatorApp.Model
             set
             {
                 this.throttle = value;
-                PropertyChangedEventArgs e = new PropertyChangedEventArgs();
-                e.Name = "throttle";
-                e.Path = "/controls/engines/current-engine/throttle";
-                e.Val = value;
+                PropertyChangedEventArgs e = new PropertyChangedEventArgs("throttle");
+                //e.Name = "throttle";
+                //e.Path = "/controls/engines/current-engine/throttle";
+                //e.Val = value;
                 NotifyPropertyChanged(e);
             }
         }
@@ -49,10 +51,10 @@ namespace FlightSimulatorApp.Model
             set
             {
                 this.aileron = value;
-                PropertyChangedEventArgs e = new PropertyChangedEventArgs();
-                e.Name = "aileron";
-                e.Path = "/controls/flight/aileron";
-                e.Val = value;
+                PropertyChangedEventArgs e = new PropertyChangedEventArgs("aileron");
+                //e.Name = "aileron";
+                //e.Path = "/controls/flight/aileron";
+                //e.Val = value;
                 NotifyPropertyChanged(e);
             }
         }
@@ -62,10 +64,10 @@ namespace FlightSimulatorApp.Model
             set
             {
                 this.rudder = value;
-                PropertyChangedEventArgs e = new PropertyChangedEventArgs();
-                e.Name = "rudder";
-                e.Path = "/controls/flight/rudder";
-                e.Val = value;
+                PropertyChangedEventArgs e = new PropertyChangedEventArgs("rudder");
+                //e.Name = "rudder";
+                //e.Path = "/controls/flight/rudder";
+                //e.Val = value;
                 NotifyPropertyChanged(e);
             }
         }
@@ -87,8 +89,31 @@ namespace FlightSimulatorApp.Model
             this.tcpClient = tcpClient;
             PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
+                string path = "";
+                double val = 0;
+                switch (e.PropertyName)
+                {
+                    case "elevetor":
+                        path = "/controls/flight/elevator";
+                        val = Elavetor;
+                        break;
+                    case "throttle":
+                        path = "/controls/engines/current-engine/throttle";
+                        val = Throttle;
+                        break;
+                    case "aileron":
+                        path = "/controls/flight/aileron";
+                        val = Aileron;
+                        break;
+                    case "rudder":
+                        path = "/controls/flight/rudder";
+                        val = Rudder;
+                        break;
+
+
+                }
                 // set the property in the simulator
-                tcpClient.write("set " + e.Path +" " + e.Val + "\n");
+                tcpClient.write("set " + path +" " + val + "\n");
                 //for test:
                 Console.WriteLine("for test:");
                 string[] splittedData = System.Text.RegularExpressions.Regex.Split(tcpClient.read(), "\n");
