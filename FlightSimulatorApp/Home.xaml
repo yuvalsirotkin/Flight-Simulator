@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d"
         Title="Start Page" Height="200" Width="300">
-    <Grid TextBlock.FontSize="14" Background="#FFEEA1DB">
+    <Grid TextBlock.FontSize="14" Background="#FFEEA1DB" Margin="0,-60,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -17,17 +17,20 @@
             <ColumnDefinition Width="11"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Padding="3" Margin="3,3,3,2.6" Grid.ColumnSpan="2">Enter IP:</TextBlock>
-        <TextBox x:Name="IP" Text="{Binding ServerIP}" Grid.Column="2" Padding="3" Margin="3,3,2.6,2.6"></TextBox>
-        <TextBlock Grid.Row="1" Padding="3" Margin="3,3.4,3,2.2" Grid.ColumnSpan="2">Enter Port:</TextBlock>
-        <TextBox x:Name="Port" Text="{Binding ServerPort}" Grid.Row="1" Grid.Column="2" Padding="3"
-        Margin="3,3.4,2.6,2.2"></TextBox>
+        <TextBlock Padding="3" Margin="4,48,2,-35" Grid.ColumnSpan="2" Grid.Row="3">Enter IP:</TextBlock>
+        <TextBox x:Name="IP" Text="{Binding ServerIP}" Grid.Column="2" Padding="3" Margin="4,48,2,-36" Grid.Row="3"></TextBox>
+        <TextBlock Grid.Row="3" Padding="3" Margin="4,82,2,-69" Grid.ColumnSpan="2">Enter Port:</TextBlock>
+        <TextBox x:Name="Port" Text="{Binding ServerPort}" Grid.Row="3" Grid.Column="2" Padding="3"
+        Margin="4,82,2,-70"></TextBox>
 
         <Button Command="{Binding SetCommand}" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right"
-        Grid.ColumnSpan="3" Margin="0,15.6,168.6,-5.6" Padding="5" Width="113" Click="SetCommand">Set IP and PORT</Button>
+        Grid.ColumnSpan="3" Margin="0,129,168,-119" Padding="5" Width="113" Click="SetCommand">Set IP and PORT</Button>
         <Button Command="{Binding DefaultCommand}" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Left"
-        Grid.ColumnSpan="1" Margin="84,15.6,0,-5.6" Padding="5" Width="103" Click="DefaultCommand">Default Setup</Button>
+        Grid.ColumnSpan="1" Margin="85,129,0,-119" Padding="5" Width="103" Click="DefaultCommand">Default Setup</Button>
         <Button Command="{Binding FlyCommand}" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Left"
-        Grid.ColumnSpan="1" Margin="49,62,0,-52" Padding="5" Width="54" Click="FlyCommand">Fly!</Button>
+        Grid.ColumnSpan="1" Margin="50,175,0,-165" Padding="5" Width="54" Click="FlyCommand">Fly!</Button>
+        <TextBox x:Name="ErrMsg" Text="{Binding ErrMsg}" Background="#FFEEA1DB" Grid.Row="3" Padding="3"
+            Margin="10,218.6,10,-207.6" Grid.ColumnSpan="3"/>
+        <TextBlock Padding="3" Margin="19,9.6,90,3.4" Grid.Row="3" Grid.Column="2" Text="Flight Simulator"/>
     </Grid>
 </Page>

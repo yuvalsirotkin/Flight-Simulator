@@ -154,5 +154,8 @@
   <ItemGroup>
     <Resource Include="Model\tester.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="airplane.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

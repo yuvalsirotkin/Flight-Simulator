@@ -12,6 +12,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Runtime.InteropServices;
+using System.Windows.Interop;
+using FlightSimulatorApp.Model;
+using FlightSimulatorApp.ViewModel;
+
+
 
 namespace FlightSimulatorApp
 {
@@ -23,11 +29,25 @@ namespace FlightSimulatorApp
         private string ip = "";
         private string port = "";
         private int portInInt = 0;
+
+        private const int GWL_STYLE = -16;
+        private const int WS_SYSMENU = 0x80000;
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern int GetWindowLong(IntPtr hWnd, int nIndex);
+        [DllImport("user32.dll")]
+        private static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
+
         public Home()
         {
             InitializeComponent();
             DataContext = this;
         }
+
+        //private void Window_Loaded(object sender, RoutedEventArgs e)
+        //{
+        //    var hwnd = new WindowInteropHelper(this).Handle;
+        //    SetWindowLong(hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & ~WS_SYSMENU);
+        //}
 
         private void DefaultCommand(object sender, RoutedEventArgs e)
         {
@@ -44,20 +64,38 @@ namespace FlightSimulatorApp
         }
         private void FlyCommand(object sender, RoutedEventArgs e)
         {
- 
-            if (ip == "")
+            if (ip == "" && port == "")
+            {
+                string message = String.Format("You must enter IP & Port adress");
+                ErrMsg.Text = message;
+            }
+
+            else if (ip == "")
             {
                 string message = String.Format("You must enter IP adress");
-                MessageBox.Show(message, "", MessageBoxButton.OK, MessageBoxImage.Error);
+                ErrMsg.Text = message;
+                //MessageBox.Show(message, "", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            if (port == "")
+            else if (port == "")
             {
                 string message = String.Format("You must enter Port adress");
-                MessageBox.Show(message, "", MessageBoxButton.OK, MessageBoxImage.Error);
+                ErrMsg.Text = message;
+                //MessageBox.Show(message, "", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            portInInt = int.Parse(port);
-            SimulatorView simulatorView = new SimulatorView(this.ip, portInInt);
-            this.NavigationService.Navigate(simulatorView);
+            else
+            {
+                try
+                {
+                    portInInt = int.Parse(port);
+                    SimulatorView simulatorView = new SimulatorView(this.ip, portInInt);
+                    this.NavigationService.Navigate(simulatorView);
+                }
+                catch
+                {
+                    string message = String.Format("Not able to connet, Something went wrong");
+                    ErrMsg.Text = message;
+                }
+            }
         }
         public string ServerIP
         {
