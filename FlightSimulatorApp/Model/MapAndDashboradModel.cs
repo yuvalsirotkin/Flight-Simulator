@@ -31,6 +31,8 @@ namespace FlightSimulatorApp.Model
         public static double Roll { get; set; }
         public static double Pitch { get; set; }
         public static double Altimeter { get; set; }
+        public static double Longitude { get; set; }
+        public static double Latitude { get; set; }
 
         //public MapAndDashboardModel(TcpGetSet tcpClient)
         //{
@@ -154,6 +156,26 @@ namespace FlightSimulatorApp.Model
                     {
                         Altimeter = Double.Parse(splittedData[0]);
                         NotifyPropertyChanged(eAltimeter);
+                    }
+
+                    PropertyChangedEventArgs eLongitude = new PropertyChangedEventArgs("Longitude");
+                    tcpClient.write("get /position/longitude-deg\n");
+                    splittedData = System.Text.RegularExpressions.Regex.Split(tcpClient.read(), "\n");
+                    //e.Name = "altimeter";
+                    if (splittedData[0] != "ERR")
+                    {
+                        Longitude = Double.Parse(splittedData[0]);
+                        NotifyPropertyChanged(eLongitude);
+                    }
+
+                    PropertyChangedEventArgs eLatitude = new PropertyChangedEventArgs("Latitude");
+                    tcpClient.write("get /position/latitude-deg\n");
+                    splittedData = System.Text.RegularExpressions.Regex.Split(tcpClient.read(), "\n");
+                    //e.Name = "altimeter";
+                    if (splittedData[0] != "ERR")
+                    {
+                        Latitude = Double.Parse(splittedData[0]);
+                        NotifyPropertyChanged(eLatitude);
                     }
 
                     // the same for the other sensors properties

@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 using FlightSimulatorApp.ViewModel;
 using FlightSimulatorApp.Model;
 using System.Net.Sockets;
-    
+using Microsoft.Maps.MapControl.WPF;
 
 namespace FlightSimulatorApp
 {
@@ -36,6 +36,24 @@ namespace FlightSimulatorApp
             //};
             InitializeComponent();
             DataContext = vm;
+        }
+
+        private bool firstTime = true;
+        private void pin_LayoutUpdated(object sender, EventArgs e)
+        {
+            if (pin.Location != null)
+            {
+                double latitude = pin.Location.Latitude;
+                double longtitude = pin.Location.Longitude;
+                if (firstTime)
+                {
+                    myMap.SetView(new Location(latitude, longtitude), 10);
+                    PlainPosition.X = 0;
+                    PlainPosition.Y = 0;
+                    firstTime = false;
+                    return;
+                }
+            }
         }
     }
 }

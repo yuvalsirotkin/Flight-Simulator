@@ -20,14 +20,14 @@
                                Rudder="{Binding Path=VM_Rudder, Mode=OneWayToSource}" Elevator="{Binding Path=VM_Elavetor, Mode=OneWayToSource}"/>
         </Viewbox>
         <m:Map x:Name="myMap" ZoomLevel="4" CredentialsProvider="uPGAmzXupaKoouCTGI2o~YmdNZQSw4x2jNF-PlrgpHg~AgKSbEY2Z6D15AyHDi8fVx8vynuVDnZT0sSiuvkPdh-U7ft4z9ceMpSRhmASmFMB" RenderTransformOrigin="0.5,0.5" Margin="0,0,330,160" Grid.ColumnSpan="2">
-            <!--<m:Pushpin x:Name="pin" Location ="{Binding VM_Location}"  HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" LayoutUpdated="pin_LayoutUpdated">
+            <m:Pushpin x:Name="pin" Location ="{Binding VM_Location}"  HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" LayoutUpdated="pin_LayoutUpdated">
                 <m:Pushpin.RenderTransform>
                     <TransformGroup>
                         <TranslateTransform x:Name="PlainPosition"/>
                     </TransformGroup>
                 </m:Pushpin.RenderTransform>
                 <Image x:Name="plane"  Width="20" VerticalAlignment="Center" Height="20" HorizontalAlignment="Center"/>
-            </m:Pushpin>-->
+            </m:Pushpin>
         </m:Map>
         <StackPanel Orientation="Vertical" Margin="65,467,655,39" Grid.ColumnSpan="2">
             <Label Margin="50,20,0,0"  FontWeight="Bold">← Trottle →</Label>

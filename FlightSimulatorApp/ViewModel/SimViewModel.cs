@@ -30,6 +30,9 @@ namespace FlightSimulatorApp.ViewModel
         private double altimeter;
         private double pitch;
         private double groundSpeed;
+        private Location location;
+        private double latitude = 50;
+        private double longitude = 10;
 
         //properties
         // changes in the properties (from the view) will change the navigator model
@@ -164,13 +167,37 @@ namespace FlightSimulatorApp.ViewModel
             }
         }
 
-        //public Location VM_Location
-        //{
-        //    get
-        //    {
-        //       // return model.Location;
-        //    }
-        //}
+        public double VM_Latitude
+        {
+            get { return this.latitude; }
+            set
+            {
+                this.latitude = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("VM_Latitude"));
+            }
+        }
+
+        public double VM_Longitude
+        {
+            get { return this.longitude; }
+            set
+            {
+                this.longitude = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("VM_Longitude"));
+            }
+        }
+
+        public Location VM_Location
+        {
+            get
+            {
+                return new Location(this.latitude, this.longitude);
+            }
+            set
+            {
+                OnPropertyChanged(new PropertyChangedEventArgs("VM_Location"));
+            }
+        }
 
         //public SimViewModel(NavigatorModel navigatorModel, MapAndDashboardModel mapAndDashboardModel)
         //{
@@ -256,6 +283,15 @@ namespace FlightSimulatorApp.ViewModel
                     break;
                 case "Altimeter":
                     this.VM_Altimeter = MapAndDashboardModel.Altimeter;
+                    break;
+                case "Latitude":
+                    this.VM_Latitude = MapAndDashboardModel.Latitude;
+                    //this.location.Latitude = MapAndDashboardModel.Latitude;
+                    break;
+                case "Longitude":
+                    this.VM_Longitude = MapAndDashboardModel.Longitude;
+                    //this.location.Longitude = MapAndDashboardModel.Longitude;
+                    //this.VM_Location = new Location (this.latitude, this.longitude);
                     break;
 
             }
