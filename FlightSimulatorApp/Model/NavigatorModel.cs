@@ -25,6 +25,14 @@ namespace FlightSimulatorApp.Model
             set
             {
                 this.elevetor = value;
+                if (value > 1)
+                {
+                    this.elevetor = 1;
+                }
+                if (value < -1)
+                {
+                    this.elevetor = -1;
+                }
                 PropertyChangedEventArgs e = new PropertyChangedEventArgs("elevetor");
                 //e.Name = "elavetor";
                 //e.Path = "/controls/flight/elevator";
@@ -64,6 +72,14 @@ namespace FlightSimulatorApp.Model
             set
             {
                 this.rudder = value;
+                if (value > 1)
+                {
+                    this.rudder = 1;
+                }
+                if (value < -1)
+                {
+                    this.rudder = -1;
+                }
                 PropertyChangedEventArgs e = new PropertyChangedEventArgs("rudder");
                 //e.Name = "rudder";
                 //e.Path = "/controls/flight/rudder";

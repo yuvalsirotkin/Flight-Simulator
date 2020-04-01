@@ -45,6 +45,7 @@ namespace FlightSimulatorApp
             {
                 double latitude = pin.Location.Latitude;
                 double longtitude = pin.Location.Longitude;
+                Console.WriteLine("in the pin");
                 if (firstTime)
                 {
                     myMap.SetView(new Location(latitude, longtitude), 10);

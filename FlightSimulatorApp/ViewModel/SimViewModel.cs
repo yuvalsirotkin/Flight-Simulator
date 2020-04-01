@@ -199,44 +199,6 @@ namespace FlightSimulatorApp.ViewModel
             }
         }
 
-        //public SimViewModel(NavigatorModel navigatorModel, MapAndDashboardModel mapAndDashboardModel)
-        //{
-        //    this.navigatorModel = navigatorModel;
-        //    this.mapAndDashboardModel = mapAndDashboardModel;
-        //    // when proprety changed in the model- it will notify the VM also
-        //    // use the map and dashboard model
-        //    mapAndDashboardModel.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e) {
-        //        switch(e.PropertyName)
-        //        {
-        //            case "headingDeg":
-        //                this.VM_HeadingDeg = Model.HeadingDeg;
-        //                break;
-        //            case "veritcalSpeed":
-        //                this.VM_VerticalSpeed = e.Val;
-        //                break;
-        //            case "groundSpeed":
-        //                this.VM_GroundSpeed = e.Val;
-        //                break;
-        //            case "airSpeed":
-        //                this.VM_Airspeed = e.Val;
-        //                break;
-        //            case "altitude":
-        //                this.VM_Altitude= e.Val;
-        //                break;
-        //            case "roll":
-        //                this.VM_Roll = e.Val;
-        //                break;
-        //            case "pitch":
-        //                this.VM_Pitch = e.Val;
-        //                break;
-        //            case "altimeter":
-        //                this.VM_Altimeter = e.Val;
-        //                break;
-
-        //        }
-        //    };
-        //}
-
         public SimViewModel(NavigatorModel navigatorModel, MapAndDashboardModel mapAndDashboardModel)
         {
             this.navigatorModel = navigatorModel;
@@ -248,13 +210,6 @@ namespace FlightSimulatorApp.ViewModel
                 NotifyPropertyChanged(e.PropertyName);
             };
         }
-
-        //public void NotifyPropertyChanged(string propertyName)
-        //{
-        //    if (this.PropertyChanged != null)
-        //        this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        //}
-
 
         public void NotifyPropertyChanged(string propName)
         {
@@ -291,7 +246,9 @@ namespace FlightSimulatorApp.ViewModel
                 case "Longitude":
                     this.VM_Longitude = MapAndDashboardModel.Longitude;
                     //this.location.Longitude = MapAndDashboardModel.Longitude;
-                    //this.VM_Location = new Location (this.latitude, this.longitude);
+                    this.VM_Location = new Location (this.latitude, this.longitude);
+                    Console.Write("the latitude is");
+                    Console.WriteLine(this.latitude);
                     break;
 
             }

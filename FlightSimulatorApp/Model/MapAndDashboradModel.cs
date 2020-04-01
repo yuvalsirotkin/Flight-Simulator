@@ -14,13 +14,12 @@ namespace FlightSimulatorApp.Model
     {
         TcpGetSet tcpClient = null;
         TCPSet tcpSet = null;
+        private Boolean stop;
 
         public MapAndDashboardModel(TcpGetSet tcpGet)
         {
             this.tcpClient = tcpGet;
             start();
-            stop = false;
-
         }
 
         public static double HeadingDeg { get; set; }
@@ -58,11 +57,12 @@ namespace FlightSimulatorApp.Model
         }
 
         
-        volatile Boolean stop;
+        
 
         public void connect(string ip, int port)
         {
             tcpClient.connect(ip, port);
+            stop = false;
         }
         public void disconnect()
         {
@@ -73,9 +73,10 @@ namespace FlightSimulatorApp.Model
 
         public void start()
         {
-            new Thread(delegate () {
+            new Thread(delegate () {   
                 while (!stop)
                 {
+                    Console.WriteLine("in new thread- while true");
                     string[] splittedData;
 
                     PropertyChangedEventArgs eHeading = new PropertyChangedEventArgs("HeadingDeg");
@@ -180,6 +181,12 @@ namespace FlightSimulatorApp.Model
 
                     // the same for the other sensors properties
                     Thread.Sleep(250);// read the data in 4Hz
+
+                    if (stop == true)
+                    {
+
+                        Console.WriteLine("stopped");
+                    }
                 }
             }).Start();
         }
