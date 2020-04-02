@@ -112,26 +112,40 @@ namespace FlightSimulatorApp.Model
                     case "elevetor":
                         path = "/controls/flight/elevator";
                         val = Elavetor;
+                        if (val != 0)
+                        {
+                            Console.WriteLine("el not 0");
+                        }
                         break;
                     case "throttle":
                         path = "/controls/engines/current-engine/throttle";
                         val = Throttle;
+                        if (val == 1)
+                        {
+                            Console.WriteLine("th is 1");
+                        }
                         break;
                     case "aileron":
                         path = "/controls/flight/aileron";
                         val = Aileron;
+                        if (val != 0)
+                        {
+                            Console.WriteLine("ai not 0");
+                        }
                         break;
                     case "rudder":
                         path = "/controls/flight/rudder";
                         val = Rudder;
+                        if (val != 0)
+                        {
+                            Console.WriteLine("ru not 0");
+                        }
                         break;
 
 
                 }
                 // set the property in the simulator
-                tcpClient.write("set " + path +" " + val + "\n");
-                //for test:
-                Console.WriteLine("for test:");
+                tcpClient.write("set " + path + " " + val + "\n");
                 string[] splittedData = System.Text.RegularExpressions.Regex.Split(tcpClient.read(), "\n");
                 Console.WriteLine(splittedData[0]);
 
