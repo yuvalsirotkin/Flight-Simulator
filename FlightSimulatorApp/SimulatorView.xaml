@@ -17,7 +17,7 @@
         </Grid.ColumnDefinitions>
         <Viewbox Margin="310.2,325,-30,0" Grid.Column="1">
             <Controls:Joystick x:Name="joystick1" Height="377" Width="534" Margin="10,10,10,10"
-                               Rudder="{Binding Path=VM_Rudder, Mode=OneWayToSource}" Elevator="{Binding Path=VM_Elavetor, Mode=OneWayToSource}"/>
+                               Rudder="{Binding Path=VM_Rudder, Mode=OneWay}" Elevator="{Binding Path=VM_Elavetor, Mode=OneWay}"/>
         </Viewbox>
         <m:Map x:Name="myMap" ZoomLevel="4" CredentialsProvider="uPGAmzXupaKoouCTGI2o~YmdNZQSw4x2jNF-PlrgpHg~AgKSbEY2Z6D15AyHDi8fVx8vynuVDnZT0sSiuvkPdh-U7ft4z9ceMpSRhmASmFMB" RenderTransformOrigin="0.5,0.5" Margin="0,0,330,160" Grid.ColumnSpan="2">
             <m:Pushpin x:Name="pin" Location ="{Binding VM_Location}"  HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" LayoutUpdated="pin_LayoutUpdated">
@@ -31,14 +31,14 @@
         </m:Map>
         <StackPanel Orientation="Vertical" Margin="65,467,655,39" Grid.ColumnSpan="2">
             <Label Margin="50,20,0,0"  FontWeight="Bold">← Trottle →</Label>
-            <Slider Name="Throttle_Slider" Value="{Binding VM_Throttle, Mode=TwoWay}" Maximum="1" Minimum="0" HorizontalAlignment="Left" TickPlacement="BottomRight" TickFrequency="0.1"
+            <Slider Name="Throttle_Slider" Value="{Binding VM_Throttle, Mode=OneWay}" Maximum="1" Minimum="0" HorizontalAlignment="Left" TickPlacement="BottomRight" TickFrequency="0.1"
                 Margin="10,10,15,10"
                 VerticalAlignment="Center"
                 Width="150"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Margin="25.2,466,445,39" Grid.Column="1">
             <Label Margin="50,20,0,0"  FontWeight="Bold" Content="← Aileron →"/>
-            <Slider x:Name="Aileron_Slider" Value="{Binding VM_Aileron, Mode=TwoWay}" Maximum="1" Minimum="-1" HorizontalAlignment="Left" TickPlacement="BottomRight" TickFrequency="0.1"
+            <Slider x:Name="Aileron_Slider" Value="{Binding VM_Aileron, Mode=OneWay}" Maximum="1" Minimum="-1" HorizontalAlignment="Left" TickPlacement="BottomRight" TickFrequency="0.1"
                 Margin="10,10,15,10"
                 VerticalAlignment="Center"
                 Width="150"/>
