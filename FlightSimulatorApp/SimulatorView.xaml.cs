@@ -16,6 +16,7 @@ using FlightSimulatorApp.ViewModel;
 using FlightSimulatorApp.Model;
 using System.Net.Sockets;
 using Microsoft.Maps.MapControl.WPF;
+using System.ComponentModel;
 
 namespace FlightSimulatorApp
 {
@@ -28,12 +29,16 @@ namespace FlightSimulatorApp
         private SimViewModel vm;
         public SimulatorView(string ip, int port)
         {
-            TcpGetSet tcpConnection = new TcpGetSet();
+            TcpGetSet tcpConnection = new TcpGetSet(); 
             tcpConnection.connect(ip, port);
             this.vm = new SimViewModel(new NavigatorModel(tcpConnection), new MapAndDashboardModel(tcpConnection));
             //this.vm.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e) {
             //    Console.WriteLine("should change the dashboard");
             //};
+            tcpConnection.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
+            {
+                vm.NotifyPropertyChanged("serverProblem");
+            };
             InitializeComponent();
             DataContext = vm;
         }

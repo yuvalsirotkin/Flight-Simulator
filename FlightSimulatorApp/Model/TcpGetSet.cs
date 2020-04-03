@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Sockets;
+using System.ComponentModel;
 
 namespace FlightSimulatorApp.Model
 {
-    class TcpGetSet
+    class TcpGetSet : INotifyPropertyChanged
     {
         TcpClient tcpClient = null;
 
@@ -29,12 +30,27 @@ namespace FlightSimulatorApp.Model
         {
             // Translate the passed message into ASCII and store it as a Byte array.
             Byte[] data = System.Text.Encoding.ASCII.GetBytes(command);
+            try { 
 
-            // Get a client stream for reading and writing.
-            NetworkStream stream = tcpClient.GetStream();
+                // Get a client stream for reading and writing.
+                NetworkStream stream = tcpClient.GetStream();
 
-            // Send the message to the connected TcpServer. 
-            stream.Write(data, 0, data.Length);
+                // Send the message to the connected TcpServer. 
+           
+                stream.Write(data, 0, data.Length);
+            }
+            catch (Exception e)
+            {
+                PropertyChangedEventArgs eDisconnect = new PropertyChangedEventArgs("Disconnect");
+                NotifyPropertyChanged(eDisconnect);
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void NotifyPropertyChanged(PropertyChangedEventArgs property)
+        {
+            if (this.PropertyChanged != null)
+                this.PropertyChanged(this, new PropertyChangedEventArgs(property.PropertyName));
         }
 
         // from stack overflow
@@ -42,13 +58,21 @@ namespace FlightSimulatorApp.Model
         {
             if (tcpClient != null)
             {
-                NetworkStream ns = tcpClient.GetStream();
-                if (tcpClient.ReceiveBufferSize > 0)
+                try
                 {
-                    byte[] bytes = new byte[tcpClient.ReceiveBufferSize];
-                    ns.Read(bytes, 0, tcpClient.ReceiveBufferSize);
-                    string a = Encoding.ASCII.GetString(bytes);
-                    return Encoding.ASCII.GetString(bytes); //the message incoming
+                    NetworkStream ns = tcpClient.GetStream();
+                    if (tcpClient.ReceiveBufferSize > 0)
+                    {
+                        byte[] bytes = new byte[tcpClient.ReceiveBufferSize];
+                        ns.Read(bytes, 0, tcpClient.ReceiveBufferSize);
+                        string a = Encoding.ASCII.GetString(bytes);
+                        return Encoding.ASCII.GetString(bytes); //the message incoming
+                    }
+                }
+                catch (System.InvalidOperationException e)
+                {
+                    PropertyChangedEventArgs eDisconnect = new PropertyChangedEventArgs("Disconnect");
+                    NotifyPropertyChanged(eDisconnect);
                 }
             }
             return "ERR";

@@ -217,6 +217,7 @@ namespace FlightSimulatorApp.ViewModel
                 OnPropertyChanged(new PropertyChangedEventArgs("VM_LongitudeMsg"));
             }
         }
+
         public string VM_LatitudeMsg
         {
             get
@@ -287,7 +288,24 @@ namespace FlightSimulatorApp.ViewModel
                     Console.Write("the latitude is");
                     Console.WriteLine(this.latitude);
                     break;
+                case "serverProblem":
+                    this.VM_ServerMsg = "";
+                    break;
 
+            }
+        }
+
+        public string VM_ServerMsg
+        {
+            get
+            {
+                return "there is a problem with the server";
+                
+            }
+
+            set
+            {
+                OnPropertyChanged(new PropertyChangedEventArgs("VM_ErrorMsg"));
             }
         }
 

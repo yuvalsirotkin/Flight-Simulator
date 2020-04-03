@@ -33,21 +33,6 @@ namespace FlightSimulatorApp.Model
         public static double Longitude { get; set; }
         public static double Latitude { get; set; }
 
-        //public MapAndDashboardModel(TcpGetSet tcpClient)
-        //{
-        //    this.tcpSet = tcpSet;
-        //    start();
-        //    stop = false;
-
-        //}
-
-        //public MapAndDashboardModel(TCPGet tcpGet)
-        //{
-        //    this.tcpGet = tcpGet;
-        //    start();
-        //    stop = false;
-
-        //}
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(PropertyChangedEventArgs property)
@@ -56,8 +41,6 @@ namespace FlightSimulatorApp.Model
                 this.PropertyChanged(this, new PropertyChangedEventArgs(property.PropertyName));
         }
 
-        
-        
 
         public void connect(string ip, int port)
         {
