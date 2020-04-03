@@ -91,6 +91,49 @@ namespace FlightSimulatorApp.ViewModel
             }
         }
 
+        public string VM_LongitudeMsg
+        {
+            get
+            {
+                if (MapAndDashboardModel.Longitude == 180 || MapAndDashboardModel.Longitude == -180)
+                {
+                    return "Invalid Coordinate in Longitude";
+                }
+                return " ";
+            }
+        }
+        public string VM_LatitudeMsg
+        {
+            get
+            {
+                if (MapAndDashboardModel.Latitude == 90 || MapAndDashboardModel.Latitude == -90)
+                {
+                    return "Invalid Coordinate in Latitude";
+                }
+                return " ";
+            }
+        }
+
+
+        public double VM_Latitude
+        {
+            get { return this.latitude; }
+            set
+            {
+                this.latitude = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("VM_Latitude"));
+            }
+        }
+
+        public double VM_Longitude
+        {
+            get { return this.longitude; }
+            set
+            {
+                this.longitude = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("VM_Longitude"));
+            }
+        }
 
         public void OnPropertyChanged(PropertyChangedEventArgs e)
         {
@@ -167,25 +210,7 @@ namespace FlightSimulatorApp.ViewModel
             }
         }
 
-        public double VM_Latitude
-        {
-            get { return this.latitude; }
-            set
-            {
-                this.latitude = value;
-                OnPropertyChanged(new PropertyChangedEventArgs("VM_Latitude"));
-            }
-        }
 
-        public double VM_Longitude
-        {
-            get { return this.longitude; }
-            set
-            {
-                this.longitude = value;
-                OnPropertyChanged(new PropertyChangedEventArgs("VM_Longitude"));
-            }
-        }
 
         public Location VM_Location
         {
