@@ -53,7 +53,6 @@ namespace FlightSimulatorApp
                     PlainPosition.Y = 0;
                     firstTime = false;
                     return;
-
                 }
             }
         }
