@@ -64,18 +64,22 @@ namespace FlightSimulatorApp.Model
                     if (tcpClient.ReceiveBufferSize > 0)
                     {
                         byte[] bytes = new byte[tcpClient.ReceiveBufferSize];
+                        ns.ReadTimeout = 10000;
                         ns.Read(bytes, 0, tcpClient.ReceiveBufferSize);
                         string a = Encoding.ASCII.GetString(bytes);
                         return Encoding.ASCII.GetString(bytes); //the message incoming
                     }
                 }
-                catch (System.InvalidOperationException e)
+                catch (Exception e)
                 {
-                    PropertyChangedEventArgs eDisconnect = new PropertyChangedEventArgs("Disconnect");
-                    NotifyPropertyChanged(eDisconnect);
+                    PropertyChangedEventArgs eServerPr = new PropertyChangedEventArgs("serverProblem");
+                    NotifyPropertyChanged(eServerPr);
                 }
             }
             return "ERR";
         }
     }
 }
+
+
+

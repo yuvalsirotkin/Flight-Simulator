@@ -295,17 +295,24 @@ namespace FlightSimulatorApp.ViewModel
             }
         }
 
+
+        private bool firstTime = true;
         public string VM_ServerMsg
         {
             get
             {
+                if (firstTime)
+                {
+                    firstTime = false;
+                    return "";
+                }
                 return "there is a problem with the server";
                 
             }
 
             set
             {
-                OnPropertyChanged(new PropertyChangedEventArgs("VM_ErrorMsg"));
+                OnPropertyChanged(new PropertyChangedEventArgs("VM_ServerMsg"));
             }
         }
 
