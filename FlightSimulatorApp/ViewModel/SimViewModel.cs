@@ -91,29 +91,6 @@ namespace FlightSimulatorApp.ViewModel
             }
         }
 
-        public string VM_LongitudeMsg
-        {
-            get
-            {
-                if (MapAndDashboardModel.Longitude == 180 || MapAndDashboardModel.Longitude == -180)
-                {
-                    return "Invalid Coordinate in Longitude";
-                }
-                return " ";
-            }
-        }
-        public string VM_LatitudeMsg
-        {
-            get
-            {
-                if (MapAndDashboardModel.Latitude == 90 || MapAndDashboardModel.Latitude == -90)
-                {
-                    return "Invalid Coordinate in Latitude";
-                }
-                return " ";
-            }
-        }
-
 
         public double VM_Latitude
         {
@@ -224,6 +201,39 @@ namespace FlightSimulatorApp.ViewModel
             }
         }
 
+        public string VM_LongitudeMsg
+        {
+            get
+            {
+                if (MapAndDashboardModel.Longitude >= 180 || MapAndDashboardModel.Longitude <= -180)
+                {
+                    return "Invalid Coordinate in Longitude";
+                }
+                return " ";
+            }
+
+            set
+            {
+                OnPropertyChanged(new PropertyChangedEventArgs("VM_LongitudeMsg"));
+            }
+        }
+        public string VM_LatitudeMsg
+        {
+            get
+            {
+                if (MapAndDashboardModel.Latitude >= 90 || MapAndDashboardModel.Latitude <= -90)
+                {
+                    return "Invalid Coordinate in Latitude";
+                }
+                return " ";
+            }
+
+            set
+            {
+                OnPropertyChanged(new PropertyChangedEventArgs("VM_LatitudeMsg"));
+            }
+        }
+
         public SimViewModel(NavigatorModel navigatorModel, MapAndDashboardModel mapAndDashboardModel)
         {
             this.navigatorModel = navigatorModel;
@@ -266,12 +276,14 @@ namespace FlightSimulatorApp.ViewModel
                     break;
                 case "Latitude":
                     this.VM_Latitude = MapAndDashboardModel.Latitude;
+                    this.VM_LatitudeMsg = "";
                     //this.location.Latitude = MapAndDashboardModel.Latitude;
                     break;
                 case "Longitude":
                     this.VM_Longitude = MapAndDashboardModel.Longitude;
                     //this.location.Longitude = MapAndDashboardModel.Longitude;
                     this.VM_Location = new Location (this.latitude, this.longitude);
+                    this.VM_LongitudeMsg = "";
                     Console.Write("the latitude is");
                     Console.WriteLine(this.latitude);
                     break;
