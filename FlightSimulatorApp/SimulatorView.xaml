@@ -96,7 +96,7 @@
         </StackPanel>
         <TextBlock x:Name ="LatText" Text="{Binding VM_LatitudeMsg, Mode=OneWay}" TextWrapping="Wrap"  VerticalAlignment="Top" FontWeight="Bold" Margin="315,480,365,0" Grid.ColumnSpan="2" />
         <TextBlock x:Name ="LongText" Text="{Binding VM_LongitudeMsg, Mode=OneWay}" TextWrapping="Wrap"  VerticalAlignment="Top" FontWeight="Bold" Margin="0,485,3.8,0" />
-        <TextBlock x:Name ="ErroeText" Text="{Binding VM_ServerMsg, Mode=OneWay}" TextWrapping="Wrap"  VerticalAlignment="Top" FontWeight="Bold" Margin="0,485,3.8,0" />
+        <TextBlock x:Name ="ErrorText" Text="{Binding VM_ServerMsg, Mode=OneWay}" TextWrapping="Wrap"  VerticalAlignment="Top" FontWeight="Bold" Margin="0,485,3.8,0" />
     </Grid>
 
 
