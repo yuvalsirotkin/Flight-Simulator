@@ -56,5 +56,18 @@ namespace FlightSimulatorApp
                 }
             }
         }
+
+        private void MoveToCenter(object sender, EventArgs e)
+        {
+            try
+            {
+                myMap.Center = pin.Location;
+            }
+            catch
+            {
+                //ErrorText.Text = "wasn't able to center the map";
+                Console.WriteLine("wasn't able to center the map");
+            }
+        }
     }
 }
