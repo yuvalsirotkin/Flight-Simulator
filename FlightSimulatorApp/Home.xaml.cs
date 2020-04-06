@@ -16,6 +16,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Interop;
 using FlightSimulatorApp.Model;
 using FlightSimulatorApp.ViewModel;
+using System.Configuration;
 
 
 
@@ -51,8 +52,8 @@ namespace FlightSimulatorApp
 
         private void DefaultCommand(object sender, RoutedEventArgs e)
         {
-            this.ip = "127.0.0.1";
-            this.port = "5402";
+            this.ip = ConfigurationManager.AppSettings["ServerIP"];
+            this.port = ConfigurationManager.AppSettings["ServerPort"];
             IP.Text = this.ip;
             Port.Text = this.port;
         }
@@ -96,6 +97,11 @@ namespace FlightSimulatorApp
                     ErrMsg.Text = message;
                 }
             }
+        }
+
+        private void ExitCommand(object sender, RoutedEventArgs e)
+        {
+            System.Environment.Exit(0);
         }
         public string ServerIP
         {

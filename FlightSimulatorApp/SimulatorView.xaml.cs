@@ -56,6 +56,11 @@ namespace FlightSimulatorApp
                 }
             }
         }
+        private void ExitCommand(object sender, RoutedEventArgs e)
+        {
+            //this.TcpGetSet.disconnect();
+            System.Environment.Exit(0);
+        }
 
         private void MoveToCenter(object sender, EventArgs e)
         {
