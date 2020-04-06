@@ -53,13 +53,15 @@ namespace FlightSimulatorApp.Model
             tcpClient.disconnect();
         }
 
-
+        private static Mutex mut = new Mutex();
+    
         public void start()
         {
             new Thread(delegate () {   
                 while (!stop)
                 {
-                    Console.WriteLine("in new thread- while true");
+                    mut.WaitOne();
+                    Console.WriteLine("1");
                     string[] splittedData;
 
                     PropertyChangedEventArgs eHeading = new PropertyChangedEventArgs("HeadingDeg");
@@ -70,7 +72,7 @@ namespace FlightSimulatorApp.Model
                         HeadingDeg = Double.Parse(splittedData[0]);
                         NotifyPropertyChanged(eHeading);
                     }
-
+                    Console.WriteLine("2");
                     PropertyChangedEventArgs eVerticalSpeed = new PropertyChangedEventArgs("VerticalSpeed");
                     tcpClient.write("get /instrumentation/gps/indicated-vertical-speed\n");
                     splittedData = System.Text.RegularExpressions.Regex.Split(tcpClient.read(), "\n");
@@ -80,7 +82,7 @@ namespace FlightSimulatorApp.Model
                         VerticalSpeed = Double.Parse(splittedData[0]);
                         NotifyPropertyChanged(eVerticalSpeed);
                     }
-
+                    Console.WriteLine("3");
 
                     PropertyChangedEventArgs eGroundSpeed = new PropertyChangedEventArgs("GroundSpeed");
                     tcpClient.write("get /instrumentation/gps/indicated-ground-speed-kt\n");
@@ -91,7 +93,7 @@ namespace FlightSimulatorApp.Model
                         GroundSpeed = Double.Parse(splittedData[0]);
                         NotifyPropertyChanged(eGroundSpeed);
                     }
-
+                    Console.WriteLine("4");
                     PropertyChangedEventArgs eAirSpeed = new PropertyChangedEventArgs("AirSpeed");
                     tcpClient.write("get /instrumentation/airspeed-indicator/indicated-speed-kt\n");
                     splittedData = System.Text.RegularExpressions.Regex.Split(tcpClient.read(), "\n");
@@ -101,7 +103,7 @@ namespace FlightSimulatorApp.Model
                         Airspeed = Double.Parse(splittedData[0]);
                         NotifyPropertyChanged(eAirSpeed);
                     }
-
+                    Console.WriteLine("5");
                     PropertyChangedEventArgs eAltitude = new PropertyChangedEventArgs("Altitude");
                     tcpClient.write("get /instrumentation/gps/indicated-altitude-ft\n");
                     splittedData = System.Text.RegularExpressions.Regex.Split(tcpClient.read(), "\n");
@@ -111,7 +113,7 @@ namespace FlightSimulatorApp.Model
                         Altitude = Double.Parse(splittedData[0]);
                         NotifyPropertyChanged(eAltitude);
                     }
-
+                    Console.WriteLine("6");
                     PropertyChangedEventArgs eRoll = new PropertyChangedEventArgs("Roll");
                     tcpClient.write("get /instrumentation/attitude-indicator/internal-roll-deg\n");
                     splittedData = System.Text.RegularExpressions.Regex.Split(tcpClient.read(), "\n");
@@ -121,7 +123,7 @@ namespace FlightSimulatorApp.Model
                         Roll = Double.Parse(splittedData[0]);
                         NotifyPropertyChanged(eRoll);
                     }
-
+                    Console.WriteLine("7");
                     PropertyChangedEventArgs ePitch = new PropertyChangedEventArgs("Pitch");
                     tcpClient.write("get /instrumentation/attitude-indicator/internal-pitch-deg\n");
                     splittedData = System.Text.RegularExpressions.Regex.Split(tcpClient.read(), "\n");
@@ -131,7 +133,7 @@ namespace FlightSimulatorApp.Model
                         Pitch = Double.Parse(splittedData[0]);
                         NotifyPropertyChanged(ePitch);
                     }
-
+                    Console.WriteLine("8");
                     PropertyChangedEventArgs eAltimeter = new PropertyChangedEventArgs("Altimeter");
                     tcpClient.write("get /instrumentation/altimeter/indicated-altitude-ft\n");
                     splittedData = System.Text.RegularExpressions.Regex.Split(tcpClient.read(), "\n");
@@ -141,7 +143,7 @@ namespace FlightSimulatorApp.Model
                         Altimeter = Double.Parse(splittedData[0]);
                         NotifyPropertyChanged(eAltimeter);
                     }
-
+                    Console.WriteLine("9");
                     PropertyChangedEventArgs eLongitude = new PropertyChangedEventArgs("Longitude");
                     tcpClient.write("get /position/longitude-deg\n");
                     splittedData = System.Text.RegularExpressions.Regex.Split(tcpClient.read(), "\n");
@@ -151,7 +153,7 @@ namespace FlightSimulatorApp.Model
                         Longitude = Double.Parse(splittedData[0]);
                         NotifyPropertyChanged(eLongitude);
                     }
-
+                    Console.WriteLine("10");
                     PropertyChangedEventArgs eLatitude = new PropertyChangedEventArgs("Latitude");
                     tcpClient.write("get /position/latitude-deg\n");
                     splittedData = System.Text.RegularExpressions.Regex.Split(tcpClient.read(), "\n");
@@ -161,10 +163,12 @@ namespace FlightSimulatorApp.Model
                         Latitude = Double.Parse(splittedData[0]);
                         NotifyPropertyChanged(eLatitude);
                     }
-
+                    Console.WriteLine("11");
+                    mut.ReleaseMutex();
                     // the same for the other sensors properties
                     Thread.Sleep(250);// read the data in 4Hz
 
+                    
                     if (stop == true)
                     {
 

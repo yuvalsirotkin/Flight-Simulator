@@ -27,11 +27,13 @@ namespace FlightSimulatorApp
     public partial class SimulatorView : Page
     {
         private SimViewModel vm;
+        MapAndDashboardModel myMapAndDash;
         public SimulatorView(string ip, int port)
         {
-            TcpGetSet tcpConnection = new TcpGetSet(); 
+            TcpGetSet tcpConnection = new TcpGetSet();
             tcpConnection.connect(ip, port);
-            this.vm = new SimViewModel(new NavigatorModel(tcpConnection), new MapAndDashboardModel(tcpConnection));
+            myMapAndDash = new MapAndDashboardModel(tcpConnection);
+            this.vm = new SimViewModel(new NavigatorModel(tcpConnection), myMapAndDash);
             //this.vm.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e) {
             //    Console.WriteLine("should change the dashboard");
             //};
@@ -49,8 +51,7 @@ namespace FlightSimulatorApp
             if (pin.Location != null)
             {
                 double latitude = pin.Location.Latitude;
-                double longtitude = pin.Location.Longitude;
-                Console.WriteLine("in the pin");
+                double longtitude = pin.Location.Longitude;    
                 if (firstTime)
                 {
                     myMap.SetView(new Location(latitude, longtitude), 10);
@@ -64,6 +65,7 @@ namespace FlightSimulatorApp
         private void ExitCommand(object sender, RoutedEventArgs e)
         {
             //this.TcpGetSet.disconnect();
+            myMapAndDash.disconnect();
             System.Environment.Exit(0);
         }
 
