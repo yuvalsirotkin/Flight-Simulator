@@ -61,5 +61,23 @@ namespace FlightSimulatorApp
                 }
             }
         }
+        private void ExitCommand(object sender, RoutedEventArgs e)
+        {
+            //this.TcpGetSet.disconnect();
+            System.Environment.Exit(0);
+        }
+
+        private void MoveToCenter(object sender, EventArgs e)
+        {
+            try
+            {
+                myMap.Center = pin.Location;
+            }
+            catch
+            {
+                //ErrorText.Text = "wasn't able to center the map";
+                Console.WriteLine("wasn't able to center the map");
+            }
+        }
     }
 }
