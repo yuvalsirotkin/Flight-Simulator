@@ -9,7 +9,7 @@ using Microsoft.Maps.MapControl.WPF;
 
 namespace FlightSimulatorApp.ViewModel
 {
-    class SimViewModel : INotifyPropertyChanged
+    public class SimViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private MapAndDashboardModel mapAndDashboardModel;
@@ -71,6 +71,7 @@ namespace FlightSimulatorApp.ViewModel
             /*get { return this.rudder; }*/
             set
             {
+                Console.WriteLine("workkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
                 /*this.rudder = value;*/
                 navigatorModel.Rudder = value;
             }

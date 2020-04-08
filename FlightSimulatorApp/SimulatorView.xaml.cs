@@ -36,6 +36,7 @@ namespace FlightSimulatorApp
             //};
             InitializeComponent();
             DataContext = vm;
+            navigators.set(vm);
         }
 
         private bool firstTime = true;
@@ -58,7 +59,7 @@ namespace FlightSimulatorApp
         }
         private void ExitCommand(object sender, RoutedEventArgs e)
         {
-            //this.TcpGetSet.disconnect();
+           // this.TcpGetSet.disconnect();
             System.Environment.Exit(0);
         }
 
@@ -74,5 +75,6 @@ namespace FlightSimulatorApp
                 Console.WriteLine("wasn't able to center the map");
             }
         }
+
     }
 }

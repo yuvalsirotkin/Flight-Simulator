@@ -7,7 +7,7 @@ using System.Net.Sockets;
 
 namespace FlightSimulatorApp.Model
 {
-    class TcpGetSet
+    public class TcpGetSet
     {
         TcpClient tcpClient = null;
 

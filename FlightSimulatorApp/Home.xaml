@@ -23,7 +23,7 @@
         <TextBox x:Name="Port" Text="{Binding ServerPort}" Grid.Row="3" Grid.Column="2" Padding="3"
         Margin="4,82,2,-70"></TextBox>
 
-        <Button Command="{Binding ExitCommand}" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Right" Margin="0,1.4,2,9" Padding="5" Width="33" Click="ExitCommand" Grid.RowSpan="2">X</Button>
+        <Button  Grid.Column="2" Grid.Row="2" HorizontalAlignment="Right" Margin="0,1.4,2,9" Padding="5" Width="33" Click="ExitCommand" Grid.RowSpan="2">X</Button>
         <Button Command="{Binding SetCommand}" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right"
         Grid.ColumnSpan="3" Margin="0,128.6,157,-118.6" Padding="5" Width="113" Click="SetCommand">Set IP and PORT</Button>
         <Button Command="{Binding DefaultCommand}" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Left"
