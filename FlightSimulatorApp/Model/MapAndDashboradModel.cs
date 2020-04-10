@@ -14,6 +14,7 @@ namespace FlightSimulatorApp.Model
     {
         TcpGetSet tcpClient = null;
         TCPSet tcpSet = null;
+        Mutex mut = new Mutex();
         private Boolean stop;
 
         public MapAndDashboardModel(TcpGetSet tcpGet)
@@ -52,8 +53,6 @@ namespace FlightSimulatorApp.Model
             stop = true;
             tcpClient.disconnect();
         }
-
-        private static Mutex mut = new Mutex();
     
         public void start()
         {

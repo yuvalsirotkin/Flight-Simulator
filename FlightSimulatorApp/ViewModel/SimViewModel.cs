@@ -79,14 +79,11 @@ namespace FlightSimulatorApp.ViewModel
         public double VM_HeadingDeg
         {
             get {
-                Console.WriteLine("get the heading deg is");
                 return this.headingDeg;
             }
             set
             {
                 this.headingDeg = value;
-                Console.Write("the heading deg is");
-                Console.WriteLine(this.headingDeg);
                 OnPropertyChanged(new PropertyChangedEventArgs("VM_HeadingDeg"));
             }
         }
@@ -285,8 +282,6 @@ namespace FlightSimulatorApp.ViewModel
                     //this.location.Longitude = MapAndDashboardModel.Longitude;
                     this.VM_Location = new Location (this.latitude, this.longitude);
                     this.VM_LongitudeMsg = "";
-                    Console.Write("the latitude is");
-                    Console.WriteLine(this.latitude);
                     break;
                 case "serverProblem":
                     this.VM_ServerMsg = "";

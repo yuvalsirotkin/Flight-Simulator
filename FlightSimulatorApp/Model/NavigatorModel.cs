@@ -24,6 +24,7 @@ namespace FlightSimulatorApp.Model
             get { return this.elevetor; }
             set
             {
+                Console.WriteLine("set");
                 this.elevetor = value;
                 if (value > 1)
                 {
