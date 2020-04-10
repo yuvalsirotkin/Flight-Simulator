@@ -35,9 +35,6 @@ namespace FlightSimulatorApp.Model
                     this.elevetor = -1;
                 }
                 PropertyChangedEventArgs e = new PropertyChangedEventArgs("elevetor");
-                //e.Name = "elavetor";
-                //e.Path = "/controls/flight/elevator";
-                //e.Val = value;
                 NotifyPropertyChanged(e);
             }
         }
@@ -46,11 +43,9 @@ namespace FlightSimulatorApp.Model
             get { return this.throttle; }
             set
             {
+                Console.WriteLine("set");
                 this.throttle = value;
-                PropertyChangedEventArgs e = new PropertyChangedEventArgs("throttle");
-                //e.Name = "throttle";
-                //e.Path = "/controls/engines/current-engine/throttle";
-                //e.Val = value;
+                PropertyChangedEventArgs e = new PropertyChangedEventArgs("throttle");    
                 NotifyPropertyChanged(e);
             }
         }
@@ -59,11 +54,9 @@ namespace FlightSimulatorApp.Model
             get { return this.aileron; }
             set
             {
+                Console.WriteLine("set");
                 this.aileron = value;
                 PropertyChangedEventArgs e = new PropertyChangedEventArgs("aileron");
-                //e.Name = "aileron";
-                //e.Path = "/controls/flight/aileron";
-                //e.Val = value;
                 NotifyPropertyChanged(e);
             }
         }
@@ -72,6 +65,7 @@ namespace FlightSimulatorApp.Model
             get { return this.rudder; }
             set
             {
+                Console.WriteLine("set");
                 this.rudder = value;
                 if (value > 1)
                 {
@@ -82,9 +76,6 @@ namespace FlightSimulatorApp.Model
                     this.rudder = -1;
                 }
                 PropertyChangedEventArgs e = new PropertyChangedEventArgs("rudder");
-                //e.Name = "rudder";
-                //e.Path = "/controls/flight/rudder";
-                //e.Val = value;
                 NotifyPropertyChanged(e);
             }
         }
@@ -114,7 +105,7 @@ namespace FlightSimulatorApp.Model
                         val = Elavetor;
                         if (val != 0)
                         {
-                            Console.WriteLine("el not 0");
+                            //Console.WriteLine("el not 0");
                         }
                         break;
                     case "throttle":
@@ -122,7 +113,7 @@ namespace FlightSimulatorApp.Model
                         val = Throttle;
                         if (val == 1)
                         {
-                            Console.WriteLine("th is 1");
+                            //Console.WriteLine("th is 1");
                         }
                         break;
                     case "aileron":
@@ -130,7 +121,7 @@ namespace FlightSimulatorApp.Model
                         val = Aileron;
                         if (val != 0)
                         {
-                            Console.WriteLine("ai not 0");
+                           // Console.WriteLine("ai not 0");
                         }
                         break;
                     case "rudder":
@@ -138,7 +129,7 @@ namespace FlightSimulatorApp.Model
                         val = Rudder;
                         if (val != 0)
                         {
-                            Console.WriteLine("ru not 0");
+                            //Console.WriteLine("ru not 0");
                         }
                         break;
 
@@ -147,7 +138,7 @@ namespace FlightSimulatorApp.Model
                 // set the property in the simulator
                 tcpClient.write("set " + path + " " + val + "\n");
                 string[] splittedData = System.Text.RegularExpressions.Regex.Split(tcpClient.read(), "\n");
-                Console.WriteLine(splittedData[0]);
+                //Console.WriteLine(splittedData[0]);
 
 
             };

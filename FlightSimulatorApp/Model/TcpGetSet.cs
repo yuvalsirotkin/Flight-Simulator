@@ -8,7 +8,7 @@ using System.ComponentModel;
 
 namespace FlightSimulatorApp.Model
 {
-    class TcpGetSet : INotifyPropertyChanged
+    public class TcpGetSet : INotifyPropertyChanged
     {
         TcpClient tcpClient = null;
 
@@ -20,9 +20,16 @@ namespace FlightSimulatorApp.Model
 
         public void disconnect()
         {
-            tcpClient.GetStream().Close();
-            tcpClient.Close();
-            tcpClient = null;
+            try
+            {
+                tcpClient.GetStream().Close();
+                tcpClient.Close();
+                tcpClient = null;
+            }
+            catch (Exception e)
+            {
+                System.Environment.Exit(0);
+            }
         }
 
 

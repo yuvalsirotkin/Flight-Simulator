@@ -87,6 +87,7 @@
         Grid.ColumnSpan="1" Margin="10,535,0,10" Padding="5" Width="120" Click="MoveToCenter">Move To Center</Button>
         <TextBlock x:Name ="LatText" Text="{Binding VM_LatitudeMsg, Mode=OneWay}" TextWrapping="Wrap"  VerticalAlignment="Top" FontWeight="Bold" Margin="315,480,365,0" Grid.ColumnSpan="2" />
         <TextBlock x:Name ="LongText" Text="{Binding VM_LongitudeMsg, Mode=OneWay}" TextWrapping="Wrap"  VerticalAlignment="Top" FontWeight="Bold" Margin="0,485,3.8,0" />
+        <TextBlock x:Name ="ErrorText" Text="{Binding VM_ServerMsg, Mode=OneWay}" TextWrapping="Wrap"  VerticalAlignment="Top" FontWeight="Bold" Margin="0,485,3.8,0" />
     </Grid>
 
 

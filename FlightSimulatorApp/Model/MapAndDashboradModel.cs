@@ -12,13 +12,13 @@ namespace FlightSimulatorApp.Model
 {
     public class MapAndDashboardModel : INotifyPropertyChanged
     {
-        TcpGetSet tcpClient = null;
-        TCPSet tcpSet = null;
-        Mutex mut = new Mutex();
+        public TcpGetSet tcpClient = null;
+        private Mutex mut;
         private Boolean stop;
 
         public MapAndDashboardModel(TcpGetSet tcpGet)
         {
+            this.mut = new Mutex();
             this.tcpClient = tcpGet;
             start();
         }
@@ -162,12 +162,11 @@ namespace FlightSimulatorApp.Model
                         Latitude = Double.Parse(splittedData[0]);
                         NotifyPropertyChanged(eLatitude);
                     }
-                    Console.WriteLine("11");
-                    mut.ReleaseMutex();
+                    Console.WriteLine("11");     
                     // the same for the other sensors properties
                     Thread.Sleep(250);// read the data in 4Hz
+                    mut.ReleaseMutex();
 
-                    
                     if (stop == true)
                     {
 
@@ -175,6 +174,7 @@ namespace FlightSimulatorApp.Model
                     }
                 }
             }).Start();
+            
         }
     }
 }
