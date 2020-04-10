@@ -10,7 +10,7 @@ using System.Net.Sockets;
 
 namespace FlightSimulatorApp.Model
 {
-    class NavigatorModel : INotifyPropertyChanged
+    public class NavigatorModel : INotifyPropertyChanged
     {
         private double throttle;
         private double elevetor;

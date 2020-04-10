@@ -86,8 +86,8 @@
       <DependentUpon>Joystick.xaml</DependentUpon>
       <Generator>MSBuild:Compile</Generator>
     </Compile>
-    <Compile Include="View\Sliders.xaml.cs">
-      <DependentUpon>Sliders.xaml</DependentUpon>
+    <Compile Include="View\Navigators.xaml.cs">
+      <DependentUpon>Navigators.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\test.cs" />
     <Page Include="Home.xaml">
@@ -114,7 +114,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\Sliders.xaml">
+    <Page Include="View\Navigators.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

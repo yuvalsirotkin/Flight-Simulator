@@ -10,7 +10,7 @@ using FlightSimulatorApp.Model;
 
 namespace FlightSimulatorApp.Model
 {
-    class MapAndDashboardModel : INotifyPropertyChanged
+    public class MapAndDashboardModel : INotifyPropertyChanged
     {
         TcpGetSet tcpClient = null;
         TCPSet tcpSet = null;
