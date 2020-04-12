@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d"
-        Title="Start Page" Height="700" Width="1000">
+        Title="Start Page" Height="500" Width="800">
     <Grid TextBlock.FontSize="14">
         <Grid.Background>
             <ImageBrush ImageSource="Back.PNG" TileMode="Tile"/>
@@ -20,11 +20,11 @@
             <ColumnDefinition Width="11"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <TextBox x:Name="IP" Text="{Binding ServerIP}" Padding="3" Margin="296,362.6,10,-351.8" Grid.Row="3" Grid.Column="2" Background="{x:Null}" FontFamily="Nirmala UI" FontWeight="Bold" BorderBrush="{x:Null}" Foreground="White"/>
+        <TextBox x:Name="IP" Text="{Binding ServerIP}" Padding="3" Margin="216,248.6,90,-238.2" Grid.Row="3" Grid.Column="2" Background="{x:Null}" FontFamily="Nirmala UI" FontWeight="Bold" BorderBrush="{x:Null}" Foreground="White"/>
         <TextBox x:Name="Port" Text="{Binding ServerPort}" Grid.Row="3" Grid.Column="2" Padding="3"
-        Margin="296,422.6,9,-411.8" Background="{x:Null}" FontFamily="Nirmala UI" FontWeight="Bold" BorderBrush="{x:Null}" Foreground="White"/>
+        Margin="232,292.6,73,-282.2" Background="{x:Null}" FontFamily="Nirmala UI" FontWeight="Bold" BorderBrush="{x:Null}" Foreground="White"/>
 
-        <Button  Grid.Column="2" Grid.Row="3" HorizontalAlignment="Right" Margin="0,11.6,12,-35" Padding="5" Width="60" Click="ExitCommand" RenderTransformOrigin="-0.012,1.5" Height="65" VerticalAlignment="Top" BorderBrush="{x:Null}">
+        <Button  Grid.Column="2" Grid.Row="3" HorizontalAlignment="Right" Margin="0,9.6,10,-13.6" Padding="5" Width="50" Click="ExitCommand" RenderTransformOrigin="-0.012,1.5" Height="48" VerticalAlignment="Top" BorderBrush="{x:Null}">
             <Button.OpacityMask>
                 <ImageBrush/>
             </Button.OpacityMask>
@@ -32,7 +32,7 @@
                 <ImageBrush/>
             </Button.Background>
         </Button>
-        <Button Command="{Binding SetCommand}" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Right" Margin="0,517.6,570,-536.8" Padding="5" Width="183" Click="SetCommand" BorderBrush="{x:Null}">
+        <Button Command="{Binding SetCommand}" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Right" Margin="0,367.6,450,-365.2" Padding="5" Width="163" Click="SetCommand" BorderBrush="{x:Null}">
             <Button.OpacityMask>
                 <ImageBrush/>
             </Button.OpacityMask>
@@ -41,7 +41,7 @@
             </Button.Background>
         </Button>
         <Button Command="{Binding DefaultCommand}" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Left"
-        Grid.ColumnSpan="1" Margin="504,517.6,0,-536.8" Padding="5" Width="175" Click="DefaultCommand" BorderBrush="{x:Null}">
+        Grid.ColumnSpan="1" Margin="394,367.6,0,-375.2" Padding="5" Width="130" Click="DefaultCommand" BorderBrush="{x:Null}">
             <Button.OpacityMask>
                 <ImageBrush/>
             </Button.OpacityMask>
@@ -53,7 +53,7 @@
             </Button.Background>
         </Button>
         <Button Command="{Binding FlyCommand}" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Left"
-        Grid.ColumnSpan="1" Margin="374,582.6,0,-616.8" Padding="5" Width="100" Click="FlyCommand" BorderBrush="{x:Null}">
+        Grid.ColumnSpan="1" Margin="284,417.6,0,-434.2" Padding="5" Width="90" Click="FlyCommand" BorderBrush="{x:Null}">
             <Button.OpacityMask>
                 <ImageBrush/>
             </Button.OpacityMask>
@@ -62,7 +62,7 @@
             </Button.Background>
         </Button>
         <TextBox x:Name="ErrMsg" Text="{Binding ErrMsg}" Background="{x:Null}" Grid.Row="3" Padding="3"
-            Margin="10,481.6,10,-471.8" Grid.ColumnSpan="3" BorderBrush="{x:Null}" Foreground="White" TextAlignment="Center"/>
+            Margin="10,328.6,10,-319.2" Grid.ColumnSpan="3" BorderBrush="{x:Null}" Foreground="White" TextAlignment="Center"/>
         <TextBlock Padding="3" Margin="19,9.6,90,3.4" Grid.Row="3" Grid.Column="2" Text=" "/>
     </Grid>
 </Page>

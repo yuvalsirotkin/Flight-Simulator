@@ -29,12 +29,6 @@ namespace FlightSimulatorApp
         private string port = "";
         private int portInInt = 0;
 
-        private const int GWL_STYLE = -16;
-        private const int WS_SYSMENU = 0x80000;
-        [DllImport("user32.dll", SetLastError = true)]
-        private static extern int GetWindowLong(IntPtr hWnd, int nIndex);
-        [DllImport("user32.dll")]
-        private static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
 
         public Home()
         {
@@ -43,14 +37,16 @@ namespace FlightSimulatorApp
         }
 
 
+        //Default command- takes the ip and port from app config
         private void DefaultCommand(object sender, RoutedEventArgs e)
         {
-            this.ip = ConfigurationManager.AppSettings["ServerIP"];
-            this.port = ConfigurationManager.AppSettings["ServerPort"];
+            this.ip = ConfigurationManager.AppSettings["ServerIP"]; //127.0.0.1
+            this.port = ConfigurationManager.AppSettings["ServerPort"];//5402 !!!!!!!!!
             IP.Text = this.ip;
             Port.Text = this.port;
         }
 
+        // set the parameters we got
         private void SetCommand(object sender, RoutedEventArgs e)
         {
             this.ip = ServerIP;
@@ -61,6 +57,8 @@ namespace FlightSimulatorApp
                 ErrMsg.Text = message;
             }
         }
+
+        //fly command- try to connect tje server
         private void FlyCommand(object sender, RoutedEventArgs e)
         {
             if (ip == "" && port == "")
@@ -73,23 +71,21 @@ namespace FlightSimulatorApp
             {
                 string message = String.Format("You must enter IP adress");
                 ErrMsg.Text = message;
-                //MessageBox.Show(message, "", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else if (port == "")
             {
                 string message = String.Format("You must enter Port adress");
                 ErrMsg.Text = message;
-                //MessageBox.Show(message, "", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
-                try
+                try // to connect
                 {
                     portInInt = int.Parse(port);
                     SimulatorView simulatorView = new SimulatorView(this.ip, portInInt);
                     this.NavigationService.Navigate(simulatorView);
                 }
-                catch
+                catch // any error that appears
                 {
                     string message = String.Format("Not able to connet, Something went wrong");
                     ErrMsg.Text = message;
@@ -97,6 +93,7 @@ namespace FlightSimulatorApp
             }
         }
 
+        // exit the program
         private void ExitCommand(object sender, RoutedEventArgs e)
         {
             System.Environment.Exit(0);

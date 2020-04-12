@@ -67,10 +67,6 @@
     <Compile Include="View\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\ISettings.cs" />
-    <Compile Include="Model\SettingsModel.cs">
-      <Generator>MSBuild:Compile</Generator>
-    </Compile>
     <Compile Include="Model\TcpGetSet.cs" />
     <Compile Include="Model\VirtualJoystickEventArgs.cs">
       <Generator>MSBuild:Compile</Generator>
@@ -79,7 +75,6 @@
       <DependentUpon>SimulatorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\Notify.cs" />
-    <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="ViewModel\SimViewModel.cs" />
     <Compile Include="View\Joystick.xaml.cs">
       <DependentUpon>Joystick.xaml</DependentUpon>
