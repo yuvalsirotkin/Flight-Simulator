@@ -44,11 +44,6 @@ namespace FlightSimulatorApp
             DataContext = this;
         }
 
-        //private void Window_Loaded(object sender, RoutedEventArgs e)
-        //{
-        //    var hwnd = new WindowInteropHelper(this).Handle;
-        //    SetWindowLong(hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & ~WS_SYSMENU);
-        //}
 
         private void DefaultCommand(object sender, RoutedEventArgs e)
         {
@@ -62,6 +57,11 @@ namespace FlightSimulatorApp
         {
             this.ip = ServerIP;
             this.port = ServerPort;
+            if (ip != "" && port != "")
+            {
+                string message = String.Format("IP & Port is Set");
+                ErrMsg.Text = message;
+            }
         }
         private void FlyCommand(object sender, RoutedEventArgs e)
         {

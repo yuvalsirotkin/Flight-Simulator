@@ -64,7 +64,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Home.xaml.cs">
+    <Compile Include="View\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\ISettings.cs" />
@@ -76,7 +76,7 @@
     <Compile Include="Model\VirtualJoystickEventArgs.cs">
       <Generator>MSBuild:Compile</Generator>
     </Compile>
-    <Compile Include="SimulatorView.xaml.cs">
+    <Compile Include="View\SimulatorView.xaml.cs">
       <DependentUpon>SimulatorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\Notify.cs" />
@@ -90,7 +90,7 @@
       <DependentUpon>Navigators.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\test.cs" />
-    <Page Include="Home.xaml">
+    <Page Include="View\Home.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -106,7 +106,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="SimulatorView.xaml">
+    <Page Include="View\SimulatorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -157,6 +157,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="airplane.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Back.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
