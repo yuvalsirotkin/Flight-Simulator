@@ -16,13 +16,14 @@ namespace FlightSimulatorApp.Model
         private Mutex mut;
         private Boolean stop;
 
-        public MapAndDashboardModel(TcpGetSet tcpGet)
+        public MapAndDashboardModel(TcpGetSet tcpGet, Mutex mut)
         {
-            this.mut = new Mutex();
+            this.mut = mut;
             this.tcpClient = tcpGet;
             start();
         }
 
+        //Propreties
         public static double HeadingDeg { get; set; }
         public static double VerticalSpeed { get; set; }
         public static double GroundSpeed { get; set; }
@@ -42,12 +43,14 @@ namespace FlightSimulatorApp.Model
                 this.PropertyChanged(this, new PropertyChangedEventArgs(property.PropertyName));
         }
 
-
+        //Connect to the server.
         public void connect(string ip, int port)
         {
             tcpClient.connect(ip, port);
             stop = false;
         }
+
+        //Disconnect from the server.
         public void disconnect()
         {
             stop = true;
@@ -56,122 +59,136 @@ namespace FlightSimulatorApp.Model
     
         public void start()
         {
-            new Thread(delegate () {   
+            new Thread(delegate () {  
+                if (stop == true)
+                {
+                    Console.WriteLine("stopped");
+                }
                 while (!stop)
                 {
-                    mut.WaitOne();
-                    Console.WriteLine("1");
                     string[] splittedData;
-
+                    //read all the data for the map and dashboard
                     PropertyChangedEventArgs eHeading = new PropertyChangedEventArgs("HeadingDeg");
+                    mut.WaitOne();
                     tcpClient.write("get /instrumentation/heading-indicator/indicated-heading-deg\n");
+                    Console.WriteLine("write get");
                     splittedData = System.Text.RegularExpressions.Regex.Split(tcpClient.read(), "\n");
+                    mut.ReleaseMutex();
+                    Console.WriteLine("read get");
                     if (splittedData[0] != "ERR")
                     {
+                        if (Double.Parse(splittedData[0]) < 6)
+                        {
+                            Console.WriteLine("sim giv less than 6");
+                        }
                         HeadingDeg = Double.Parse(splittedData[0]);
                         NotifyPropertyChanged(eHeading);
                     }
-                    Console.WriteLine("2");
+                    
+
                     PropertyChangedEventArgs eVerticalSpeed = new PropertyChangedEventArgs("VerticalSpeed");
+                    mut.WaitOne();
                     tcpClient.write("get /instrumentation/gps/indicated-vertical-speed\n");
                     splittedData = System.Text.RegularExpressions.Regex.Split(tcpClient.read(), "\n");
-                    //e.Name = "veritcalSpeed";
+                    mut.ReleaseMutex();
                     if (splittedData[0] != "ERR")
                     {
                         VerticalSpeed = Double.Parse(splittedData[0]);
                         NotifyPropertyChanged(eVerticalSpeed);
                     }
-                    Console.WriteLine("3");
+
 
                     PropertyChangedEventArgs eGroundSpeed = new PropertyChangedEventArgs("GroundSpeed");
+                    mut.WaitOne();
                     tcpClient.write("get /instrumentation/gps/indicated-ground-speed-kt\n");
                     splittedData = System.Text.RegularExpressions.Regex.Split(tcpClient.read(), "\n");
-                    //e.Name = "groundSpeed";
+                    mut.ReleaseMutex();
                     if (splittedData[0] != "ERR")
                     {
                         GroundSpeed = Double.Parse(splittedData[0]);
                         NotifyPropertyChanged(eGroundSpeed);
                     }
-                    Console.WriteLine("4");
+
                     PropertyChangedEventArgs eAirSpeed = new PropertyChangedEventArgs("AirSpeed");
+                    mut.WaitOne();
                     tcpClient.write("get /instrumentation/airspeed-indicator/indicated-speed-kt\n");
                     splittedData = System.Text.RegularExpressions.Regex.Split(tcpClient.read(), "\n");
-                    //e.Name = "airSpeed";
+                    mut.ReleaseMutex();
                     if (splittedData[0] != "ERR")
                     {
                         Airspeed = Double.Parse(splittedData[0]);
                         NotifyPropertyChanged(eAirSpeed);
                     }
-                    Console.WriteLine("5");
+
+
                     PropertyChangedEventArgs eAltitude = new PropertyChangedEventArgs("Altitude");
+                    mut.WaitOne();
                     tcpClient.write("get /instrumentation/gps/indicated-altitude-ft\n");
                     splittedData = System.Text.RegularExpressions.Regex.Split(tcpClient.read(), "\n");
-                    
+                    mut.ReleaseMutex();
+
                     if (splittedData[0] != "ERR")
                     {
                         Altitude = Double.Parse(splittedData[0]);
                         NotifyPropertyChanged(eAltitude);
                     }
-                    Console.WriteLine("6");
+
                     PropertyChangedEventArgs eRoll = new PropertyChangedEventArgs("Roll");
+                    mut.WaitOne();
                     tcpClient.write("get /instrumentation/attitude-indicator/internal-roll-deg\n");
                     splittedData = System.Text.RegularExpressions.Regex.Split(tcpClient.read(), "\n");
-                    //e.Name = "roll";
+                    mut.ReleaseMutex();
                     if (splittedData[0] != "ERR")
                     {
                         Roll = Double.Parse(splittedData[0]);
                         NotifyPropertyChanged(eRoll);
                     }
-                    Console.WriteLine("7");
+
                     PropertyChangedEventArgs ePitch = new PropertyChangedEventArgs("Pitch");
+                    mut.WaitOne();
                     tcpClient.write("get /instrumentation/attitude-indicator/internal-pitch-deg\n");
                     splittedData = System.Text.RegularExpressions.Regex.Split(tcpClient.read(), "\n");
-                    //e.Name = "pitch";
+                    mut.ReleaseMutex();
                     if (splittedData[0] != "ERR")
                     {
                         Pitch = Double.Parse(splittedData[0]);
                         NotifyPropertyChanged(ePitch);
                     }
-                    Console.WriteLine("8");
+   
                     PropertyChangedEventArgs eAltimeter = new PropertyChangedEventArgs("Altimeter");
+                    mut.WaitOne();
                     tcpClient.write("get /instrumentation/altimeter/indicated-altitude-ft\n");
                     splittedData = System.Text.RegularExpressions.Regex.Split(tcpClient.read(), "\n");
-                    //e.Name = "altimeter";
+                    mut.ReleaseMutex();
                     if (splittedData[0] != "ERR")
                     {
                         Altimeter = Double.Parse(splittedData[0]);
                         NotifyPropertyChanged(eAltimeter);
                     }
-                    Console.WriteLine("9");
+     
                     PropertyChangedEventArgs eLongitude = new PropertyChangedEventArgs("Longitude");
+                    mut.WaitOne();
                     tcpClient.write("get /position/longitude-deg\n");
                     splittedData = System.Text.RegularExpressions.Regex.Split(tcpClient.read(), "\n");
-                    //e.Name = "altimeter";
+                    mut.ReleaseMutex();
                     if (splittedData[0] != "ERR")
                     {
                         Longitude = Double.Parse(splittedData[0]);
                         NotifyPropertyChanged(eLongitude);
                     }
-                    Console.WriteLine("10");
+
                     PropertyChangedEventArgs eLatitude = new PropertyChangedEventArgs("Latitude");
+                    mut.WaitOne();
                     tcpClient.write("get /position/latitude-deg\n");
                     splittedData = System.Text.RegularExpressions.Regex.Split(tcpClient.read(), "\n");
-                    //e.Name = "altimeter";
+                    mut.ReleaseMutex();
                     if (splittedData[0] != "ERR")
                     {
                         Latitude = Double.Parse(splittedData[0]);
                         NotifyPropertyChanged(eLatitude);
                     }
-                    Console.WriteLine("11");     
-                    // the same for the other sensors properties
+                    
                     Thread.Sleep(250);// read the data in 4Hz
-                    mut.ReleaseMutex();
-
-                    if (stop == true)
-                    {
-
-                        Console.WriteLine("stopped");
-                    }
                 }
             }).Start();
             

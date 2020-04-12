@@ -12,12 +12,14 @@ namespace FlightSimulatorApp.Model
     {
         TcpClient tcpClient = null;
 
+        //Connect to the server
         public void connect(string ip, int port)
         {
             this.tcpClient = new TcpClient(ip, port);  
 
         }
 
+        //Disconnect from the server
         public void disconnect()
         {
             try
@@ -32,7 +34,7 @@ namespace FlightSimulatorApp.Model
             }
         }
 
-
+        //Write to the simulator
         public void write(string command)
         {
             // Translate the passed message into ASCII and store it as a Byte array.
@@ -43,7 +45,6 @@ namespace FlightSimulatorApp.Model
                 NetworkStream stream = tcpClient.GetStream();
 
                 // Send the message to the connected TcpServer. 
-           
                 stream.Write(data, 0, data.Length);
             }
             catch (Exception e)
@@ -60,7 +61,7 @@ namespace FlightSimulatorApp.Model
                 this.PropertyChanged(this, new PropertyChangedEventArgs(property.PropertyName));
         }
 
-        // from stack overflow
+        // from stack overflow - read the data from the simulator
         public string read()
         {
             if (tcpClient != null)

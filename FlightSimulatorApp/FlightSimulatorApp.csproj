@@ -68,7 +68,6 @@
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\ISettings.cs" />
-    <Compile Include="Model\PropertyChangedEventArgs.cs" />
     <Compile Include="Model\SettingsModel.cs">
       <Generator>MSBuild:Compile</Generator>
     </Compile>
@@ -89,7 +88,6 @@
     <Compile Include="View\Navigators.xaml.cs">
       <DependentUpon>Navigators.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\test.cs" />
     <Page Include="View\Home.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -121,7 +119,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\IModel.cs" />
-    <Compile Include="Model\INotifyPropertyChanged.cs" />
     <Compile Include="Model\ITCP.cs" />
     <Compile Include="Model\MapAndDashboradModel.cs" />
     <Compile Include="Model\NavigatorModel.cs" />

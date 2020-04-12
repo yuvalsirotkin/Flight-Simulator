@@ -22,9 +22,7 @@ using System.Configuration;
 
 namespace FlightSimulatorApp
 {
-    /// <summary>
-    /// Interaction logic for Home.xaml
-    /// </summary>
+    // Interaction logic for Home.xaml
     public partial class Home : Page
     {
         private string ip = "";

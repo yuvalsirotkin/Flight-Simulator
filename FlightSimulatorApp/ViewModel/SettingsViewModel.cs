@@ -15,7 +15,6 @@ namespace FlightSimulator.ViewModel
 
         public SettingsViewModel(Window aWindow)
         {
-           // this.model = new Model.SettingsModel();
             this.window = aWindow;
         }
 
@@ -49,9 +48,6 @@ namespace FlightSimulator.ViewModel
         {
             model.ReloadSettings();
         }
-
-
-        //add commands!
 
     }
 }

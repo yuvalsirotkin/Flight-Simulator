@@ -19,13 +19,14 @@ namespace FlightSimulatorApp.Model
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        //Properties.
         public double Elavetor
         {
             get { return this.elevetor; }
             set
             {
-                Console.WriteLine("set");
                 this.elevetor = value;
+                //Check if the value is valid.
                 if (value > 1)
                 {
                     this.elevetor = 1;
@@ -35,7 +36,9 @@ namespace FlightSimulatorApp.Model
                     this.elevetor = -1;
                 }
                 PropertyChangedEventArgs e = new PropertyChangedEventArgs("elevetor");
+                mut.WaitOne();
                 NotifyPropertyChanged(e);
+                mut.ReleaseMutex();
             }
         }
         public double Throttle
@@ -43,10 +46,11 @@ namespace FlightSimulatorApp.Model
             get { return this.throttle; }
             set
             {
-                Console.WriteLine("set");
                 this.throttle = value;
-                PropertyChangedEventArgs e = new PropertyChangedEventArgs("throttle");    
+                PropertyChangedEventArgs e = new PropertyChangedEventArgs("throttle");
+                mut.WaitOne();
                 NotifyPropertyChanged(e);
+                mut.ReleaseMutex();
             }
         }
         public double Aileron
@@ -54,10 +58,11 @@ namespace FlightSimulatorApp.Model
             get { return this.aileron; }
             set
             {
-                Console.WriteLine("set");
                 this.aileron = value;
                 PropertyChangedEventArgs e = new PropertyChangedEventArgs("aileron");
+                mut.WaitOne();
                 NotifyPropertyChanged(e);
+                mut.ReleaseMutex();
             }
         }
         public double Rudder
@@ -65,8 +70,8 @@ namespace FlightSimulatorApp.Model
             get { return this.rudder; }
             set
             {
-                Console.WriteLine("set");
                 this.rudder = value;
+                //Check if the value is valid.
                 if (value > 1)
                 {
                     this.rudder = 1;
@@ -76,7 +81,9 @@ namespace FlightSimulatorApp.Model
                     this.rudder = -1;
                 }
                 PropertyChangedEventArgs e = new PropertyChangedEventArgs("rudder");
+                mut.WaitOne();
                 NotifyPropertyChanged(e);
+                mut.ReleaseMutex();
             }
         }
         
@@ -86,14 +93,15 @@ namespace FlightSimulatorApp.Model
                 this.PropertyChanged(this, propName);
         }
 
+        private static readonly object locker = new object();
 
         TcpGetSet tcpClient;
-        //volatile Boolean stop;
-
-
-        public NavigatorModel(TcpGetSet tcpClient)
+        Mutex mut = new Mutex();
+        public NavigatorModel(TcpGetSet tcpClient, Mutex mut)
         {
+            this.mut = mut;
             this.tcpClient = tcpClient;
+            //Set the propertyChanged function.
             PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
                 string path = "";
@@ -103,73 +111,33 @@ namespace FlightSimulatorApp.Model
                     case "elevetor":
                         path = "/controls/flight/elevator";
                         val = Elavetor;
-                        if (val != 0)
-                        {
-                            //Console.WriteLine("el not 0");
-                        }
                         break;
                     case "throttle":
                         path = "/controls/engines/current-engine/throttle";
                         val = Throttle;
-                        if (val == 1)
-                        {
-                            //Console.WriteLine("th is 1");
-                        }
                         break;
                     case "aileron":
                         path = "/controls/flight/aileron";
                         val = Aileron;
-                        if (val != 0)
-                        {
-                           // Console.WriteLine("ai not 0");
-                        }
                         break;
                     case "rudder":
                         path = "/controls/flight/rudder";
                         val = Rudder;
-                        if (val != 0)
-                        {
-                            //Console.WriteLine("ru not 0");
-                        }
                         break;
 
 
                 }
-                // set the property in the simulator
+                // set the property in the 
+                mut.WaitOne();
                 tcpClient.write("set " + path + " " + val + "\n");
-                string[] splittedData = System.Text.RegularExpressions.Regex.Split(tcpClient.read(), "\n");
-                //Console.WriteLine(splittedData[0]);
+                Console.WriteLine("write set");
+                string[] splittedData1 = System.Text.RegularExpressions.Regex.Split(tcpClient.read(), "\n");
+                Console.WriteLine("read set");
+                mut.ReleaseMutex();
 
 
             };
-            //stop = false;
         }
-
-        
-
-        //public NavigatorModel(TCPSet tcpCLient)
-        //{
-        //    this.tcpClient = tcpCLient;
-        //    PropertyChanged += (object sender, System.ComponentModel.PropertyChangedEventArgs e) =>
-        //    {
-        //        Model.PropertyChangedEventArgs e1 = Model.PropertyChangedEventArgs.converPropertyChangedEventArgs(e);
-        //        // set the property in the simulator
-        //        tcpCLient.write("set" + e1.Path + e1.Val + "\n");
-
-        //    };
-        //    stop = false;
-        //}
-
-        //public void connect(string ip, int port)
-        //{
-        //    tcpClient.connect(ip, port);
-        //}
-        //public void disconnect()
-        //{
-        //    stop = true;
-        //    tcpClient.disconnect();
-        //}
-
     }
 }
 

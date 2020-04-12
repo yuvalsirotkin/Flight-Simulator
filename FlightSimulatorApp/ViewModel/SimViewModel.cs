@@ -15,13 +15,6 @@ namespace FlightSimulatorApp.ViewModel
         private MapAndDashboardModel mapAndDashboardModel;
         private NavigatorModel navigatorModel;
 
-        /*
-        private double elavetor;
-        private double rudder;
-        private double aileron;*/
-        //remove it
-        private double throttle;
-        //until here
         private double headingDeg;
         private double verticalSpeed;
         private double airSpeed;
@@ -35,47 +28,37 @@ namespace FlightSimulatorApp.ViewModel
         private double longitude = 10;
 
         //properties
-        // changes in the properties (from the view) will change the navigator model
         public double VM_Elavetor
         {
-            /*get { return this.elavetor; }*/
             set
             {
-                /*this.elavetor = value;*/
                 navigatorModel.Elavetor = value;
             }
         }
         public double VM_Throttle
         {
-            get { return this.throttle; }
+
             set
             {
-                // should delete it
-                this.throttle = value;
-                //until here
-                
                 navigatorModel.Throttle = value;
             }
         }
         public double VM_Aileron
         {
-            /*get { return this.aileron; }*/
             set
             {
-                /*this.aileron = value;*/
                 navigatorModel.Aileron = value;
             }
         }
         public double VM_Rudder
         {
-            /*get { return this.rudder; }*/
             set
             {
-                Console.WriteLine("workkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
-                /*this.rudder = value;*/
                 navigatorModel.Rudder = value;
             }
         }
+
+
 
         public double VM_HeadingDeg
         {
@@ -84,6 +67,10 @@ namespace FlightSimulatorApp.ViewModel
             }
             set
             {
+                if (this.headingDeg >value)
+                {
+                    Console.WriteLine("prob");
+                }
                 this.headingDeg = value;
                 OnPropertyChanged(new PropertyChangedEventArgs("VM_HeadingDeg"));
             }
@@ -124,6 +111,10 @@ namespace FlightSimulatorApp.ViewModel
             get { return this.verticalSpeed; }
             set
             {
+                if (this.verticalSpeed > value)
+                {
+                    Console.WriteLine("prob");
+                }
                 this.verticalSpeed = value;
                 OnPropertyChanged(new PropertyChangedEventArgs("VM_VerticalSpeed"));
             }
@@ -287,19 +278,22 @@ namespace FlightSimulatorApp.ViewModel
                 case "serverProblem":
                     this.VM_ServerMsg = "";
                     break;
+                case "centerProblem":
+                    this.VM_CenterMsg = "";
+                    break;
 
             }
         }
 
 
-        private bool firstTime = true;
+        private bool firstTimeForServer = true;
         public string VM_ServerMsg
         {
             get
             {
-                if (firstTime)
+                if (firstTimeForServer)
                 {
-                    firstTime = false;
+                    firstTimeForServer = false;
                     return "";
                 }
                 return "there is a problem with the server";
@@ -312,20 +306,23 @@ namespace FlightSimulatorApp.ViewModel
             }
         }
 
+        private bool firstTimeForCenter = true;
+        public string VM_CenterMsg
+        {
+            get
+            {
+                if (firstTimeForCenter)
+                {
+                    firstTimeForCenter = false;
+                    return "";
+                }
+                return "wasn't able to center the map";
+            }
 
-
-        //public event PropertyChangedEventHandler PropertyChanged;
-
-        //// the propertyChanged should contain function that will change the view when the vm changed
-        //public void NotifyPropertyChanged(PropertyChangedEventArgs property)
-        //{
-        //    if (this.PropertyChanged != null)
-        //    {
-        //        Model.PropertyChangedEventArgs e = new Model.PropertyChangedEventArgs();
-        //        e.Name = "VM_"+ property.Name;
-        //        e.Val = property.Val;
-        //        this.PropertyChanged(this, e);
-        //    }
-        //}
+            set
+            {
+                OnPropertyChanged(new PropertyChangedEventArgs("VM_CenterMsg"));
+            }
+        }
     }
 }

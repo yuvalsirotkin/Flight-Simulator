@@ -16,12 +16,14 @@
             <ColumnDefinition Width="27*"/>
         </Grid.ColumnDefinitions>
         <Button Command="{Binding ExitCommand}" HorizontalAlignment="Right" Margin="0,0,0,550" Padding="5" Width="55" Click="ExitCommand" RenderTransformOrigin="-0.165,0.792" Grid.Column="1">X</Button>
+        <Button Command="{Binding Disconnect}" HorizontalAlignment="Right" Margin="0,550,22,0" Padding="5" Width="55" Click="Disconnect" RenderTransformOrigin="-0.165,0.792" Grid.Column="1">Disconnect</Button>
+
 
         <Viewbox Margin="310.2,325,-30,0" Grid.Column="1">
             <Controls:Navigators x:Name="navigators" Height="377" Width="534" Margin="10,10,10,10"/>
         </Viewbox>
         <m:Map x:Name="myMap" ZoomLevel="4" CredentialsProvider="uPGAmzXupaKoouCTGI2o~YmdNZQSw4x2jNF-PlrgpHg~AgKSbEY2Z6D15AyHDi8fVx8vynuVDnZT0sSiuvkPdh-U7ft4z9ceMpSRhmASmFMB" RenderTransformOrigin="0.5,0.5" Margin="0,0,330,0" Grid.ColumnSpan="2">
-            <m:Pushpin x:Name="pin" Location ="{Binding VM_Location}"  HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" LayoutUpdated="pin_LayoutUpdated">
+            <m:Pushpin x:Name="pin" Location ="{Binding VM_Location, Mode=OneWay}"  HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" LayoutUpdated="pin_LayoutUpdated">
                 <m:Pushpin.RenderTransform>
                     <TransformGroup>
                         <TranslateTransform x:Name="PlainPosition"/>
@@ -83,11 +85,11 @@
             </StackPanel>
         </StackPanel>
 
-        <Button Command="{Binding MoveToCenter}" HorizontalAlignment="Left"
-        Grid.ColumnSpan="1" Margin="10,535,0,10" Padding="5" Width="120" Click="MoveToCenter">Move To Center</Button>
+        <Button Command="{Binding MoveToCenter}" HorizontalAlignment="Left" Grid.ColumnSpan="1" Margin="10,535,0,10" Padding="5" Width="120" Click="MoveToCenter">Move To Center</Button>
         <TextBlock x:Name ="LatText" Text="{Binding VM_LatitudeMsg, Mode=OneWay}" TextWrapping="Wrap"  VerticalAlignment="Top" FontWeight="Bold" Margin="315,480,365,0" Grid.ColumnSpan="2" />
         <TextBlock x:Name ="LongText" Text="{Binding VM_LongitudeMsg, Mode=OneWay}" TextWrapping="Wrap"  VerticalAlignment="Top" FontWeight="Bold" Margin="0,485,3.8,0" />
-        <TextBlock x:Name ="ErrorText" Text="{Binding VM_ServerMsg, Mode=OneWay}" TextWrapping="Wrap"  VerticalAlignment="Top" FontWeight="Bold" Margin="0,485,3.8,0" />
+        <TextBlock x:Name ="ErrorText" Text="{Binding VM_ServerMsg, Mode=OneWay}" TextWrapping="Wrap"  VerticalAlignment="Top" FontWeight="Bold" Margin="0,505.96,3.8,0" />
+        <TextBlock x:Name ="CenterText" Text="{Binding VM_CenterMsg, Mode=OneWay}" TextWrapping="Wrap"  VerticalAlignment="Top" FontWeight="Bold" Margin="3.8,514.04,0,0" />
     </Grid>
 
 

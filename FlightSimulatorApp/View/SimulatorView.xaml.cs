@@ -12,17 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FlightSimulatorApp.View;
 using FlightSimulatorApp.ViewModel;
 using FlightSimulatorApp.Model;
 using System.Net.Sockets;
 using Microsoft.Maps.MapControl.WPF;
 using System.ComponentModel;
+using System.Threading;
 
 namespace FlightSimulatorApp
 {
-    /// <summary>
     /// Interaction logic for SimulatorView.xaml
-    /// </summary>
    
     public partial class SimulatorView : Page
     {
@@ -30,13 +30,13 @@ namespace FlightSimulatorApp
         MapAndDashboardModel myMapAndDash;
         public SimulatorView(string ip, int port)
         {
+            Mutex mut = new Mutex();
+            //Create the connection to the simulator
             TcpGetSet tcpConnection = new TcpGetSet();
             tcpConnection.connect(ip, port);
-            myMapAndDash = new MapAndDashboardModel(tcpConnection);
-            this.vm = new SimViewModel(new NavigatorModel(tcpConnection), myMapAndDash);
-            //this.vm.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e) {
-            //    Console.WriteLine("should change the dashboard");
-            //};
+            myMapAndDash = new MapAndDashboardModel(tcpConnection, mut);
+            //Create the view model
+            this.vm = new SimViewModel(new NavigatorModel(tcpConnection, mut), myMapAndDash);
             tcpConnection.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
                 vm.NotifyPropertyChanged("serverProblem");
@@ -46,6 +46,7 @@ namespace FlightSimulatorApp
         }
 
         private bool firstTime = true;
+        //Pin for the map.
         private void pin_LayoutUpdated(object sender, EventArgs e)
         {
             if (pin.Location != null)
@@ -62,13 +63,23 @@ namespace FlightSimulatorApp
                 }
             }
         }
+
+        //Exit - discoonect & exit from the application.
         private void ExitCommand(object sender, RoutedEventArgs e)
         {
-            //this.TcpGetSet.disconnect();
             myMapAndDash.disconnect();
             System.Environment.Exit(0);
         }
 
+        //Discoonect from the sim and return the the home page.
+        private void Disconnect(object sender, RoutedEventArgs e)
+        {
+            myMapAndDash.disconnect();
+            Home home = new Home();
+            this.NavigationService.Navigate(home);
+        }
+
+        //Center the map.
         private void MoveToCenter(object sender, EventArgs e)
         {
             try
@@ -77,8 +88,7 @@ namespace FlightSimulatorApp
             }
             catch
             {
-                //ErrorText.Text = "wasn't able to center the map";
-                Console.WriteLine("wasn't able to center the map");
+                vm.NotifyPropertyChanged("centerProblem");
             }
         }
     }

@@ -10,10 +10,10 @@ namespace FlightSimulatorApp.Model
 {
     public interface ISettings
     {
-        string ServerIP { get; set; }         
-        int ServerPort { get; set; }           
+        string ServerIP { get; set; }
+    int ServerPort { get; set; }
 
-        void SaveSettings();
-        void ReloadSettings();
-    }
+    void SaveSettings();
+    void ReloadSettings();
+}
 }
