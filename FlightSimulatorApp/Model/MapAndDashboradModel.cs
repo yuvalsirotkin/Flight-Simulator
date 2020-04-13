@@ -60,10 +60,6 @@ namespace FlightSimulatorApp.Model
         public void start()
         {
             new Thread(delegate () {  
-                if (stop == true)
-                {
-                    Console.WriteLine("stopped");
-                }
                 while (!stop)
                 {
                     string[] splittedData;
@@ -71,16 +67,10 @@ namespace FlightSimulatorApp.Model
                     PropertyChangedEventArgs eHeading = new PropertyChangedEventArgs("HeadingDeg");
                     mut.WaitOne();
                     tcpClient.write("get /instrumentation/heading-indicator/indicated-heading-deg\n");
-                    Console.WriteLine("write get");
                     splittedData = System.Text.RegularExpressions.Regex.Split(tcpClient.read(), "\n");
                     mut.ReleaseMutex();
-                    Console.WriteLine("read get");
                     if (splittedData[0] != "ERR")
                     {
-                        if (Double.Parse(splittedData[0]) < 6)
-                        {
-                            Console.WriteLine("sim giv less than 6");
-                        }
                         HeadingDeg = Double.Parse(splittedData[0]);
                         NotifyPropertyChanged(eHeading);
                     }

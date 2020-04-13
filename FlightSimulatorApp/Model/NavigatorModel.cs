@@ -130,9 +130,7 @@ namespace FlightSimulatorApp.Model
                 // set the property in the 
                 mut.WaitOne();
                 tcpClient.write("set " + path + " " + val + "\n");
-                Console.WriteLine("write set");
                 string[] splittedData1 = System.Text.RegularExpressions.Regex.Split(tcpClient.read(), "\n");
-                Console.WriteLine("read set");
                 mut.ReleaseMutex();
 
 
