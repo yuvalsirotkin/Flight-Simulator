@@ -26,35 +26,59 @@ namespace FlightSimulatorApp.ViewModel
         private Location location;
         private double latitude = 50;
         private double longitude = 10;
+        private double throttle, elevator, rudder, aileron;
 
         //properties
         public double VM_Elavetor
         {
+            get
+            {
+                return this.elevator;
+            }
             set
             {
                 navigatorModel.Elavetor = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("VM_Elavetor"));
+               // this.NotifyPropertyChanged("Elevator");
             }
         }
         public double VM_Throttle
         {
-
+            get
+            {
+                return this.throttle;
+            }
             set
             {
                 navigatorModel.Throttle = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("VM_Throttle"));
+                this.NotifyPropertyChanged("VM_Throttle");
             }
         }
         public double VM_Aileron
         {
+            get
+            {
+                return this.aileron;
+            }
             set
             {
                 navigatorModel.Aileron = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("VM_Aileron"));
+              //  this.NotifyPropertyChanged("Aileron");
             }
         }
         public double VM_Rudder
         {
+            get
+            {
+                return this.rudder;
+            }
             set
             {
                 navigatorModel.Rudder = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("VM_Rudder"));
+              //  this.NotifyPropertyChanged("Rudder");
             }
         }
 
@@ -240,6 +264,18 @@ namespace FlightSimulatorApp.ViewModel
         {
             switch (propName)
             {
+                case "Rudder":
+                    this.VM_Rudder = MapAndDashboardModel.Rudder;
+                    break;
+                case "Elevator":
+                    this.VM_Elavetor = MapAndDashboardModel.Elevator;
+                    break;
+                case "Throttle":
+                    this.VM_Throttle = MapAndDashboardModel.Throttle;
+                    break;
+                case "Aileron":
+                    this.VM_Aileron = MapAndDashboardModel.Aileron;
+                    break;
                 case "HeadingDeg":
                     this.VM_HeadingDeg = MapAndDashboardModel.HeadingDeg;
                     break;
@@ -281,7 +317,6 @@ namespace FlightSimulatorApp.ViewModel
                 case "centerProblem":
                     this.VM_CenterMsg = "";
                     break;
-
             }
         }
 

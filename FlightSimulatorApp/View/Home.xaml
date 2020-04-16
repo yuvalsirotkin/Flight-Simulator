@@ -20,11 +20,11 @@
             <ColumnDefinition Width="11"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <TextBox x:Name="IP" Text="{Binding ServerIP}" Padding="3" Margin="216,248.6,90,-238.2" Grid.Row="3" Grid.Column="2" Background="{x:Null}" FontFamily="Nirmala UI" FontWeight="Bold" BorderBrush="{x:Null}" Foreground="White"/>
+        <TextBox x:Name="IP" Text="{Binding ServerIP}" Padding="3" Margin="216,253.6,90,-242.8" Grid.Row="3" Grid.Column="2" Background="{x:Null}" FontFamily="Nirmala UI" FontWeight="Bold" BorderBrush="{x:Null}" Foreground="White" Cursor="Pen"/>
         <TextBox x:Name="Port" Text="{Binding ServerPort}" Grid.Row="3" Grid.Column="2" Padding="3"
-        Margin="232,292.6,73,-282.2" Background="{x:Null}" FontFamily="Nirmala UI" FontWeight="Bold" BorderBrush="{x:Null}" Foreground="White"/>
+        Margin="228,296.6,77,-285.8" Background="{x:Null}" FontFamily="Nirmala UI" FontWeight="Bold" BorderBrush="{x:Null}" Foreground="White" Cursor="Pen"/>
 
-        <Button  Grid.Column="2" Grid.Row="3" HorizontalAlignment="Right" Margin="0,9.6,10,-13.6" Padding="5" Width="50" Click="ExitCommand" RenderTransformOrigin="-0.012,1.5" Height="48" VerticalAlignment="Top" BorderBrush="{x:Null}">
+        <Button  Grid.Column="2" Grid.Row="3" HorizontalAlignment="Right" Margin="0,9.6,10,-13.6" Padding="5" Width="50" Click="ExitCommand" RenderTransformOrigin="-0.012,1.5" Height="48" VerticalAlignment="Top" BorderBrush="{x:Null}" Cursor="Hand">
             <Button.OpacityMask>
                 <ImageBrush/>
             </Button.OpacityMask>
@@ -32,7 +32,7 @@
                 <ImageBrush/>
             </Button.Background>
         </Button>
-        <Button Command="{Binding SetCommand}" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Right" Margin="0,367.6,450,-365.2" Padding="5" Width="163" Click="SetCommand" BorderBrush="{x:Null}">
+        <Button Command="{Binding SetCommand}" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Right" Margin="0,367.6,450,-365.2" Padding="5" Width="163" Click="SetCommand" BorderBrush="{x:Null}" Cursor="Hand">
             <Button.OpacityMask>
                 <ImageBrush/>
             </Button.OpacityMask>
@@ -41,7 +41,7 @@
             </Button.Background>
         </Button>
         <Button Command="{Binding DefaultCommand}" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Left"
-        Grid.ColumnSpan="1" Margin="394,367.6,0,-375.2" Padding="5" Width="130" Click="DefaultCommand" BorderBrush="{x:Null}">
+        Grid.ColumnSpan="1" Margin="394,367.6,0,-375.2" Padding="5" Width="130" Click="DefaultCommand" BorderBrush="{x:Null}" Cursor="Hand">
             <Button.OpacityMask>
                 <ImageBrush/>
             </Button.OpacityMask>
@@ -53,7 +53,7 @@
             </Button.Background>
         </Button>
         <Button Command="{Binding FlyCommand}" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Left"
-        Grid.ColumnSpan="1" Margin="284,417.6,0,-434.2" Padding="5" Width="90" Click="FlyCommand" BorderBrush="{x:Null}">
+        Grid.ColumnSpan="1" Margin="284,417.6,0,-434.2" Padding="5" Width="90" Click="FlyCommand" BorderBrush="{x:Null}" Cursor="Hand">
             <Button.OpacityMask>
                 <ImageBrush/>
             </Button.OpacityMask>
