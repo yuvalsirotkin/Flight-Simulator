@@ -39,6 +39,17 @@ namespace FlightSimulatorApp.ViewModel
             {
                 this.elevator = value;
                 navigatorModel.Elevator = value;
+                if (value > 1)
+                {
+                    navigatorModel.Elevator = value;
+                    this.elevator = 1;
+                }
+                if (value < -1)
+                {
+                    navigatorModel.Elevator = value;
+                    this.elevator = -1;
+                }
+
                 OnPropertyChanged(new PropertyChangedEventArgs("VM_Elevator"));
                // this.NotifyPropertyChanged("Elevator");
             }
@@ -81,6 +92,16 @@ namespace FlightSimulatorApp.ViewModel
             {
                 this.rudder = value;
                 navigatorModel.Rudder = value;
+                if (value > 1)
+                {
+                    this.rudder = 1;
+                    navigatorModel.Rudder = 1;
+                }
+                if (value < -1)
+                {
+                    this.rudder = -1;
+                    navigatorModel.Rudder = -1;
+                }
                 OnPropertyChanged(new PropertyChangedEventArgs("VM_Rudder"));
               //  this.NotifyPropertyChanged("Rudder");
             }

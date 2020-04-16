@@ -116,7 +116,6 @@ namespace FlightSimulatorApp.View
             if (distance < canvasWidth / 2 && distance < canvasHeight / 2)
             {
 
-
                 // switched locations and div by 124
                 Elevator = -deltaPos.Y / 124;
                 Rudder = deltaPos.X / 124;
@@ -127,10 +126,37 @@ namespace FlightSimulatorApp.View
                 if (IsMoved == null ||
                     (!(Math.Abs(prevRudder - Rudder) > Rudder) && !(Math.Abs(prevElevator - Elevator) > Elevator)))
                     return;
-
+                
                 IsMoved?.Invoke(this, new VirtualJoystickEventArgs { Rudder = Rudder, Elevator = Elevator });
                 prevRudder = Rudder;
                 prevElevator = Elevator;
+            } else
+            {
+                knobPosition.X = deltaPos.X / distance;
+                knobPosition.Y = deltaPos.Y / distance;
+                Elevator = -deltaPos.Y / distance/ 124;
+                Rudder = deltaPos.X / distance / 124;
+                
+                //if (Rudder > 1 || Elevator > 1)
+                //{
+                //    Console.WriteLine("why??");
+                //}
+                //if (IsMoved == null ||
+                //  (!(Math.Abs(prevRudder - Rudder) > Rudder) && !(Math.Abs(prevElevator - Elevator) > Elevator)))
+                //    return;
+
+                //IsMoved?.Invoke(this, new VirtualJoystickEventArgs { Rudder = Rudder, Elevator = Elevator });
+                //prevRudder = Rudder;
+                //prevElevator = Elevator;
+
+                ////Console.Write(deltaPos.X);
+                ////Console.WriteLine(deltaPos.Y);
+                ////double mycalcInRadians = Math.Asin(Math.Abs(e.GetPosition(this).X) / Math.Abs(e.GetPosition(this).Y));
+                ////if (e.GetPosition(this).X < 0 && e.GetPosition(this).Y <0)
+                ////{
+
+                ////}
+                ////Console.WriteLine(mycalcInRadians);
             }
 
 

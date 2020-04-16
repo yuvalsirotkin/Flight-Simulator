@@ -86,7 +86,7 @@
             </StackPanel>
         </StackPanel>
 
-        <TextBlock TextWrapping="Wrap" Text="{Binding VM_Rudder, Mode=OneWay}" FontSize="10" Canvas.Left="263" Canvas.Top="76" Width="59.667" RenderTransformOrigin="0.209,-0.702" FontWeight="Bold" HorizontalAlignment="Center" Margin="249.667,419.332,230.666,69.001" Background="#FFFFACAC" Grid.Column="1"><Run/><LineBreak/><Run/></TextBlock>
+        <TextBlock TextWrapping="Wrap" Text="{Binding VM_Rudder, Mode=OneWay}" FontSize="10" Canvas.Left="263" Canvas.Top="76" Width="59.667" RenderTransformOrigin="0.209,-0.702" FontWeight="Bold" HorizontalAlignment="Center" Margin="462.334,361.999,17.999,126.334" Background="#FFFFACAC" Grid.Column="1"><Run/><LineBreak/><Run/></TextBlock>
         <TextBlock TextWrapping="Wrap" Text="{Binding VM_Elevator, Mode=OneWay}" FontSize="10" Canvas.Left="462" Canvas.Top="298" Width="60.333" FontWeight="Bold" HorizontalAlignment="Center" Margin="249.667,360,230,129" Background="#FFFFA8A8" Grid.Column="1"/>
         <TextBlock TextWrapping="Wrap" Text="{Binding VM_Throttle, Mode=OneWay}" FontSize="10" Canvas.Left="263" Canvas.Top="500" Width="19.333" FontWeight="Bold" HorizontalAlignment="Center" Grid.Column="1" Margin="417,305,103.667,180" Background="#FFFDA7A7"/>
         <TextBlock TextWrapping="Wrap" Text="{Binding VM_Aileron, Mode=OneWay}" FontSize="10" Canvas.Top="298" Width="18.333" FontWeight="Bold" HorizontalAlignment="Center" Canvas.Left="10" Grid.Column="1" Margin="417,455.333,104.667,29.667" Background="#FFFFABAB"/>
