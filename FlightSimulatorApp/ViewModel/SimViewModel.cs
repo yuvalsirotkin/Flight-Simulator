@@ -91,7 +91,8 @@ namespace FlightSimulatorApp.ViewModel
         public double VM_HeadingDeg
         {
             get {
-                return this.headingDeg;
+                return Math.Truncate(this.headingDeg * 1000) / 1000;
+
             }
             set
             {
@@ -136,7 +137,7 @@ namespace FlightSimulatorApp.ViewModel
 
         public double VM_VerticalSpeed
         {
-            get { return this.verticalSpeed; }
+            get { return Math.Truncate(this.verticalSpeed * 1000) / 1000; }
             set
             {
                 if (this.verticalSpeed > value)
@@ -149,7 +150,7 @@ namespace FlightSimulatorApp.ViewModel
         }
         public double VM_GroundSpeed
         {
-            get { return this.groundSpeed; }
+            get { return Math.Truncate(this.groundSpeed * 1000) / 1000; }
             set
             {
                 this.groundSpeed = value;
@@ -158,7 +159,7 @@ namespace FlightSimulatorApp.ViewModel
         }
         public double VM_Airspeed
         {
-            get { return this.airSpeed; }
+            get { return Math.Truncate(this.airSpeed * 1000) / 1000; }
             set
             {
                 this.airSpeed = value;
@@ -167,7 +168,7 @@ namespace FlightSimulatorApp.ViewModel
         }
         public double VM_Altitude
         {
-            get { return this.altitude; }
+            get { return Math.Truncate(this.altitude * 1000) / 1000; }
             set
             {
                 this.altitude = value;
@@ -176,7 +177,7 @@ namespace FlightSimulatorApp.ViewModel
         }
         public double VM_Roll
         {
-            get { return this.roll; }
+            get { return Math.Truncate(this.roll * 1000) / 1000; }
             set
             {
                 this.roll = value;
@@ -186,7 +187,7 @@ namespace FlightSimulatorApp.ViewModel
 
         public double VM_Pitch
         {
-            get { return this.pitch; }
+            get { return Math.Truncate(this.pitch * 1000) / 1000; }
             set
             {
                 this.pitch = value;
@@ -196,7 +197,7 @@ namespace FlightSimulatorApp.ViewModel
 
         public double VM_Altimeter
         {
-            get { return this.altimeter; }
+            get { return Math.Truncate(this.altimeter * 1000) / 1000; }
             set
             {
                 this.altimeter = value;

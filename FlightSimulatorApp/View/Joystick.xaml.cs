@@ -183,6 +183,8 @@ namespace FlightSimulatorApp.View
             centerKnob.Begin();
             UIElement element = (UIElement)Knob;
             element.ReleaseMouseCapture();
+            Rudder = 0;
+            Elevator = 0;
         }
 
     }
