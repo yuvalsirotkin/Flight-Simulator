@@ -150,5 +150,8 @@
   <ItemGroup>
     <Resource Include="View\Back.PNG" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\viewBack.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
