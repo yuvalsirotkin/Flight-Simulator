@@ -13,29 +13,29 @@ namespace FlightSimulatorApp.Model
     public class NavigatorModel : INotifyPropertyChanged
     {
         private double throttle;
-        private double elevetor;
+        private double elevator;
         private double rudder;
         private double aileron;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         //Properties.
-        public double Elavetor
+        public double Elevator
         {
-            get { return this.elevetor; }
+            get { return this.elevator; }
             set
             {
-                this.elevetor = value;
+                this.elevator = value;
                 //Check if the value is valid.
                 if (value > 1)
                 {
-                    this.elevetor = 1;
+                    this.elevator = 1;
                 }
                 if (value < -1)
                 {
-                    this.elevetor = -1;
+                    this.elevator = -1;
                 }
-                PropertyChangedEventArgs e = new PropertyChangedEventArgs("elevetor");
+                PropertyChangedEventArgs e = new PropertyChangedEventArgs("elevator");
                 mut.WaitOne();
                 NotifyPropertyChanged(e);
                 mut.ReleaseMutex();
@@ -126,9 +126,9 @@ namespace FlightSimulatorApp.Model
                 double val = 0;
                 switch (e.PropertyName)
                 {
-                    case "elevetor":
+                    case "elevator":
                         path = "/controls/flight/elevator";
-                        val = Elavetor;
+                        val = Elevator;
                         break;
                     case "throttle":
                         path = "/controls/engines/current-engine/throttle";

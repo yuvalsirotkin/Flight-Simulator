@@ -86,10 +86,10 @@
             </StackPanel>
         </StackPanel>
 
-        <TextBlock TextWrapping="Wrap" Text="{Binding VM_Rudder, Mode=OneWay}" FontSize="22" Canvas.Left="263" Canvas.Top="76" Width="99" RenderTransformOrigin="0.209,-0.702" FontWeight="Bold" HorizontalAlignment="Center" Margin="190,360,511,125" Grid.ColumnSpan="2" Background="#FFFFACAC"><Run/><LineBreak/><Run/></TextBlock>
-        <TextBlock TextWrapping="Wrap" Text="{Binding VM_Elevator, Mode=OneWay}" FontSize="22" Canvas.Left="462" Canvas.Top="298" Width="171" FontWeight="Bold" HorizontalAlignment="Center" Margin="118,380,511,95" Grid.ColumnSpan="2" Background="#FFFFA8A8"/>
-        <TextBlock TextWrapping="Wrap" Text="{Binding VM_Throttle, Mode=OneWay}" FontSize="22" Canvas.Left="263" Canvas.Top="500" Width="82" FontWeight="Bold" HorizontalAlignment="Center" Grid.Column="1" Margin="425,300,33,185" Background="#FFFDA7A7"/>
-        <TextBlock TextWrapping="Wrap" Text="{Binding VM_Aileron, Mode=OneWay}" FontSize="22" Canvas.Top="298" Width="73" FontWeight="Bold" HorizontalAlignment="Center" Canvas.Left="10" Grid.Column="1" Margin="425,450,42,25" Background="#FFFFABAB"/>
+        <TextBlock TextWrapping="Wrap" Text="{Binding VM_Rudder, Mode=OneWay}" FontSize="10" Canvas.Left="263" Canvas.Top="76" Width="59.667" RenderTransformOrigin="0.209,-0.702" FontWeight="Bold" HorizontalAlignment="Center" Margin="249.667,419.332,230.666,69.001" Background="#FFFFACAC" Grid.Column="1"><Run/><LineBreak/><Run/></TextBlock>
+        <TextBlock TextWrapping="Wrap" Text="{Binding VM_Elevator, Mode=OneWay}" FontSize="10" Canvas.Left="462" Canvas.Top="298" Width="60.333" FontWeight="Bold" HorizontalAlignment="Center" Margin="249.667,360,230,129" Background="#FFFFA8A8" Grid.Column="1"/>
+        <TextBlock TextWrapping="Wrap" Text="{Binding VM_Throttle, Mode=OneWay}" FontSize="10" Canvas.Left="263" Canvas.Top="500" Width="19.333" FontWeight="Bold" HorizontalAlignment="Center" Grid.Column="1" Margin="417,305,103.667,180" Background="#FFFDA7A7"/>
+        <TextBlock TextWrapping="Wrap" Text="{Binding VM_Aileron, Mode=OneWay}" FontSize="10" Canvas.Top="298" Width="18.333" FontWeight="Bold" HorizontalAlignment="Center" Canvas.Left="10" Grid.Column="1" Margin="417,455.333,104.667,29.667" Background="#FFFFABAB"/>
 
         <Button Command="{Binding MoveToCenter}" HorizontalAlignment="Left" Grid.ColumnSpan="1" Margin="10,485,0,10" Padding="5" Width="105" Click="MoveToCenter" FontFamily="Rockwell" Background="#FFF0F0F0">Move To Center</Button>
         <TextBlock x:Name ="LatText" Text="{Binding VM_LatitudeMsg, Mode=OneWay}" TextWrapping="Wrap"  VerticalAlignment="Top" FontWeight="Bold" Margin="215,15,340,0" RenderTransformOrigin="0.458,-0.251" Height="20" Grid.ColumnSpan="2" />

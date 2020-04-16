@@ -17,7 +17,7 @@ namespace FlightSimulatorApp.Model
         // sensors properties
         double Throttle { set; get; }
         double Aileron { set; get; }
-        double Elavetor { set; get; }
+        double Elevator { set; get; }
         double Rudder { set; get; }
 
     }

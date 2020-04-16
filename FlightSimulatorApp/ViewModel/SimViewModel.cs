@@ -29,7 +29,7 @@ namespace FlightSimulatorApp.ViewModel
         private double throttle, elevator, rudder, aileron;
 
         //properties
-        public double VM_Elavetor
+        public double VM_Elevator
         {
             get
             {
@@ -37,8 +37,9 @@ namespace FlightSimulatorApp.ViewModel
             }
             set
             {
-                navigatorModel.Elavetor = value;
-                OnPropertyChanged(new PropertyChangedEventArgs("VM_Elavetor"));
+                this.elevator = value;
+                navigatorModel.Elevator = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("VM_Elevator"));
                // this.NotifyPropertyChanged("Elevator");
             }
         }
@@ -50,6 +51,7 @@ namespace FlightSimulatorApp.ViewModel
             }
             set
             {
+                this.throttle = value;
                 navigatorModel.Throttle = value;
                 OnPropertyChanged(new PropertyChangedEventArgs("VM_Throttle"));
                 this.NotifyPropertyChanged("VM_Throttle");
@@ -63,6 +65,7 @@ namespace FlightSimulatorApp.ViewModel
             }
             set
             {
+                this.aileron = value;
                 navigatorModel.Aileron = value;
                 OnPropertyChanged(new PropertyChangedEventArgs("VM_Aileron"));
               //  this.NotifyPropertyChanged("Aileron");
@@ -76,6 +79,7 @@ namespace FlightSimulatorApp.ViewModel
             }
             set
             {
+                this.rudder = value;
                 navigatorModel.Rudder = value;
                 OnPropertyChanged(new PropertyChangedEventArgs("VM_Rudder"));
               //  this.NotifyPropertyChanged("Rudder");
@@ -268,7 +272,7 @@ namespace FlightSimulatorApp.ViewModel
                     this.VM_Rudder = MapAndDashboardModel.Rudder;
                     break;
                 case "Elevator":
-                    this.VM_Elavetor = MapAndDashboardModel.Elevator;
+                    this.VM_Elevator = MapAndDashboardModel.Elevator;
                     break;
                 case "Throttle":
                     this.VM_Throttle = MapAndDashboardModel.Throttle;
