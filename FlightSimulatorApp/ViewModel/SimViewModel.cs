@@ -29,6 +29,31 @@ namespace FlightSimulatorApp.ViewModel
         private double throttle, elevator, rudder, aileron;
 
         //properties
+        public double VM_Rudder
+        {
+            get
+            {
+                return this.rudder;
+            }
+            set
+            {
+                this.rudder = value;
+                navigatorModel.Rudder = value;
+                if (value > 1)
+                {
+                    this.rudder = 1;
+                    navigatorModel.Rudder = 1;
+                }
+                if (value < -1)
+                {
+                    this.rudder = -1;
+                    navigatorModel.Rudder = -1;
+                }
+                OnPropertyChanged(new PropertyChangedEventArgs("VM_Rudder"));
+                //  this.NotifyPropertyChanged("Rudder");
+            }
+        }
+
         public double VM_Elevator
         {
             get
@@ -82,30 +107,7 @@ namespace FlightSimulatorApp.ViewModel
               //  this.NotifyPropertyChanged("Aileron");
             }
         }
-        public double VM_Rudder
-        {
-            get
-            {
-                return this.rudder;
-            }
-            set
-            {
-                this.rudder = value;
-                navigatorModel.Rudder = value;
-                if (value > 1)
-                {
-                    this.rudder = 1;
-                    navigatorModel.Rudder = 1;
-                }
-                if (value < -1)
-                {
-                    this.rudder = -1;
-                    navigatorModel.Rudder = -1;
-                }
-                OnPropertyChanged(new PropertyChangedEventArgs("VM_Rudder"));
-              //  this.NotifyPropertyChanged("Rudder");
-            }
-        }
+
 
 
 
