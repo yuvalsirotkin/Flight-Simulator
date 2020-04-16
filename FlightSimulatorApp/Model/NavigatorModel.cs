@@ -47,6 +47,15 @@ namespace FlightSimulatorApp.Model
             set
             {
                 this.throttle = value;
+                //Check if the value is valid.
+                if (value > 1)
+                {
+                    this.throttle = 1;
+                }
+                if (value < 0)
+                {
+                    this.throttle = 0;
+                }
                 PropertyChangedEventArgs e = new PropertyChangedEventArgs("throttle");
                 mut.WaitOne();
                 NotifyPropertyChanged(e);
@@ -59,6 +68,15 @@ namespace FlightSimulatorApp.Model
             set
             {
                 this.aileron = value;
+                //Check if the value is valid.
+                if (value > 1)
+                {
+                    this.aileron = 1;
+                }
+                if (value < -1)
+                {
+                    this.aileron = -1;
+                }
                 PropertyChangedEventArgs e = new PropertyChangedEventArgs("aileron");
                 mut.WaitOne();
                 NotifyPropertyChanged(e);

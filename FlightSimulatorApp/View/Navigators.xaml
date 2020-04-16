@@ -33,7 +33,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Vertical" Grid.Column="4" Grid.Row="8" Grid.ColumnSpan="6" Grid.RowSpan="6">
-            <Label FontWeight="Bold" Content="← Aileron →" Margin="22,0,-22,0"/>
+            <Label FontWeight="Bold" Content="← Aileron →" Margin="20,0,250,0" Height="40"/>
             <Slider x:Name="Aileron_Slider" Value="{Binding VM_Aileron, Mode=OneWayToSource}" Maximum="1" Minimum="-1" HorizontalAlignment="Left" TickPlacement="BottomRight" TickFrequency="0.1"
                 Margin="-16,10,0,10"
                 VerticalAlignment="Center"
@@ -42,16 +42,20 @@
 
         <StackPanel Orientation="Vertical" Grid.Column="4" Grid.Row="0" Grid.ColumnSpan="6" Grid.RowSpan="6">
             <Label FontWeight="Bold" Content="    ← Trottle →"/>
-            <Slider x:Name="Throttle_Slider" Value="{Binding VM_Throttle, Mode=OneWayToSource}" Maximum="1" Minimum="-1" HorizontalAlignment="Left" TickPlacement="BottomRight" TickFrequency="0.1"
+            <Slider x:Name="Throttle_Slider" Value="{Binding VM_Throttle, Mode=OneWayToSource}" Maximum="1" Minimum="0" HorizontalAlignment="Left" TickPlacement="BottomRight" TickFrequency="0.1"
                 Margin="-16,10,0,10"
                 VerticalAlignment="Center"
                 Width="150"/>
         </StackPanel>
 
+
         <Viewbox Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="6" Grid.RowSpan="6">
             <Controls:Joystick x:Name="joystick1" Height="377" Width="534"
                                Rudder="{Binding Path=VM_Rudder, Mode=OneWayToSource}" Elevator="{Binding Path=VM_Elavetor, Mode=OneWayToSource}" Loaded="joystick1_Loaded"/>
         </Viewbox>
+
+        <TextBlock TextWrapping="Wrap" Text="{Binding ElevatorText}" FontSize="22" Canvas.Left="462" Canvas.Top="298" Width="84" Height="40" FontWeight="Bold" HorizontalAlignment="Center" Grid.ColumnSpan="3" Grid.Column="7" Margin="50,30,46,50" Grid.Row="2" Grid.RowSpan="2" Background="#FF7DFF9B"/>
+        <TextBlock TextWrapping="Wrap" Text="{Binding VM_Throttle, Mode=TwoWay}" FontSize="22" Canvas.Left="263" Canvas.Top="500" Width="92" Height="35" FontWeight="Bold" HorizontalAlignment="Center" Grid.ColumnSpan="2" Grid.Column="6" Margin="10,10,18,15" Background="#FF96F6B6"/>
 
     </Grid>
 </UserControl>

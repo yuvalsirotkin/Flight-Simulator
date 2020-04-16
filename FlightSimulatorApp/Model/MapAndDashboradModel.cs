@@ -35,6 +35,11 @@ namespace FlightSimulatorApp.Model
         public static double Longitude { get; set; }
         public static double Latitude { get; set; }
 
+        public static double Rudder { get; set; }
+        public static double Elevator { get; set; }
+        public static double Throttle { get; set; }
+        public static double Aileron { get; set; }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(PropertyChangedEventArgs property)

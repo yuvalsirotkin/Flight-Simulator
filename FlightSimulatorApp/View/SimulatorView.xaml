@@ -20,8 +20,8 @@
         <Button Command="{Binding Disconnect}" HorizontalAlignment="Right" Margin="0,485,230,10" Padding="5" Width="72" Click="Disconnect" RenderTransformOrigin="-0.165,0.792" Grid.Column="1" Background="#FFC4D5FF" FontFamily="Rockwell">Disconnect</Button>
 
 
-        <Viewbox Margin="310.2,325,-30,0" Grid.Column="1">
-            <Controls:Navigators x:Name="navigators" Height="372" Width="586" Margin="10,10,10,10"/>
+        <Viewbox Margin="230,290,0,0" Grid.Column="1">
+            <Controls:Navigators x:Name="navigators" Height="511" Width="735" Margin="10,10,10,10"/>
         </Viewbox>
         <m:Map x:Name="myMap" ZoomLevel="4" CredentialsProvider="uPGAmzXupaKoouCTGI2o~YmdNZQSw4x2jNF-PlrgpHg~AgKSbEY2Z6D15AyHDi8fVx8vynuVDnZT0sSiuvkPdh-U7ft4z9ceMpSRhmASmFMB" RenderTransformOrigin="0.5,0.5" Margin="0,0,315,0" Grid.ColumnSpan="2">
             <m:Pushpin x:Name="pin" Location ="{Binding VM_Location, Mode=OneWay}"  HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" LayoutUpdated="pin_LayoutUpdated">
@@ -85,6 +85,11 @@
 
             </StackPanel>
         </StackPanel>
+
+        <TextBlock TextWrapping="Wrap" Text="{Binding VM_Rudder, Mode=OneWay}" FontSize="22" Canvas.Left="263" Canvas.Top="76" Width="99" RenderTransformOrigin="0.209,-0.702" FontWeight="Bold" HorizontalAlignment="Center" Margin="190,360,511,125" Grid.ColumnSpan="2" Background="#FFFFACAC"><Run/><LineBreak/><Run/></TextBlock>
+        <TextBlock TextWrapping="Wrap" Text="{Binding VM_Elevator, Mode=OneWay}" FontSize="22" Canvas.Left="462" Canvas.Top="298" Width="171" FontWeight="Bold" HorizontalAlignment="Center" Margin="118,380,511,95" Grid.ColumnSpan="2" Background="#FFFFA8A8"/>
+        <TextBlock TextWrapping="Wrap" Text="{Binding VM_Throttle, Mode=OneWay}" FontSize="22" Canvas.Left="263" Canvas.Top="500" Width="82" FontWeight="Bold" HorizontalAlignment="Center" Grid.Column="1" Margin="425,300,33,185" Background="#FFFDA7A7"/>
+        <TextBlock TextWrapping="Wrap" Text="{Binding VM_Aileron, Mode=OneWay}" FontSize="22" Canvas.Top="298" Width="73" FontWeight="Bold" HorizontalAlignment="Center" Canvas.Left="10" Grid.Column="1" Margin="425,450,42,25" Background="#FFFFABAB"/>
 
         <Button Command="{Binding MoveToCenter}" HorizontalAlignment="Left" Grid.ColumnSpan="1" Margin="10,485,0,10" Padding="5" Width="105" Click="MoveToCenter" FontFamily="Rockwell" Background="#FFF0F0F0">Move To Center</Button>
         <TextBlock x:Name ="LatText" Text="{Binding VM_LatitudeMsg, Mode=OneWay}" TextWrapping="Wrap"  VerticalAlignment="Top" FontWeight="Bold" Margin="215,15,340,0" RenderTransformOrigin="0.458,-0.251" Height="20" Grid.ColumnSpan="2" />
