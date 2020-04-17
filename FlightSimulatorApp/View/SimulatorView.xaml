@@ -127,12 +127,12 @@
                 <ImageBrush/>
             </TextBlock.Background>
         </TextBlock>
-        <TextBlock TextWrapping="Wrap" Text="{Binding VM_Throttle, Mode=OneWay}" FontSize="8" Canvas.Left="263" Canvas.Top="500" Width="90" FontWeight="Bold" HorizontalAlignment="Center" Grid.Column="1" Margin="355,300,95,190" Foreground="White">
+        <TextBlock TextWrapping="Wrap" Text="{Binding VM_Throttle, Mode=OneWay}" FontSize="8" Canvas.Left="263" Canvas.Top="500" Width="60" FontWeight="Bold" HorizontalAlignment="Center" Grid.Column="1" Margin="375,300,105,190" Foreground="White">
             <TextBlock.Background>
                 <ImageBrush/>
             </TextBlock.Background>
         </TextBlock>
-        <TextBlock TextWrapping="Wrap" Text="{Binding VM_Aileron, Mode=OneWay}" FontSize="8" Canvas.Top="298" Width="80" FontWeight="Bold" HorizontalAlignment="Center" Canvas.Left="10" Grid.Column="1" Margin="355,466,105,24" Foreground="White">
+        <TextBlock TextWrapping="Wrap" Text="{Binding VM_Aileron, Mode=OneWay}" FontSize="8" Canvas.Top="298" Width="50" FontWeight="Bold" HorizontalAlignment="Center" Canvas.Left="10" Grid.Column="1" Margin="385,466,105,24" Foreground="White">
             <TextBlock.Background>
                 <ImageBrush/>
             </TextBlock.Background>
