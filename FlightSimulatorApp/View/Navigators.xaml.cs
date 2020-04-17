@@ -49,20 +49,14 @@ namespace FlightSimulatorApp.View
                 PropertyChanged(this, new PropertyChangedEventArgs(propName));
             }
         }
-        //public void NotifyPropertyChanged(string propertyName, object newValue)
-        //{
-        //    if (this.PropertyChangedNotify != null)
-        //        PropertyChangedNotify(this, new PropertyChangedExtendedEventArgs(propertyName, newValue));
-        //}
+
 
         public double Rudder
         {
             get { return this.rudder; }
             set
             {
-                this.rudder = value;
-                //this.NotifyPropertyChanged("Rudder", value);
-          
+                this.rudder = value;        
                 this.NotifyPropertyChanged("RudderText");
 
             }
@@ -73,7 +67,6 @@ namespace FlightSimulatorApp.View
             set
             {
                 this.elevator = value;
-                //this.NotifyPropertyChanged("Elevator", value);
                 this.NotifyPropertyChanged("ElevatorText");
 
             }
@@ -85,7 +78,6 @@ namespace FlightSimulatorApp.View
             {
 
                 this.aileron = value;
-                //this.NotifyPropertyChanged("Aileron", value);
                 this.NotifyPropertyChanged("AileronText");
 
             }
@@ -96,10 +88,8 @@ namespace FlightSimulatorApp.View
             set
             {
                 this.throttle = value;
-                //this.NotifyPropertyChanged("Throttle", value);
                 this.vm.NotifyPropertyChanged("Throttle");
-                this.throttleText = "" + value;
-                //this.NotifyPropertyChanged("ThrottleText");
+                this.throttleText = "" + value;            
             }
         }
 
