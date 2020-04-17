@@ -117,8 +117,6 @@
     <Compile Include="Model\ITCP.cs" />
     <Compile Include="Model\MapAndDashboradModel.cs" />
     <Compile Include="Model\NavigatorModel.cs" />
-    <Compile Include="Model\TCPGet.cs" />
-    <Compile Include="Model\TCPSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -119,10 +119,6 @@ namespace FlightSimulatorApp.ViewModel
             }
             set
             {
-                if (this.headingDeg >value)
-                {
-                    Console.WriteLine("prob");
-                }
                 this.headingDeg = value;
                 OnPropertyChanged(new PropertyChangedEventArgs("VM_HeadingDeg"));
             }
@@ -163,13 +159,10 @@ namespace FlightSimulatorApp.ViewModel
             get { return Math.Truncate(this.verticalSpeed * 1000) / 1000; }
             set
             {
-                if (this.verticalSpeed > value)
-                {
-                    Console.WriteLine("prob");
-                }
                 this.verticalSpeed = value;
                 OnPropertyChanged(new PropertyChangedEventArgs("VM_VerticalSpeed"));
             }
+
         }
         public double VM_GroundSpeed
         {
