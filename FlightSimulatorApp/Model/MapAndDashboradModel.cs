@@ -100,9 +100,13 @@ namespace FlightSimulatorApp.Model
                     mut.ReleaseMutex();
                     if (splittedData[0] != "ERR")
                     {
-                        GroundSpeed = Double.Parse(splittedData[0]);
-                        NotifyPropertyChanged(eGroundSpeed);
+                        GroundSpeed = Double.Parse(splittedData[0]);  
                     }
+                    else
+                    {
+                        eGroundSpeed = new PropertyChangedEventArgs("serverProblem");  
+                    }
+                    NotifyPropertyChanged(eGroundSpeed);
 
                     PropertyChangedEventArgs eAirSpeed = new PropertyChangedEventArgs("AirSpeed");
                     mut.WaitOne();
