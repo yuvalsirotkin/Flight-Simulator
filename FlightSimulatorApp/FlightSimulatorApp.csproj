@@ -68,9 +68,6 @@
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\TcpGetSet.cs" />
-    <Compile Include="Model\VirtualJoystickEventArgs.cs">
-      <Generator>MSBuild:Compile</Generator>
-    </Compile>
     <Compile Include="View\SimulatorView.xaml.cs">
       <DependentUpon>SimulatorView.xaml</DependentUpon>
     </Compile>
@@ -140,9 +137,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="airplane.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\Back.PNG" />

@@ -42,8 +42,8 @@ namespace FlightSimulatorApp
         //Default command- takes the ip and port from app config
         private void DefaultCommand(object sender, RoutedEventArgs e)
         {
-            this.ip = ConfigurationManager.AppSettings["ServerIP"]; //127.0.0.1
-            this.port = ConfigurationManager.AppSettings["ServerPort"];//5402 !!!!!!!!!
+            this.ip = ConfigurationManager.AppSettings["ServerIP"];  //127.0.0.1
+            this.port = ConfigurationManager.AppSettings["ServerPort"]; //5402 
             IP.Text = this.ip;
             Port.Text = this.port;
         }

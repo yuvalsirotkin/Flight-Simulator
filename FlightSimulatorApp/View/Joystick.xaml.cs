@@ -1,5 +1,4 @@
-﻿using FlightSimulator.Model;
-using FlightSimulator.Model.EventArgs;
+﻿using FlightSimulatorApp.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,11 +28,7 @@ namespace FlightSimulatorApp.View
         private Point point = new Point();
         private readonly Storyboard centerKnob;
         private double canvasWidth, canvasHeight;
-        //private double prevRudder, prevElevator;
-       
-        
-        public delegate void OnScreenJoystickEventHandler(Joystick sender, VirtualJoystickEventArgs args);
-        public event OnScreenJoystickEventHandler IsMoved;
+
 
         public Joystick()
         {
@@ -107,7 +102,6 @@ namespace FlightSimulatorApp.View
             knobPosition.Y = 0;
         }
 
-     
 
         private void Knob_MouseDown(object sender, MouseButtonEventArgs e)
         {

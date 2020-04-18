@@ -50,7 +50,7 @@ namespace FlightSimulatorApp.ViewModel
                     navigatorModel.Rudder = -1;
                 }
                 OnPropertyChanged(new PropertyChangedEventArgs("VM_Rudder"));
-                //  this.NotifyPropertyChanged("Rudder");
+                
             }
         }
 
@@ -76,7 +76,7 @@ namespace FlightSimulatorApp.ViewModel
                 }
 
                 OnPropertyChanged(new PropertyChangedEventArgs("VM_Elevator"));
-               // this.NotifyPropertyChanged("Elevator");
+               
             }
         }
         public double VM_Throttle
@@ -104,7 +104,7 @@ namespace FlightSimulatorApp.ViewModel
                 this.aileron = value;
                 navigatorModel.Aileron = value;
                 OnPropertyChanged(new PropertyChangedEventArgs("VM_Aileron"));
-              //  this.NotifyPropertyChanged("Aileron");
+             
             }
         }
 
