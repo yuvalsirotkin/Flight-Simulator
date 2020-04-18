@@ -5,18 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Sockets;
 using System.ComponentModel;
+using System.Threading;
 
 namespace FlightSimulatorApp.Model
 {
     public class TcpGetSet : INotifyPropertyChanged
     {
         TcpClient tcpClient = null;
-
+       
         //Connect to the server
         public void connect(string ip, int port)
         {
-            this.tcpClient = new TcpClient(ip, port);  
-
+            this.tcpClient = new TcpClient(ip, port);
         }
 
         //Disconnect from the server
@@ -61,9 +61,11 @@ namespace FlightSimulatorApp.Model
                 this.PropertyChanged(this, new PropertyChangedEventArgs(property.PropertyName));
         }
 
+ 
         // from stack overflow - read the data from the simulator
         public string read()
         {
+           
             if (tcpClient != null)
             {
                 try
@@ -80,8 +82,10 @@ namespace FlightSimulatorApp.Model
                 }
                 catch (Exception e)
                 {
-                    PropertyChangedEventArgs eServerPr = new PropertyChangedEventArgs("serverProblem");
-                    NotifyPropertyChanged(eServerPr);
+                   
+                        PropertyChangedEventArgs eServerPr = new PropertyChangedEventArgs("serverProblem");
+                        NotifyPropertyChanged(eServerPr);
+                    
                 }
             }
             return "ERR";

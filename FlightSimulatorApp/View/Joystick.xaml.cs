@@ -107,11 +107,7 @@ namespace FlightSimulatorApp.View
             knobPosition.Y = 0;
         }
 
-        ////sets the knob
-        //private void centerKnob_Completed(Object sender, EventArgs e)
-        //{
-        //    prevRudder = prevElevator = 0;
-        //}
+     
 
         private void Knob_MouseDown(object sender, MouseButtonEventArgs e)
         {

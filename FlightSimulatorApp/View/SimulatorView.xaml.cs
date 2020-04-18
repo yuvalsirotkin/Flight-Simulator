@@ -27,13 +27,28 @@ namespace FlightSimulatorApp
     public partial class SimulatorView : Page
     {
         private SimViewModel vm;
+        private Mutex mut;
         MapAndDashboardModel myMapAndDash;
-        public SimulatorView(string ip, int port)
+        private TcpGetSet tcpConnection;
+        public SimulatorView(string ip, int port, Home home)
         {
-            Mutex mut = new Mutex();
+            this.mut = new Mutex();
             //Create the connection to the simulator
-            TcpGetSet tcpConnection = new TcpGetSet();
+            this.tcpConnection = new TcpGetSet();
             tcpConnection.connect(ip, port);
+            myMapAndDash = new MapAndDashboardModel(tcpConnection, mut);
+            //Create the view model
+            this.vm = new SimViewModel(new NavigatorModel(tcpConnection, mut), myMapAndDash);
+            tcpConnection.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
+            {
+                vm.NotifyPropertyChanged("serverProblem");
+            };
+            InitializeComponent();
+            DataContext = vm;
+        }
+
+        public void afterSleep(Home home)
+        {
             myMapAndDash = new MapAndDashboardModel(tcpConnection, mut);
             //Create the view model
             this.vm = new SimViewModel(new NavigatorModel(tcpConnection, mut), myMapAndDash);

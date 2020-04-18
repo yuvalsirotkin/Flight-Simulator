@@ -140,10 +140,10 @@
 
 
         <Button Command="{Binding MoveToCenter}" HorizontalAlignment="Left" Grid.ColumnSpan="1" Margin="10,485,0,10" Padding="5" Width="105" Click="MoveToCenter" FontFamily="Rockwell" Background="#FFF0F0F0">Move To Center</Button>
-        <TextBlock x:Name ="LatText" Text="{Binding VM_LatitudeMsg, Mode=OneWay}" TextWrapping="Wrap"  VerticalAlignment="Top" FontWeight="Bold" Margin="215,15,340,0" RenderTransformOrigin="0.458,-0.251" Height="20" Grid.ColumnSpan="2" />
-        <TextBlock x:Name ="LongText" Text="{Binding VM_LongitudeMsg, Mode=OneWay}" TextWrapping="Wrap"  VerticalAlignment="Top" FontWeight="Bold" Margin="225,15,340,0" Height="20" Grid.ColumnSpan="2" />
-        <TextBlock x:Name ="ErrorText" Text="{Binding VM_ServerMsg, Mode=OneWay}" TextWrapping="Wrap"  VerticalAlignment="Top" FontWeight="Bold" Margin="204,15,340,0" Height="20" Grid.ColumnSpan="2" />
-        <TextBlock x:Name ="CenterText" Text="{Binding VM_CenterMsg, Mode=OneWay}" TextWrapping="Wrap"  VerticalAlignment="Top" FontWeight="Bold" Margin="204,15,340,0" Height="20" Grid.ColumnSpan="2" />
+        <TextBlock x:Name ="LatText" Text="{Binding VM_LatitudeMsg, Mode=OneWay}" TextWrapping="Wrap"  VerticalAlignment="Top" FontSize="17" FontWeight="Bold" Margin="215,15,340,0" RenderTransformOrigin="0.458,-0.251" Height="20" Grid.ColumnSpan="2" />
+        <TextBlock x:Name ="LongText" Text="{Binding VM_LongitudeMsg, Mode=OneWay}" TextWrapping="Wrap"  VerticalAlignment="Top" FontSize="17" FontWeight="Bold" Margin="225,15,340,0" Height="20" Grid.ColumnSpan="2" />
+        <TextBlock x:Name ="ErrorText" Text="{Binding VM_ServerMsg, Mode=OneWay}" TextWrapping="Wrap"  VerticalAlignment="Top" FontSize="17" FontWeight="Bold" Margin="204,15,340,0" Height="20" Grid.ColumnSpan="2" />
+        <TextBlock x:Name ="CenterText" TextWrapping="Wrap"  VerticalAlignment="Top" FontSize="17" FontWeight="Bold" Margin="204,15,340,0" Height="20" Grid.ColumnSpan="2" />
         <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="465,354,0,0" TextWrapping="Wrap" Text="← Rudder →" VerticalAlignment="Top" FontSize="8" Foreground="White" Width="50"/>
         <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="463,310,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="52" FontSize="8" Foreground="White" RenderTransformOrigin="0.035,0.788"><Run Text="← Elevator →"/></TextBlock>
     </Grid>

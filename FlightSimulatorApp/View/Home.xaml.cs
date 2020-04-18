@@ -17,8 +17,10 @@ using System.Windows.Interop;
 using FlightSimulatorApp.Model;
 using FlightSimulatorApp.ViewModel;
 using System.Configuration;
-
-
+using System.Diagnostics;
+using System.Windows.Threading;
+using System.IO;
+using System.Net.Sockets;
 
 namespace FlightSimulatorApp
 {
@@ -58,6 +60,7 @@ namespace FlightSimulatorApp
             }
         }
 
+        private Stopwatch stopWatch;
         //fly command- try to connect tje server
         private void FlyCommand(object sender, RoutedEventArgs e)
         {
@@ -77,16 +80,18 @@ namespace FlightSimulatorApp
                 string message = String.Format("You must enter Port adress");
                 ErrMsg.Text = message;
             }
-            else
-            {
+            else { 
                 try // to connect
                 {
+
                     portInInt = int.Parse(port);
-                    SimulatorView simulatorView = new SimulatorView(this.ip, portInInt);
+                    SimulatorView simulatorView = new SimulatorView(this.ip, portInInt, this);
                     this.NavigationService.Navigate(simulatorView);
-                }
-                catch // any error that appears
+                } 
+                catch
+                // any error that appears
                 {
+
                     string message = String.Format("Not able to connet, Something went wrong");
                     ErrMsg.Text = message;
                 }

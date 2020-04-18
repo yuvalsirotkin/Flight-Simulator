@@ -68,6 +68,7 @@ namespace FlightSimulatorApp.Model
                 while (!stop)
                 {
                     string[] splittedData;
+
                     //read all the data for the map and dashboard
                     PropertyChangedEventArgs eHeading = new PropertyChangedEventArgs("HeadingDeg");
                     mut.WaitOne();
@@ -77,9 +78,13 @@ namespace FlightSimulatorApp.Model
                     if (splittedData[0] != "ERR")
                     {
                         HeadingDeg = Double.Parse(splittedData[0]);
-                        NotifyPropertyChanged(eHeading);
                     }
-                    
+                    else
+                    {
+                        eHeading = new PropertyChangedEventArgs("serverProblem");
+                    }
+                    NotifyPropertyChanged(eHeading);
+
 
                     PropertyChangedEventArgs eVerticalSpeed = new PropertyChangedEventArgs("VerticalSpeed");
                     mut.WaitOne();
@@ -89,8 +94,12 @@ namespace FlightSimulatorApp.Model
                     if (splittedData[0] != "ERR")
                     {
                         VerticalSpeed = Double.Parse(splittedData[0]);
-                        NotifyPropertyChanged(eVerticalSpeed);
                     }
+                    else
+                    {
+                        eVerticalSpeed = new PropertyChangedEventArgs("serverProblem");
+                    }
+                    NotifyPropertyChanged(eVerticalSpeed);
 
 
                     PropertyChangedEventArgs eGroundSpeed = new PropertyChangedEventArgs("GroundSpeed");
@@ -116,8 +125,12 @@ namespace FlightSimulatorApp.Model
                     if (splittedData[0] != "ERR")
                     {
                         Airspeed = Double.Parse(splittedData[0]);
-                        NotifyPropertyChanged(eAirSpeed);
                     }
+                    else
+                    {
+                        eAirSpeed = new PropertyChangedEventArgs("serverProblem");
+                    }
+                    NotifyPropertyChanged(eAirSpeed);
 
 
                     PropertyChangedEventArgs eAltitude = new PropertyChangedEventArgs("Altitude");
@@ -125,12 +138,15 @@ namespace FlightSimulatorApp.Model
                     tcpClient.write("get /instrumentation/gps/indicated-altitude-ft\n");
                     splittedData = System.Text.RegularExpressions.Regex.Split(tcpClient.read(), "\n");
                     mut.ReleaseMutex();
-
                     if (splittedData[0] != "ERR")
                     {
                         Altitude = Double.Parse(splittedData[0]);
-                        NotifyPropertyChanged(eAltitude);
                     }
+                    else
+                    {
+                        eAltitude = new PropertyChangedEventArgs("serverProblem");
+                    }
+                    NotifyPropertyChanged(eAltitude);
 
                     PropertyChangedEventArgs eRoll = new PropertyChangedEventArgs("Roll");
                     mut.WaitOne();
@@ -140,8 +156,12 @@ namespace FlightSimulatorApp.Model
                     if (splittedData[0] != "ERR")
                     {
                         Roll = Double.Parse(splittedData[0]);
-                        NotifyPropertyChanged(eRoll);
                     }
+                    else
+                    {
+                        eRoll = new PropertyChangedEventArgs("serverProblem");
+                    }
+                    NotifyPropertyChanged(eRoll);
 
                     PropertyChangedEventArgs ePitch = new PropertyChangedEventArgs("Pitch");
                     mut.WaitOne();
@@ -151,9 +171,13 @@ namespace FlightSimulatorApp.Model
                     if (splittedData[0] != "ERR")
                     {
                         Pitch = Double.Parse(splittedData[0]);
-                        NotifyPropertyChanged(ePitch);
                     }
-   
+                    else
+                    {
+                        ePitch = new PropertyChangedEventArgs("serverProblem");
+                    }
+                    NotifyPropertyChanged(ePitch);
+
                     PropertyChangedEventArgs eAltimeter = new PropertyChangedEventArgs("Altimeter");
                     mut.WaitOne();
                     tcpClient.write("get /instrumentation/altimeter/indicated-altitude-ft\n");
@@ -162,9 +186,13 @@ namespace FlightSimulatorApp.Model
                     if (splittedData[0] != "ERR")
                     {
                         Altimeter = Double.Parse(splittedData[0]);
-                        NotifyPropertyChanged(eAltimeter);
                     }
-     
+                    else
+                    {
+                        eAltimeter = new PropertyChangedEventArgs("serverProblem");
+                    }
+                    NotifyPropertyChanged(eAltimeter);
+
                     PropertyChangedEventArgs eLongitude = new PropertyChangedEventArgs("Longitude");
                     mut.WaitOne();
                     tcpClient.write("get /position/longitude-deg\n");
@@ -173,8 +201,12 @@ namespace FlightSimulatorApp.Model
                     if (splittedData[0] != "ERR")
                     {
                         Longitude = Double.Parse(splittedData[0]);
-                        NotifyPropertyChanged(eLongitude);
                     }
+                    else
+                    {
+                        eLongitude = new PropertyChangedEventArgs("serverProblem");
+                    }
+                    NotifyPropertyChanged(eLongitude);
 
                     PropertyChangedEventArgs eLatitude = new PropertyChangedEventArgs("Latitude");
                     mut.WaitOne();
@@ -184,9 +216,13 @@ namespace FlightSimulatorApp.Model
                     if (splittedData[0] != "ERR")
                     {
                         Latitude = Double.Parse(splittedData[0]);
-                        NotifyPropertyChanged(eLatitude);
                     }
-                    
+                    else
+                    {
+                        eLatitude = new PropertyChangedEventArgs("serverProblem");
+                    }
+                    NotifyPropertyChanged(eLatitude);
+
                     Thread.Sleep(250);// read the data in 4Hz
                 }
             }).Start();
